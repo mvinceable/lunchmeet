@@ -35,6 +35,9 @@
 		20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2121F19FE2670009086A0 /* UserMessageCell.xib */; };
 		20C2122519FE31AF009086A0 /* GroupMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2122319FE31AF009086A0 /* GroupMessageCell.m */; };
 		20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2122419FE31AF009086A0 /* GroupMessageCell.xib */; };
+		20C2122A19FE41FA009086A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2122819FE41FA009086A0 /* MapViewController.m */; };
+		20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2122919FE41FA009086A0 /* MapViewController.xib */; };
+		20C2122D19FE426D009086A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C2122C19FE426D009086A0 /* MapKit.framework */; };
 		7323DDCCD106880763CB784B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 262798C783159C9A9AFEB52A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,10 @@
 		20C2122219FE31AF009086A0 /* GroupMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMessageCell.h; sourceTree = "<group>"; };
 		20C2122319FE31AF009086A0 /* GroupMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMessageCell.m; sourceTree = "<group>"; };
 		20C2122419FE31AF009086A0 /* GroupMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupMessageCell.xib; sourceTree = "<group>"; };
+		20C2122719FE41FA009086A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		20C2122819FE41FA009086A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		20C2122919FE41FA009086A0 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		20C2122C19FE426D009086A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		262798C783159C9A9AFEB52A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A955841503776519A66E59C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C2122D19FE426D009086A0 /* MapKit.framework in Frameworks */,
 				7323DDCCD106880763CB784B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +236,9 @@
 				20C2121819FE09DC009086A0 /* ChatViewController.h */,
 				20C2121919FE09DC009086A0 /* ChatViewController.m */,
 				20C2121A19FE09DC009086A0 /* ChatViewController.xib */,
+				20C2122719FE41FA009086A0 /* MapViewController.h */,
+				20C2122819FE41FA009086A0 /* MapViewController.m */,
+				20C2122919FE41FA009086A0 /* MapViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -266,6 +277,7 @@
 		C54AB641262788A8FD6CF0A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20C2122C19FE426D009086A0 /* MapKit.framework */,
 				262798C783159C9A9AFEB52A /* libPods.a */,
 			);
 			name = Frameworks;
@@ -373,6 +385,7 @@
 				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
 				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
+				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
 				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
 				209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */,
 			);
@@ -437,6 +450,7 @@
 				209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */,
 				209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */,
 				209A30E919FD632A0060C3E2 /* main.m in Sources */,
+				20C2122A19FE41FA009086A0 /* MapViewController.m in Sources */,
 				209A314119FDA7150060C3E2 /* Group.m in Sources */,
 				20C2121019FDD5BA009086A0 /* MemberCell.m in Sources */,
 			);

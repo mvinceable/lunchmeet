@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "UserMessageCell.h"
 #import "GroupMessageCell.h"
+#import "MapViewController.h"
 
 @interface ChatViewController ()
 
@@ -31,6 +32,10 @@
     
     // set title text
     self.navigationItem.title = self.group.name;
+    
+    // set right bar button
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(onMap)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     
     // set delegates
     self.tableview.dataSource = self;
@@ -161,7 +166,8 @@
     [self.sendButton setEnabled:NO];
     
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
-    [chat setObject:self.messageTextfield.text forKey:@"message"];
+    NSString *trimmedMessage = [self.messageTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [chat setObject:trimmedMessage forKey:@"message"];
     
     // Create relationship
     [chat setObject:[PFUser currentUser].username forKey:@"username"];
@@ -178,6 +184,12 @@
             [[[UIAlertView alloc] initWithTitle:@"Failed to send message" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
+}
+
+- (void)onMap {
+    NSLog(@"Showing map");
+    MapViewController *vc = [[MapViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
