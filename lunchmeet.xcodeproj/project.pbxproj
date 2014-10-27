@@ -1,0 +1,656 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
+		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
+		209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EE19FD632A0060C3E2 /* ViewController.m */; };
+		209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F019FD632A0060C3E2 /* Main.storyboard */; };
+		209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F319FD632A0060C3E2 /* Images.xcassets */; };
+		209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F519FD632A0060C3E2 /* LaunchScreen.xib */; };
+		209A310319FD632A0060C3E2 /* lunchmeetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A310219FD632A0060C3E2 /* lunchmeetTests.m */; };
+		209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A310D19FD63EB0060C3E2 /* StartViewController.m */; };
+		209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A310E19FD63EB0060C3E2 /* StartViewController.xib */; };
+		209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A311319FD6ED40060C3E2 /* GroupsViewController.m */; };
+		209A311619FD6ED40060C3E2 /* GroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A311419FD6ED40060C3E2 /* GroupsViewController.xib */; };
+		209A313619FD93270060C3E2 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A313419FD93270060C3E2 /* SignupViewController.m */; };
+		209A313719FD93270060C3E2 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A313519FD93270060C3E2 /* SignupViewController.xib */; };
+		209A313C19FD9BB50060C3E2 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A313A19FD9BB50060C3E2 /* GroupCell.m */; };
+		209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A313B19FD9BB50060C3E2 /* GroupCell.xib */; };
+		209A314119FDA7150060C3E2 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A314019FDA7150060C3E2 /* Group.m */; };
+		20C2120119FDB719009086A0 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C211FF19FDB719009086A0 /* GroupViewController.m */; };
+		20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2120019FDB719009086A0 /* GroupViewController.xib */; };
+		20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2120419FDBEC4009086A0 /* GroupDetailsCell.m */; };
+		20C2120719FDBEC4009086A0 /* GroupDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2120519FDBEC4009086A0 /* GroupDetailsCell.xib */; };
+		20C2121019FDD5BA009086A0 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2120E19FDD5BA009086A0 /* MemberCell.m */; };
+		20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2120F19FDD5BA009086A0 /* MemberCell.xib */; };
+		20C2121B19FE09DC009086A0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2121919FE09DC009086A0 /* ChatViewController.m */; };
+		20C2121C19FE09DC009086A0 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2121A19FE09DC009086A0 /* ChatViewController.xib */; };
+		20C2122019FE2670009086A0 /* UserMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2121E19FE2670009086A0 /* UserMessageCell.m */; };
+		20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2121F19FE2670009086A0 /* UserMessageCell.xib */; };
+		20C2122519FE31AF009086A0 /* GroupMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C2122319FE31AF009086A0 /* GroupMessageCell.m */; };
+		20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C2122419FE31AF009086A0 /* GroupMessageCell.xib */; };
+		7323DDCCD106880763CB784B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 262798C783159C9A9AFEB52A /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		209A30FD19FD632A0060C3E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 209A30DB19FD632A0060C3E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 209A30E219FD632A0060C3E2;
+			remoteInfo = lunchmeet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		209A30E319FD632A0060C3E2 /* lunchmeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lunchmeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		209A30E719FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		209A30E819FD632A0060C3E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		209A30EA19FD632A0060C3E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		209A30EB19FD632A0060C3E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		209A30ED19FD632A0060C3E2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		209A30EE19FD632A0060C3E2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		209A30F119FD632A0060C3E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		209A30F319FD632A0060C3E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		209A30F619FD632A0060C3E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		209A30FC19FD632A0060C3E2 /* lunchmeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lunchmeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		209A310119FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		209A310219FD632A0060C3E2 /* lunchmeetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lunchmeetTests.m; sourceTree = "<group>"; };
+		209A310C19FD63EB0060C3E2 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		209A310D19FD63EB0060C3E2 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		209A310E19FD63EB0060C3E2 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		209A311219FD6ED40060C3E2 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		209A311319FD6ED40060C3E2 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		209A311419FD6ED40060C3E2 /* GroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsViewController.xib; sourceTree = "<group>"; };
+		209A311719FD71B80060C3E2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		209A311819FD71B80060C3E2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		209A311B19FD71D40060C3E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		209A311D19FD71DD0060C3E2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		209A311F19FD71E50060C3E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		209A312119FD71EC0060C3E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		209A312319FD71F50060C3E2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		209A312519FD71FD0060C3E2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		209A312719FD72080060C3E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		209A312919FD720E0060C3E2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		209A312B19FD72150060C3E2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		209A312D19FD721B0060C3E2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		209A312F19FD808B0060C3E2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		209A313119FD80A50060C3E2 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		209A313319FD93270060C3E2 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		209A313419FD93270060C3E2 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		209A313519FD93270060C3E2 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		209A313919FD9BB50060C3E2 /* GroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		209A313A19FD9BB50060C3E2 /* GroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
+		209A313B19FD9BB50060C3E2 /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
+		209A313F19FDA7150060C3E2 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		209A314019FDA7150060C3E2 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		20C211FE19FDB719009086A0 /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
+		20C211FF19FDB719009086A0 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
+		20C2120019FDB719009086A0 /* GroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupViewController.xib; sourceTree = "<group>"; };
+		20C2120319FDBEC4009086A0 /* GroupDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailsCell.h; sourceTree = "<group>"; };
+		20C2120419FDBEC4009086A0 /* GroupDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsCell.m; sourceTree = "<group>"; };
+		20C2120519FDBEC4009086A0 /* GroupDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailsCell.xib; sourceTree = "<group>"; };
+		20C2120D19FDD5BA009086A0 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
+		20C2120E19FDD5BA009086A0 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		20C2120F19FDD5BA009086A0 /* MemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
+		20C2121819FE09DC009086A0 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		20C2121919FE09DC009086A0 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		20C2121A19FE09DC009086A0 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		20C2121D19FE2670009086A0 /* UserMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageCell.h; sourceTree = "<group>"; };
+		20C2121E19FE2670009086A0 /* UserMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageCell.m; sourceTree = "<group>"; };
+		20C2121F19FE2670009086A0 /* UserMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMessageCell.xib; sourceTree = "<group>"; };
+		20C2122219FE31AF009086A0 /* GroupMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMessageCell.h; sourceTree = "<group>"; };
+		20C2122319FE31AF009086A0 /* GroupMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMessageCell.m; sourceTree = "<group>"; };
+		20C2122419FE31AF009086A0 /* GroupMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupMessageCell.xib; sourceTree = "<group>"; };
+		262798C783159C9A9AFEB52A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A955841503776519A66E59C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		209A30E019FD632A0060C3E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7323DDCCD106880763CB784B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		209A30F919FD632A0060C3E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		209A30DA19FD632A0060C3E2 = {
+			isa = PBXGroup;
+			children = (
+				209A313119FD80A50060C3E2 /* Accounts.framework */,
+				209A312F19FD808B0060C3E2 /* Social.framework */,
+				209A30E519FD632A0060C3E2 /* lunchmeet */,
+				209A312D19FD721B0060C3E2 /* SystemConfiguration.framework */,
+				209A312B19FD72150060C3E2 /* StoreKit.framework */,
+				209A312919FD720E0060C3E2 /* Security.framework */,
+				209A312719FD72080060C3E2 /* QuartzCore.framework */,
+				209A312519FD71FD0060C3E2 /* MobileCoreServices.framework */,
+				209A312319FD71F50060C3E2 /* libz.dylib */,
+				209A312119FD71EC0060C3E2 /* CoreLocation.framework */,
+				209A311F19FD71E50060C3E2 /* CoreGraphics.framework */,
+				209A311D19FD71DD0060C3E2 /* CFNetwork.framework */,
+				209A311B19FD71D40060C3E2 /* AudioToolbox.framework */,
+				209A30FF19FD632A0060C3E2 /* lunchmeetTests */,
+				209A30E419FD632A0060C3E2 /* Products */,
+				209A311719FD71B80060C3E2 /* Bolts.framework */,
+				209A311819FD71B80060C3E2 /* Parse.framework */,
+				CA8EEAB81B8B4D8411927FAB /* Pods */,
+				C54AB641262788A8FD6CF0A5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		209A30E419FD632A0060C3E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				209A30E319FD632A0060C3E2 /* lunchmeet.app */,
+				209A30FC19FD632A0060C3E2 /* lunchmeetTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		209A30E519FD632A0060C3E2 /* lunchmeet */ = {
+			isa = PBXGroup;
+			children = (
+				209A313E19FDA6FE0060C3E2 /* Models */,
+				209A313819FD9B9D0060C3E2 /* Views */,
+				209A311119FD63EF0060C3E2 /* View Controllers */,
+				209A30EA19FD632A0060C3E2 /* AppDelegate.h */,
+				209A30EB19FD632A0060C3E2 /* AppDelegate.m */,
+				209A30ED19FD632A0060C3E2 /* ViewController.h */,
+				209A30EE19FD632A0060C3E2 /* ViewController.m */,
+				209A30F019FD632A0060C3E2 /* Main.storyboard */,
+				209A30F319FD632A0060C3E2 /* Images.xcassets */,
+				209A30F519FD632A0060C3E2 /* LaunchScreen.xib */,
+				209A30E619FD632A0060C3E2 /* Supporting Files */,
+			);
+			path = lunchmeet;
+			sourceTree = "<group>";
+		};
+		209A30E619FD632A0060C3E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				209A30E719FD632A0060C3E2 /* Info.plist */,
+				209A30E819FD632A0060C3E2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		209A30FF19FD632A0060C3E2 /* lunchmeetTests */ = {
+			isa = PBXGroup;
+			children = (
+				209A310219FD632A0060C3E2 /* lunchmeetTests.m */,
+				209A310019FD632A0060C3E2 /* Supporting Files */,
+			);
+			path = lunchmeetTests;
+			sourceTree = "<group>";
+		};
+		209A310019FD632A0060C3E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				209A310119FD632A0060C3E2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		209A311119FD63EF0060C3E2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				209A310C19FD63EB0060C3E2 /* StartViewController.h */,
+				209A310D19FD63EB0060C3E2 /* StartViewController.m */,
+				209A310E19FD63EB0060C3E2 /* StartViewController.xib */,
+				209A311219FD6ED40060C3E2 /* GroupsViewController.h */,
+				209A311319FD6ED40060C3E2 /* GroupsViewController.m */,
+				209A311419FD6ED40060C3E2 /* GroupsViewController.xib */,
+				209A313319FD93270060C3E2 /* SignupViewController.h */,
+				209A313419FD93270060C3E2 /* SignupViewController.m */,
+				209A313519FD93270060C3E2 /* SignupViewController.xib */,
+				20C211FE19FDB719009086A0 /* GroupViewController.h */,
+				20C211FF19FDB719009086A0 /* GroupViewController.m */,
+				20C2120019FDB719009086A0 /* GroupViewController.xib */,
+				20C2121819FE09DC009086A0 /* ChatViewController.h */,
+				20C2121919FE09DC009086A0 /* ChatViewController.m */,
+				20C2121A19FE09DC009086A0 /* ChatViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		209A313819FD9B9D0060C3E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				209A313919FD9BB50060C3E2 /* GroupCell.h */,
+				209A313A19FD9BB50060C3E2 /* GroupCell.m */,
+				209A313B19FD9BB50060C3E2 /* GroupCell.xib */,
+				20C2120319FDBEC4009086A0 /* GroupDetailsCell.h */,
+				20C2120419FDBEC4009086A0 /* GroupDetailsCell.m */,
+				20C2120519FDBEC4009086A0 /* GroupDetailsCell.xib */,
+				20C2120D19FDD5BA009086A0 /* MemberCell.h */,
+				20C2120E19FDD5BA009086A0 /* MemberCell.m */,
+				20C2120F19FDD5BA009086A0 /* MemberCell.xib */,
+				20C2121D19FE2670009086A0 /* UserMessageCell.h */,
+				20C2121E19FE2670009086A0 /* UserMessageCell.m */,
+				20C2121F19FE2670009086A0 /* UserMessageCell.xib */,
+				20C2122219FE31AF009086A0 /* GroupMessageCell.h */,
+				20C2122319FE31AF009086A0 /* GroupMessageCell.m */,
+				20C2122419FE31AF009086A0 /* GroupMessageCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		209A313E19FDA6FE0060C3E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				209A313F19FDA7150060C3E2 /* Group.h */,
+				209A314019FDA7150060C3E2 /* Group.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C54AB641262788A8FD6CF0A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				262798C783159C9A9AFEB52A /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA8EEAB81B8B4D8411927FAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A955841503776519A66E59C /* Pods.debug.xcconfig */,
+				1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		209A30E219FD632A0060C3E2 /* lunchmeet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "lunchmeet" */;
+			buildPhases = (
+				818A1C3510A8646290DEE8B6 /* Check Pods Manifest.lock */,
+				209A30DF19FD632A0060C3E2 /* Sources */,
+				209A30E019FD632A0060C3E2 /* Frameworks */,
+				209A30E119FD632A0060C3E2 /* Resources */,
+				72D52C98D6D4BEAA6D4E8339 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lunchmeet;
+			productName = lunchmeet;
+			productReference = 209A30E319FD632A0060C3E2 /* lunchmeet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		209A30FB19FD632A0060C3E2 /* lunchmeetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "lunchmeetTests" */;
+			buildPhases = (
+				209A30F819FD632A0060C3E2 /* Sources */,
+				209A30F919FD632A0060C3E2 /* Frameworks */,
+				209A30FA19FD632A0060C3E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				209A30FE19FD632A0060C3E2 /* PBXTargetDependency */,
+			);
+			name = lunchmeetTests;
+			productName = lunchmeetTests;
+			productReference = 209A30FC19FD632A0060C3E2 /* lunchmeetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		209A30DB19FD632A0060C3E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Vince Magistrado";
+				TargetAttributes = {
+					209A30E219FD632A0060C3E2 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					209A30FB19FD632A0060C3E2 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 209A30E219FD632A0060C3E2;
+					};
+				};
+			};
+			buildConfigurationList = 209A30DE19FD632A0060C3E2 /* Build configuration list for PBXProject "lunchmeet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 209A30DA19FD632A0060C3E2;
+			productRefGroup = 209A30E419FD632A0060C3E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				209A30E219FD632A0060C3E2 /* lunchmeet */,
+				209A30FB19FD632A0060C3E2 /* lunchmeetTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		209A30E119FD632A0060C3E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				209A313719FD93270060C3E2 /* SignupViewController.xib in Resources */,
+				20C2120719FDBEC4009086A0 /* GroupDetailsCell.xib in Resources */,
+				209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */,
+				209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */,
+				209A311619FD6ED40060C3E2 /* GroupsViewController.xib in Resources */,
+				20C2121C19FE09DC009086A0 /* ChatViewController.xib in Resources */,
+				20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */,
+				209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */,
+				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
+				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
+				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
+				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
+				209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		209A30FA19FD632A0060C3E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		72D52C98D6D4BEAA6D4E8339 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		818A1C3510A8646290DEE8B6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		209A30DF19FD632A0060C3E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20C2121B19FE09DC009086A0 /* ChatViewController.m in Sources */,
+				209A313619FD93270060C3E2 /* SignupViewController.m in Sources */,
+				209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */,
+				20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */,
+				209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */,
+				20C2122019FE2670009086A0 /* UserMessageCell.m in Sources */,
+				20C2120119FDB719009086A0 /* GroupViewController.m in Sources */,
+				20C2122519FE31AF009086A0 /* GroupMessageCell.m in Sources */,
+				209A313C19FD9BB50060C3E2 /* GroupCell.m in Sources */,
+				209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */,
+				209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */,
+				209A30E919FD632A0060C3E2 /* main.m in Sources */,
+				209A314119FDA7150060C3E2 /* Group.m in Sources */,
+				20C2121019FDD5BA009086A0 /* MemberCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		209A30F819FD632A0060C3E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				209A310319FD632A0060C3E2 /* lunchmeetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		209A30FE19FD632A0060C3E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 209A30E219FD632A0060C3E2 /* lunchmeet */;
+			targetProxy = 209A30FD19FD632A0060C3E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		209A30F019FD632A0060C3E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				209A30F119FD632A0060C3E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		209A30F519FD632A0060C3E2 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				209A30F619FD632A0060C3E2 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		209A310419FD632A0060C3E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		209A310519FD632A0060C3E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		209A310719FD632A0060C3E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A955841503776519A66E59C /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = lunchmeet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		209A310819FD632A0060C3E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = lunchmeet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		209A310A19FD632A0060C3E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = lunchmeetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lunchmeet.app/lunchmeet";
+			};
+			name = Debug;
+		};
+		209A310B19FD632A0060C3E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = lunchmeetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lunchmeet.app/lunchmeet";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		209A30DE19FD632A0060C3E2 /* Build configuration list for PBXProject "lunchmeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				209A310419FD632A0060C3E2 /* Debug */,
+				209A310519FD632A0060C3E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "lunchmeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				209A310719FD632A0060C3E2 /* Debug */,
+				209A310819FD632A0060C3E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "lunchmeetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				209A310A19FD632A0060C3E2 /* Debug */,
+				209A310B19FD632A0060C3E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 209A30DB19FD632A0060C3E2 /* Project object */;
+}

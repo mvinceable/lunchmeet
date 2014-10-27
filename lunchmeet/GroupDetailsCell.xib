@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="136" id="KGk-i7-Jjw" customClass="GroupDetailsCell">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GrG-aT-wz8">
+                        <rect key="frame" x="16" y="16" width="410" height="35"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3V-96-nbO">
+                        <rect key="frame" x="16" y="67" width="78" height="30"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTJ-TI-9rC">
+                        <rect key="frame" x="16" y="101" width="410" height="32"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="ph6-gd-Au2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b9-HP-NpC">
+                        <rect key="frame" x="16" y="67" width="78" height="30"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onDescription:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gdR-xA-4p6"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="height" secondItem="A3V-96-nbO" secondAttribute="height" id="6r1-yr-Dto"/>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="leading" secondItem="A3V-96-nbO" secondAttribute="leading" constant="106" id="HhA-rc-1Zi"/>
+                    <constraint firstItem="A3V-96-nbO" firstAttribute="top" secondItem="GrG-aT-wz8" secondAttribute="bottom" constant="16" id="IbL-ro-SuQ"/>
+                    <constraint firstItem="QTJ-TI-9rC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IdL-1p-cSs"/>
+                    <constraint firstItem="A3V-96-nbO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Nqb-Uh-0ls"/>
+                    <constraint firstItem="GrG-aT-wz8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Osn-6S-cGm"/>
+                    <constraint firstItem="QTJ-TI-9rC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="bottom" constant="4" id="Pa9-k0-Hb6"/>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="top" constant="-28" id="QKd-F6-8bY"/>
+                    <constraint firstAttribute="trailing" secondItem="QTJ-TI-9rC" secondAttribute="trailing" constant="16" id="VH4-9I-fTa"/>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="top" id="WVF-M1-Dbq"/>
+                    <constraint firstAttribute="trailing" secondItem="GrG-aT-wz8" secondAttribute="trailing" constant="16" id="XBJ-D6-sw7"/>
+                    <constraint firstItem="GrG-aT-wz8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="asj-gz-tiW"/>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="width" secondItem="A3V-96-nbO" secondAttribute="width" id="fKa-Zz-ZED"/>
+                    <constraint firstAttribute="bottom" secondItem="QTJ-TI-9rC" secondAttribute="bottom" constant="16" id="mb9-yb-gHY"/>
+                    <constraint firstItem="4b9-HP-NpC" firstAttribute="leading" secondItem="A3V-96-nbO" secondAttribute="leading" id="xfr-C8-ZLv"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="HhA-rc-1Zi"/>
+                        <exclude reference="QKd-F6-8bY"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionHeightConstraint" destination="ph6-gd-Au2" id="Uix-rD-m2z"/>
+                <outlet property="descriptionLabel" destination="A3V-96-nbO" id="gFG-XK-coG"/>
+                <outlet property="descriptionTextview" destination="QTJ-TI-9rC" id="MwD-dC-RXs"/>
+                <outlet property="nameTextfield" destination="GrG-aT-wz8" id="YMv-Bm-ci7"/>
+            </connections>
+            <point key="canvasLocation" x="231" y="485"/>
+        </tableViewCell>
+    </objects>
+</document>
