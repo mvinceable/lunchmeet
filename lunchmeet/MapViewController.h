@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <UIGestureRecognizerDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *mapImageView;
 
+
+-(void) onLongPress:(id)sender;
+-(void) onPinch:(id)sender;
+-(void) onRotate:(id)sender;
 @end
