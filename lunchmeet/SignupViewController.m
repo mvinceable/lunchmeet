@@ -8,6 +8,8 @@
 
 #import "SignupViewController.h"
 #import <Parse/Parse.h>
+#import "FlickrCam.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface SignupViewController ()
 
@@ -15,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonVerticalConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *urlsView;
 
 @end
 
@@ -37,6 +40,19 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    
+    [self setFlickrImage];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self setFlickrImage];
+}
+
+- (void)setFlickrImage {
+    NSString *flickrImageUrl = [[FlickrCam sharedInstance] getStoredImageUrl];
+    if (flickrImageUrl) {
+        [self.urlsView setImageWithURL:[NSURL URLWithString:flickrImageUrl]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

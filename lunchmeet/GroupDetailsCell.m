@@ -46,7 +46,7 @@
     return self.descriptionTextview.text;
 }
 
-- (IBAction)onDescription:(id)sender {
+- (IBAction)onDescriptionButton:(id)sender {
     NSLog(@"Description tapped");
     [self.descriptionTextview becomeFirstResponder];
 }

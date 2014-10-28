@@ -24,14 +24,14 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b9-HP-NpC">
-                        <rect key="frame" x="16" y="67" width="78" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b9-HP-NpC">
+                        <rect key="frame" x="16" y="71" width="410" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="onDescription:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gdR-xA-4p6"/>
+                            <action selector="onDescriptionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dis-VO-mPh"/>
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTJ-TI-9rC">
@@ -46,27 +46,19 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="4b9-HP-NpC" firstAttribute="height" secondItem="A3V-96-nbO" secondAttribute="height" id="6r1-yr-Dto"/>
-                    <constraint firstItem="4b9-HP-NpC" firstAttribute="leading" secondItem="A3V-96-nbO" secondAttribute="leading" constant="106" id="HhA-rc-1Zi"/>
+                    <constraint firstItem="QTJ-TI-9rC" firstAttribute="top" secondItem="4b9-HP-NpC" secondAttribute="bottom" id="8TG-VM-090"/>
                     <constraint firstItem="A3V-96-nbO" firstAttribute="top" secondItem="GrG-aT-wz8" secondAttribute="bottom" constant="16" id="IbL-ro-SuQ"/>
                     <constraint firstItem="QTJ-TI-9rC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IdL-1p-cSs"/>
                     <constraint firstItem="A3V-96-nbO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Nqb-Uh-0ls"/>
                     <constraint firstItem="GrG-aT-wz8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Osn-6S-cGm"/>
                     <constraint firstItem="QTJ-TI-9rC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="bottom" constant="4" id="Pa9-k0-Hb6"/>
-                    <constraint firstItem="4b9-HP-NpC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="top" constant="-28" id="QKd-F6-8bY"/>
                     <constraint firstAttribute="trailing" secondItem="QTJ-TI-9rC" secondAttribute="trailing" constant="16" id="VH4-9I-fTa"/>
-                    <constraint firstItem="4b9-HP-NpC" firstAttribute="top" secondItem="A3V-96-nbO" secondAttribute="top" id="WVF-M1-Dbq"/>
                     <constraint firstAttribute="trailing" secondItem="GrG-aT-wz8" secondAttribute="trailing" constant="16" id="XBJ-D6-sw7"/>
                     <constraint firstItem="GrG-aT-wz8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="asj-gz-tiW"/>
-                    <constraint firstItem="4b9-HP-NpC" firstAttribute="width" secondItem="A3V-96-nbO" secondAttribute="width" id="fKa-Zz-ZED"/>
                     <constraint firstAttribute="bottom" secondItem="QTJ-TI-9rC" secondAttribute="bottom" constant="16" id="mb9-yb-gHY"/>
                     <constraint firstItem="4b9-HP-NpC" firstAttribute="leading" secondItem="A3V-96-nbO" secondAttribute="leading" id="xfr-C8-ZLv"/>
+                    <constraint firstAttribute="trailing" secondItem="4b9-HP-NpC" secondAttribute="trailing" constant="16" id="xuJ-bT-4c7"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="HhA-rc-1Zi"/>
-                        <exclude reference="QKd-F6-8bY"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionHeightConstraint" destination="ph6-gd-Au2" id="Uix-rD-m2z"/>

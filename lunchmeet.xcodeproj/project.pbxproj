@@ -10,6 +10,7 @@
 		02BE0E3F19FF2A4F00BBAA16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209A312119FD71EC0060C3E2 /* CoreLocation.framework */; };
 		02BE0E4119FF2AAB00BBAA16 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4019FF2AAB00BBAA16 /* map.png */; };
 		02BE0E4319FF31F300BBAA16 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4219FF31F300BBAA16 /* image.png */; };
+		2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091FC0219FF6CFC00F4E41B /* FlickrCam.m */; };
 		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
 		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
 		209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EE19FD632A0060C3E2 /* ViewController.m */; };
@@ -58,6 +59,8 @@
 		02BE0E4019FF2AAB00BBAA16 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		02BE0E4219FF31F300BBAA16 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2091FC0119FF6CFC00F4E41B /* FlickrCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrCam.h; sourceTree = "<group>"; };
+		2091FC0219FF6CFC00F4E41B /* FlickrCam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCam.m; sourceTree = "<group>"; };
 		209A30E319FD632A0060C3E2 /* lunchmeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lunchmeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A30E719FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		209A30E819FD632A0060C3E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 			children = (
 				209A313F19FDA7150060C3E2 /* Group.h */,
 				209A314019FDA7150060C3E2 /* Group.m */,
+				2091FC0119FF6CFC00F4E41B /* FlickrCam.h */,
+				2091FC0219FF6CFC00F4E41B /* FlickrCam.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 			files = (
 				20C2121B19FE09DC009086A0 /* ChatViewController.m in Sources */,
 				209A313619FD93270060C3E2 /* SignupViewController.m in Sources */,
+				2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */,
 				209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */,
 				20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */,
 				209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */,

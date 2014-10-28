@@ -9,6 +9,7 @@
                 <outlet property="cancelButtonVerticalConstraint" destination="hr8-CO-4iB" id="ZXw-88-4Ck"/>
                 <outlet property="emailTextfield" destination="jnW-Ma-BsU" id="mXf-a9-9HY"/>
                 <outlet property="passwordTextfield" destination="Y1b-Mf-dPK" id="ANB-j1-M7w"/>
+                <outlet property="urlsView" destination="foP-qc-Asp" id="aWA-aZ-dkO"/>
                 <outlet property="usernameTextfield" destination="JLP-B2-3Hq" id="Apk-Uw-NI9"/>
                 <outlet property="view" destination="6xb-Op-sRu" id="EM2-hp-Jls"/>
             </connections>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lunchmeet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cw-nuj">
-                    <rect key="frame" x="202.5" y="141" width="196.5" height="51"/>
+                    <rect key="frame" x="202" y="141" width="196.5" height="51"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>

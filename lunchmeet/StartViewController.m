@@ -10,12 +10,18 @@
 #import <Parse/Parse.h>
 #import "GroupsViewController.h"
 #import "SignupViewController.h"
+#import "FlickrCam.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface StartViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *signupVerticalConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *urlsView;
+@property (weak, nonatomic) IBOutlet UIImageView *previousUrlsView;
 
+@property (strong, nonatomic) NSTimer *flickrTimer;
 
 @end
 
@@ -53,6 +59,26 @@
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
         [self presentViewController:nc animated:YES completion:nil];
     }
+    [self resetFlickrTimer];
+}
+
+- (void)resetFlickrTimer {
+    NSLog(@"Resetting flickr timer");
+    [self.flickrTimer invalidate];
+    // flickrcam updates every 6 minutes, so refresh every 8 or so
+    self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:480 target:self selector:@selector(onFlickrTimer) userInfo:nil repeats:YES];
+    [self onFlickrTimer];
+}
+
+- (void)onFlickrTimer {
+    // get live image of urls
+    [[FlickrCam sharedInstance] getLatestImageUrlWithCompletion:^(NSString *imageUrl, NSError *error) {
+        NSLog(@"Got flickr url %@", imageUrl);
+        [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
+        [UIView animateWithDuration:3 animations:^{
+            self.urlsView.alpha = 1;
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

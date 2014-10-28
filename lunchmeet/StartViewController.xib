@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartViewController">
             <connections>
                 <outlet property="passwordTextfield" destination="fkU-I1-O67" id="l3C-6v-4ix"/>
+                <outlet property="previousUrlsView" destination="snp-0i-53w" id="xJv-Yd-zX2"/>
                 <outlet property="signupVerticalConstraint" destination="Lsi-ZE-NAx" id="wMM-Dn-U4n"/>
+                <outlet property="urlsView" destination="sLn-4P-xiR" id="pxP-u0-3eW"/>
                 <outlet property="usernameTextfield" destination="jlx-u4-rug" id="vRv-U3-Iny"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,11 +19,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-4P-xiR">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="snp-0i-53w" userLabel="staticUrls">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-4P-xiR">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lunchmeet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-Y5-OFK">
-                    <rect key="frame" x="202.5" y="141" width="196.5" height="51"/>
+                    <rect key="frame" x="202" y="141" width="196.5" height="51"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -83,15 +88,19 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="snp-0i-53w" secondAttribute="bottom" id="3ka-3Y-rrz"/>
                 <constraint firstAttribute="centerX" secondItem="jlx-u4-rug" secondAttribute="centerX" id="5ha-MM-TtL"/>
                 <constraint firstAttribute="bottom" secondItem="sLn-4P-xiR" secondAttribute="bottom" id="G6l-aR-Irm"/>
+                <constraint firstItem="snp-0i-53w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Iw2-W8-W1i"/>
                 <constraint firstItem="sLn-4P-xiR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KF5-vR-9xc"/>
                 <constraint firstAttribute="bottom" secondItem="sKp-YB-BeQ" secondAttribute="bottom" constant="200" id="Lsi-ZE-NAx"/>
                 <constraint firstItem="fkU-I1-O67" firstAttribute="top" secondItem="jlx-u4-rug" secondAttribute="bottom" constant="8" id="MR6-vV-iq2"/>
+                <constraint firstItem="snp-0i-53w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OP7-aW-fww"/>
                 <constraint firstAttribute="centerX" secondItem="sKp-YB-BeQ" secondAttribute="centerX" id="PMZ-Mp-6L3"/>
                 <constraint firstItem="sKp-YB-BeQ" firstAttribute="top" secondItem="dTf-6v-Npu" secondAttribute="bottom" constant="8" id="TNN-Kr-4PN"/>
                 <constraint firstItem="jlx-u4-rug" firstAttribute="top" secondItem="cuB-Y5-OFK" secondAttribute="bottom" constant="16" id="WWZ-Wg-Esa"/>
                 <constraint firstItem="dTf-6v-Npu" firstAttribute="top" secondItem="fkU-I1-O67" secondAttribute="bottom" constant="8" id="aoM-K8-dy4"/>
+                <constraint firstAttribute="trailing" secondItem="snp-0i-53w" secondAttribute="trailing" id="dQU-q5-1oc"/>
                 <constraint firstAttribute="centerX" secondItem="fkU-I1-O67" secondAttribute="centerX" id="e4G-cz-OtM"/>
                 <constraint firstAttribute="centerX" secondItem="dTf-6v-Npu" secondAttribute="centerX" id="fbv-7D-AJP"/>
                 <constraint firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" id="h0K-LK-q6w"/>
