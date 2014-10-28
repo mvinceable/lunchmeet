@@ -32,12 +32,10 @@
 }
 
 - (void)setGroup:(Group *)group {
+    _group = group;
+    
     self.nameTextfield.text = group.name;
-    self.descriptionLabel.text = group.desc;
-}
-
-- (void)makeFirstResponder {
-    [self.nameTextfield becomeFirstResponder];
+    self.descriptionTextview.text = group.desc;
 }
 
 - (NSString *)getName {

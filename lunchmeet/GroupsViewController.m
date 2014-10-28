@@ -112,7 +112,6 @@
         
         [self.loadingIndicator hide:YES];
         [self.refreshTweetsControl endRefreshing];
-        [self.tableview setHidden:NO];
     }];
 }
 
@@ -130,6 +129,19 @@
     GroupViewController *vc = [[GroupViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+- (IBAction)onLongPress:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        NSLog(@"UIGestureRecognizerStateBegan.");
+        CGPoint location = [sender locationInView:self.tableview];
+        NSIndexPath *indexPath = [self.tableview indexPathForRowAtPoint:location];
+        NSLog(@"row is %ld", indexPath.row);
+        GroupViewController *vc = [[GroupViewController alloc] init];
+        vc.group = self.groups[indexPath.row];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nvc animated:YES completion:nil];
+    }
 }
 
 /*

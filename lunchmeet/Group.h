@@ -22,7 +22,11 @@
 - (id) initWithDictionary:(NSDictionary *)dictionary;
 
 - (void)saveNewGroupWithCompletion:(void (^)(NSString *objectId, NSError *error))completion;
+- (void)saveExistingGroupWithCompletion:(void (^)(NSString *objectId, NSError *error))completion;
+
+- (void)getGroupMembersWithCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 
 + (NSArray *)groupsWithArray:(NSArray *)array;
++ (NSString *)friendlyTimestamp:(NSDate *)date;
 
 @end

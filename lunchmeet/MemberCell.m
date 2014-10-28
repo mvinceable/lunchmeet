@@ -39,7 +39,7 @@
 }
 
 - (IBAction)onRemoveCell:(id)sender {
-    [self.delegeate removeMemberCell:self];
+    [self.delegate removeMemberCell:self];
 }
 
 

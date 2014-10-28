@@ -21,12 +21,21 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="xzR-7a-crM" secondAttribute="bottom" id="7x1-Sh-FZR"/>
                 <constraint firstItem="xzR-7a-crM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KQU-Zq-t5K"/>
                 <constraint firstItem="xzR-7a-crM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xa3-Gn-hVc"/>
                 <constraint firstAttribute="trailing" secondItem="xzR-7a-crM" secondAttribute="trailing" id="qNr-l9-04L"/>
             </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="2VB-MM-PHp" appends="YES" id="gog-Jm-oCP"/>
+            </connections>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="2VB-MM-PHp">
+            <connections>
+                <action selector="onLongPress:" destination="-1" id="zO2-fk-cZE"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
 </document>

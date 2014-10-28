@@ -16,6 +16,4 @@
 - (NSString *)getName;
 - (NSString *)getDesc;
 
-- (void)makeFirstResponder;
-
 @end

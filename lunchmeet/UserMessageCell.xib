@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -21,7 +20,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKy-Kv-hWQ" userLabel="messageContent">
-                        <rect key="frame" x="183" y="30" width="113" height="43.5"/>
+                        <rect key="frame" x="191" y="30" width="113" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5u-pS-mPP">
                                 <rect key="frame" x="8" y="8" width="97" height="27.5"/>
@@ -39,7 +38,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-ec-IyV">
-                        <rect key="frame" x="244.5" y="8" width="51.5" height="14.5"/>
+                        <rect key="frame" x="252.5" y="8" width="51.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -47,13 +46,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerX" secondItem="HfD-Xp-YpC" secondAttribute="centerX" id="7tt-wc-sHp"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="mKy-Kv-hWQ" secondAttribute="trailing" constant="16" id="AK4-Rx-Sn5"/>
+                    <constraint firstAttribute="trailing" secondItem="mKy-Kv-hWQ" secondAttribute="trailing" constant="16" id="AK4-Rx-Sn5"/>
                     <constraint firstItem="HfD-Xp-YpC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="IEC-E0-Ca8"/>
                     <constraint firstAttribute="bottom" secondItem="mKy-Kv-hWQ" secondAttribute="bottom" constant="16" id="M88-ho-olH"/>
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="top" secondItem="HfD-Xp-YpC" secondAttribute="bottom" constant="8" id="S7h-1S-7gi"/>
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="fWg-5B-sz2"/>
                     <constraint firstItem="uDd-ec-IyV" firstAttribute="centerY" secondItem="HfD-Xp-YpC" secondAttribute="centerY" id="lNk-Xd-Ft7"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="uDd-ec-IyV" secondAttribute="trailing" constant="16" id="tIM-YQ-0aY"/>
+                    <constraint firstAttribute="trailing" secondItem="uDd-ec-IyV" secondAttribute="trailing" constant="16" id="tIM-YQ-0aY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

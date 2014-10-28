@@ -31,8 +31,8 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     // set title text
-    if (self.group) {
-        self.navigationItem.title = self.group.name;
+    if (_group) {
+        self.navigationItem.title = _group.name;
     } else {
         self.navigationItem.title = @"New Group";
     }
@@ -65,11 +65,6 @@
                                                object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    GroupDetailsCell *cell = (GroupDetailsCell *)[self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    [cell makeFirstResponder];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -92,6 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         GroupDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupDetailsCell"];
+        cell.group = _group;
         return cell;
     } else {
         if (indexPath.row == 0) {
@@ -103,7 +99,7 @@
             MemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemberCell"];
             NSString *username = self.members[indexPath.row - 1];
             cell.name = username;
-            cell.delegeate = self;
+            cell.delegate = self;
             
             // make newly added cell first responder
             if ([username isEqualToString:@""] && indexPath.row == 1) {
@@ -166,26 +162,47 @@
         // it's empty or contains only white spaces
         [[[UIAlertView alloc] initWithTitle:@"Please enter a group name" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     } else {
-        // store group and them dismiss
         self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSDictionary *dictionary = @{
-                       @"name": trimmedName,
-                       @"description": [gdc getDesc],
-                       @"members": self.members
-                       };
-        
-        Group *group = [[Group alloc] initWithDictionary:dictionary];
-        
-        [group saveNewGroupWithCompletion:^(NSString *objectId, NSError *error) {
-            if (error) {
-                [[[UIAlertView alloc] initWithTitle:@"There was an error creating the group" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-                [self.loadingIndicator hide:YES];
-            } else {
-                NSLog(@"Group saved with id %@", objectId);
-                [self.loadingIndicator hide:YES];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-        }];
+        // save existing group
+        if (_group) {
+            NSLog(@"Saving existing group");
+            
+            _group.name = trimmedName;
+            _group.desc = [gdc getDesc];
+            _group.members = self.members;
+            
+            [_group saveExistingGroupWithCompletion:^(NSString *objectId, NSError *error) {
+                if (error) {
+                    [[[UIAlertView alloc] initWithTitle:@"There was an error saving the group" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    [self.loadingIndicator hide:YES];
+                } else {
+                    NSLog(@"Group changes saved with id %@", objectId);
+                    [self.loadingIndicator hide:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+            }];
+        } else {
+            // store new group and them dismiss
+            NSLog(@"Saving new group");
+            NSDictionary *dictionary = @{
+                           @"name": trimmedName,
+                           @"description": [gdc getDesc],
+                           @"members": self.members
+                           };
+            
+            Group *group = [[Group alloc] initWithDictionary:dictionary];
+            
+            [group saveNewGroupWithCompletion:^(NSString *objectId, NSError *error) {
+                if (error) {
+                    [[[UIAlertView alloc] initWithTitle:@"There was an error creating the group" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    [self.loadingIndicator hide:YES];
+                } else {
+                    NSLog(@"Group saved with id %@", objectId);
+                    [self.loadingIndicator hide:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+            }];
+        }
     }
 }
 
@@ -229,6 +246,30 @@
     [UIView animateWithDuration:.24 animations:^{
         self.tableBottomConstraint.constant = 0;
         [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)setGroup:(Group *)group {
+    _group = group;
+    
+    // load members for the group
+    self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [_group getGroupMembersWithCompletion:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu members.", (unsigned long)objects.count);
+            for (PFObject *object in objects) {
+                [self.members addObject:object[@"username"]];
+            }
+            [self.tableview reloadData];
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            [[[UIAlertView alloc] initWithTitle:@"Failed to get group members" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            // disable saving since we're in a bad state
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
+        [self.loadingIndicator hide:YES];
     }];
 }
 

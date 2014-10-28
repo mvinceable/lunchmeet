@@ -66,7 +66,7 @@
 }
 
 - (IBAction)onCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void) setUsername:(NSString *)username {
@@ -77,13 +77,15 @@
     self.passwordTextfield.text = password;
 }
 
+NSInteger const DEFAULT_CANCELVERTICAL_CONSTRAINT = 150;
+
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSLog(@"Keyboard will show for signup vc");
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
     
-    if (keyboardFrameEndRect.size.height + 16 > self.cancelButtonVerticalConstraint.constant) {
+    if (keyboardFrameEndRect.size.height + 16 > DEFAULT_CANCELVERTICAL_CONSTRAINT) {
         [UIView animateWithDuration:.24 animations:^{
             self.cancelButtonVerticalConstraint.constant = keyboardFrameEndRect.size.height + 16;
             [self.view layoutIfNeeded];
@@ -94,7 +96,7 @@
 - (void)keyboardDidHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     [UIView animateWithDuration:.24 animations:^{
-        self.cancelButtonVerticalConstraint.constant = 100;
+        self.cancelButtonVerticalConstraint.constant = DEFAULT_CANCELVERTICAL_CONSTRAINT;
         [self.view layoutIfNeeded];
     }];
 }

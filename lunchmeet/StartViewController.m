@@ -81,10 +81,12 @@
 - (IBAction)onSignup:(id)sender {
     NSLog(@"Sign up button");
     SignupViewController *svc = [[SignupViewController alloc] init];
-    [self presentViewController:svc animated:YES completion:nil];
+    [self presentViewController:svc animated:NO completion:nil];
     svc.username = self.usernameTextfield.text;
     svc.password = self.passwordTextfield.text;
 }
+
+NSInteger const DEFAULT_SIGNUPVERTICAL_CONSTRAINT = 200;
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSLog(@"Keyboard will show for start vc");
@@ -92,7 +94,7 @@
     NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
     
-    if (keyboardFrameEndRect.size.height + 16 > self.signupVerticalConstraint.constant) {
+    if (keyboardFrameEndRect.size.height + 16 > DEFAULT_SIGNUPVERTICAL_CONSTRAINT) {
         [UIView animateWithDuration:.24 animations:^{
             self.signupVerticalConstraint.constant = keyboardFrameEndRect.size.height + 16;
             [self.view layoutIfNeeded];
@@ -103,7 +105,7 @@
 - (void)keyboardDidHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     [UIView animateWithDuration:.24 animations:^{
-        self.signupVerticalConstraint.constant = 100;
+        self.signupVerticalConstraint.constant = DEFAULT_SIGNUPVERTICAL_CONSTRAINT;
         [self.view layoutIfNeeded];
     }];
 }

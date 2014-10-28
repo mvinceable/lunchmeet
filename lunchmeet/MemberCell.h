@@ -23,6 +23,6 @@
 - (NSString *)getName;
 - (void)makeFirstResponder;
 
-@property (nonatomic, weak) id <MemberCellDelegate> delegeate;
+@property (nonatomic, weak) id <MemberCellDelegate> delegate;
 
 @end
