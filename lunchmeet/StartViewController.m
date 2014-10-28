@@ -17,9 +17,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *signupVerticalConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *urlsView;
 @property (weak, nonatomic) IBOutlet UIImageView *previousUrlsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginControlsVerticalConstraint;
+@property (weak, nonatomic) IBOutlet UIView *loginControlsView;
 
 @property (strong, nonatomic) NSTimer *flickrTimer;
 
@@ -112,7 +113,7 @@
     svc.password = self.passwordTextfield.text;
 }
 
-NSInteger const DEFAULT_SIGNUPVERTICAL_CONSTRAINT = 200;
+NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 200;
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSLog(@"Keyboard will show for start vc");
@@ -120,9 +121,9 @@ NSInteger const DEFAULT_SIGNUPVERTICAL_CONSTRAINT = 200;
     NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
     
-    if (keyboardFrameEndRect.size.height + 16 > DEFAULT_SIGNUPVERTICAL_CONSTRAINT) {
+    if (keyboardFrameEndRect.size.height + 16 > DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT) {
         [UIView animateWithDuration:.24 animations:^{
-            self.signupVerticalConstraint.constant = keyboardFrameEndRect.size.height + 16;
+            self.loginControlsVerticalConstraint.constant = keyboardFrameEndRect.size.height + 16;
             [self.view layoutIfNeeded];
         }];
     }
@@ -131,8 +132,24 @@ NSInteger const DEFAULT_SIGNUPVERTICAL_CONSTRAINT = 200;
 - (void)keyboardDidHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     [UIView animateWithDuration:.24 animations:^{
-        self.signupVerticalConstraint.constant = DEFAULT_SIGNUPVERTICAL_CONSTRAINT;
+        self.loginControlsVerticalConstraint.constant = DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT;
         [self.view layoutIfNeeded];
+    }];
+}
+
+- (IBAction)onTap:(id)sender {
+    NSLog(@"Screen tapped");
+    
+    CGFloat finalValue;
+    
+    if (self.loginControlsView.alpha == 0) {
+        finalValue = 1;
+    } else {
+        finalValue = 0;
+    }
+    
+    [UIView animateWithDuration:.24 animations:^{
+        self.loginControlsView.alpha = finalValue;
     }];
 }
 
