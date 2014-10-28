@@ -38,6 +38,12 @@
                             <constraint firstAttribute="trailing" secondItem="v5u-pS-mPP" secondAttribute="trailing" constant="8" id="eAA-WQ-zDo"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-ec-IyV">
+                        <rect key="frame" x="244.5" y="8" width="51.5" height="14.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerX" secondItem="HfD-Xp-YpC" secondAttribute="centerX" id="7tt-wc-sHp"/>
@@ -46,11 +52,14 @@
                     <constraint firstAttribute="bottom" secondItem="mKy-Kv-hWQ" secondAttribute="bottom" constant="16" id="M88-ho-olH"/>
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="top" secondItem="HfD-Xp-YpC" secondAttribute="bottom" constant="8" id="S7h-1S-7gi"/>
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="fWg-5B-sz2"/>
+                    <constraint firstItem="uDd-ec-IyV" firstAttribute="centerY" secondItem="HfD-Xp-YpC" secondAttribute="centerY" id="lNk-Xd-Ft7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uDd-ec-IyV" secondAttribute="trailing" constant="16" id="tIM-YQ-0aY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="messageLabel" destination="v5u-pS-mPP" id="BXX-E0-rA9"/>
                 <outlet property="timestampLabel" destination="HfD-Xp-YpC" id="OF9-r4-R6P"/>
+                <outlet property="userLabel" destination="uDd-ec-IyV" id="YkT-E3-HTO"/>
             </connections>
             <point key="canvasLocation" x="267" y="391"/>
         </tableViewCell>

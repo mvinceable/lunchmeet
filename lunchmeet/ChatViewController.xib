@@ -6,8 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
-                <outlet property="messageBottomConstraint" destination="FYa-wL-xXO" id="LZv-lp-ysm"/>
-                <outlet property="messageTextfield" destination="m3E-yO-gr3" id="cwK-9U-QU9"/>
+                <outlet property="messageBottomConstraint" destination="ioB-F8-0fA" id="zFt-YT-kav"/>
+                <outlet property="messageTextview" destination="254-v1-P2T" id="8d6-HM-7ar"/>
+                <outlet property="messageTextviewHeightConstraint" destination="0Ik-kj-69k" id="JZ1-Gh-LhO"/>
                 <outlet property="sendButton" destination="Wfg-ms-QyU" id="wIf-Sl-jhH"/>
                 <outlet property="tableview" destination="mTn-LM-n1Q" id="zdd-UM-Mai"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,22 +20,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mTn-LM-n1Q">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="548"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="say something..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="m3E-yO-gr3">
-                    <rect key="frame" x="16" y="552" width="520" height="32"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHv-io-Ggp" userLabel="textviewBorder">
+                    <rect key="frame" x="0.0" y="548" width="600" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="ZRV-fS-PzH"/>
+                        <constraint firstAttribute="height" constant="1" id="s82-Yc-ehm"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="onEditingChanged:" destination="-1" eventType="editingChanged" id="gU3-A1-GiO"/>
-                    </connections>
-                </textField>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-ms-QyU">
-                    <rect key="frame" x="547" y="552" width="37" height="32"/>
+                    <rect key="frame" x="555" y="557" width="37" height="31"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title="Send">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,20 +40,37 @@
                         <action selector="onSend:" destination="-1" eventType="touchUpInside" id="fZF-Io-tIV"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="254-v1-P2T">
+                    <rect key="frame" x="8" y="556" width="539" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="0Ik-kj-69k"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="m3E-yO-gr3" secondAttribute="trailing" constant="64" id="63k-dO-dKo"/>
-                <constraint firstAttribute="bottom" secondItem="m3E-yO-gr3" secondAttribute="bottom" constant="16" id="FYa-wL-xXO"/>
-                <constraint firstAttribute="trailing" secondItem="Wfg-ms-QyU" secondAttribute="trailing" constant="16" id="FvD-FL-dgh"/>
-                <constraint firstItem="m3E-yO-gr3" firstAttribute="top" secondItem="mTn-LM-n1Q" secondAttribute="bottom" constant="16" id="NHn-KM-4ij"/>
+                <constraint firstItem="254-v1-P2T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="68i-el-KJd"/>
+                <constraint firstItem="xHv-io-Ggp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8ZH-jG-28M"/>
+                <constraint firstAttribute="trailing" secondItem="Wfg-ms-QyU" secondAttribute="trailing" constant="8" id="FvD-FL-dgh"/>
+                <constraint firstAttribute="trailing" secondItem="xHv-io-Ggp" secondAttribute="trailing" id="Lzf-Op-1h6"/>
                 <constraint firstItem="mTn-LM-n1Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Q6l-eN-gCA"/>
-                <constraint firstItem="m3E-yO-gr3" firstAttribute="centerY" secondItem="Wfg-ms-QyU" secondAttribute="centerY" id="ViR-ss-CNM"/>
+                <constraint firstItem="Wfg-ms-QyU" firstAttribute="bottom" secondItem="254-v1-P2T" secondAttribute="bottom" constant="-4" id="SXA-o4-Q4U"/>
                 <constraint firstAttribute="trailing" secondItem="mTn-LM-n1Q" secondAttribute="trailing" id="f2v-P6-fah"/>
                 <constraint firstItem="mTn-LM-n1Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fHY-Au-fRO"/>
-                <constraint firstItem="m3E-yO-gr3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="wBc-CZ-nLK"/>
-                <constraint firstAttribute="bottom" secondItem="Wfg-ms-QyU" secondAttribute="bottom" constant="16" id="wW9-Ji-CV3"/>
+                <constraint firstAttribute="bottom" secondItem="254-v1-P2T" secondAttribute="bottom" constant="8" id="ioB-F8-0fA"/>
+                <constraint firstItem="xHv-io-Ggp" firstAttribute="top" secondItem="mTn-LM-n1Q" secondAttribute="bottom" id="pnB-0t-XfG"/>
+                <constraint firstItem="254-v1-P2T" firstAttribute="top" secondItem="mTn-LM-n1Q" secondAttribute="bottom" constant="8" id="px1-KO-mCh"/>
+                <constraint firstItem="Wfg-ms-QyU" firstAttribute="leading" secondItem="254-v1-P2T" secondAttribute="trailing" constant="8" id="quK-d2-WKx"/>
+                <constraint firstAttribute="bottom" secondItem="Wfg-ms-QyU" secondAttribute="bottom" constant="12" id="wW9-Ji-CV3"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="wW9-Ji-CV3"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

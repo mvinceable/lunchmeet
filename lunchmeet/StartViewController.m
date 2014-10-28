@@ -38,6 +38,11 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes: @{
+                                                            NSForegroundColorAttributeName: [UIColor blackColor],
+                                                            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
+                                                            }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

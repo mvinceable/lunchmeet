@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @end
 
@@ -48,6 +49,7 @@
         self.timestampLabel.text = [dateFormat stringFromDate:message.createdAt];
     }
     self.messageLabel.text = message[@"message"];
+    self.userLabel.text = message[@"username"];
 }
 
 @end

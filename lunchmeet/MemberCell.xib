@@ -19,7 +19,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifx-BA-mJt">
-                        <rect key="frame" x="4" y="6.5" width="30" height="31"/>
+                        <rect key="frame" x="4" y="6" width="30" height="31"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <state key="normal" title="-">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,12 +28,22 @@
                             <action selector="onRemoveCell:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tVI-Fu-zrj"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFs-rH-cOG" userLabel="border">
+                        <rect key="frame" x="0.0" y="42.5" width="320" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="yCd-yZ-YEE"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="5oE-Vn-CSG" secondAttribute="trailing" constant="16" id="2Pd-p4-Quz"/>
                     <constraint firstItem="ifx-BA-mJt" firstAttribute="centerY" secondItem="5oE-Vn-CSG" secondAttribute="centerY" id="A05-gF-2GJ"/>
+                    <constraint firstAttribute="trailing" secondItem="SFs-rH-cOG" secondAttribute="trailing" id="AXy-LJ-t6E"/>
                     <constraint firstItem="ifx-BA-mJt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="FUS-Hx-b5F"/>
+                    <constraint firstAttribute="bottom" secondItem="SFs-rH-cOG" secondAttribute="bottom" id="Go5-Hi-coP"/>
                     <constraint firstItem="5oE-Vn-CSG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="KiB-5E-EM6"/>
+                    <constraint firstItem="SFs-rH-cOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SKf-5m-hcC"/>
                     <constraint firstAttribute="bottom" secondItem="5oE-Vn-CSG" secondAttribute="bottom" constant="16" id="VRA-hZ-xMv"/>
                     <constraint firstItem="5oE-Vn-CSG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="wly-dz-s2h"/>
                 </constraints>

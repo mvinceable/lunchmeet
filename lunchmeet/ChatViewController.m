@@ -18,8 +18,9 @@
 @property (strong, nonatomic)NSTimer *chatTimer;
 @property (strong, nonatomic)NSArray *messages;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBottomConstraint;
-@property (weak, nonatomic) IBOutlet UITextField *messageTextfield;
+@property (weak, nonatomic) IBOutlet UITextView *messageTextview;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextviewHeightConstraint;
 @property (nonatomic) BOOL shouldScrollDown;
 
 @end
@@ -42,6 +43,8 @@
     self.tableview.delegate = self;
     self.tableview.estimatedRowHeight = 90;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
+    
+    self.messageTextview.delegate = self;
     
     // listen for keyboard appearances and disappearances
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -118,7 +121,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PFObject *message = self.messages[indexPath.row];
     
-    // getting the user who created the Game
+    // getting the user who created the message
     NSString *username = [message objectForKey:@"username"];
     
     if ([username isEqualToString:[PFUser currentUser].username]) {
@@ -154,11 +157,31 @@
     }];
 }
 
-- (IBAction)onEditingChanged:(id)sender {
-    NSString *trimmedMessage = [self.messageTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];    if (![trimmedMessage isEqualToString:@""]) {
+NSInteger const DEFAULT_MESSAGETEXTVIEW_HEIGHT = 36;
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NSString *trimmedMessage = [self.messageTextview.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];    if (![trimmedMessage isEqualToString:@""]) {
         [self.sendButton setEnabled:YES];
     } else {
         [self.sendButton setEnabled:NO];
+    }
+    
+    // set height of textview if necessary
+    [self updateMessageTextviewHeight];
+}
+
+- (void)updateMessageTextviewHeight {
+    CGSize sizeThatShouldFitTheContent = [self.messageTextview sizeThatFits:self.messageTextview.frame.size];
+    if (sizeThatShouldFitTheContent.height > DEFAULT_MESSAGETEXTVIEW_HEIGHT) {
+        [UIView animateWithDuration:.24 animations:^{
+            self.messageTextviewHeightConstraint.constant = sizeThatShouldFitTheContent.height;
+            [self.view layoutIfNeeded];
+        }];
+    } else {
+        [UIView animateWithDuration:.24 animations:^{
+            self.messageTextviewHeightConstraint.constant = DEFAULT_MESSAGETEXTVIEW_HEIGHT;
+            [self.view layoutIfNeeded];
+        }];
     }
 }
 
@@ -166,17 +189,20 @@
     [self.sendButton setEnabled:NO];
     
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
-    NSString *trimmedMessage = [self.messageTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    PFObject *group = self.group.pfObject;
+    
+    NSString *trimmedMessage = [self.messageTextview.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [chat setObject:trimmedMessage forKey:@"message"];
     
     // Create relationship
     [chat setObject:[PFUser currentUser].username forKey:@"username"];
-    [chat setObject:self.group.pfObject forKey:@"group"];
+    [chat setObject:group forKey:@"group"];
     
     // Save the new post
     [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            self.messageTextfield.text = @"";
+            self.messageTextview.text = @"";
+            [self updateMessageTextviewHeight];
             self.shouldScrollDown = YES;
             [self resetTimer];
         } else {
@@ -184,6 +210,11 @@
             [[[UIAlertView alloc] initWithTitle:@"Failed to send message" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
+    
+    // add to last message and user column
+    [group setObject:trimmedMessage forKey:@"lastMessage"];
+    [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
+    [group saveInBackground];
 }
 
 - (void)onMap {

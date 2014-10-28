@@ -22,6 +22,8 @@
     if (self) {
         self.name = object[@"name"];
         self.desc = object[@"description"];
+        self.lastMessage = object[@"lastMessage"];
+        self.lastUser = object[@"lastUser"];
         self.pfObject = object;
     }
     return self;

@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSArray *members;
+@property (strong, nonatomic) NSString *lastUser;
+@property (strong, nonatomic) NSString *lastMessage;
 @property (strong, nonatomic) PFObject *pfObject;
 
 - (id) initWithObject:(PFObject *)object;

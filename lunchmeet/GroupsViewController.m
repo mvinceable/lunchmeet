@@ -56,11 +56,14 @@
     self.refreshTweetsControl = [[UIRefreshControl alloc] init];
     [self.tableview addSubview:self.refreshTweetsControl];
     [self.refreshTweetsControl addTarget:self action:@selector(refreshGroups) forControlEvents:UIControlEventValueChanged];
+    
+    // show loading indicator
+    self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    // show loading indicator
-    self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    // sometimes the keyboard would still be present so hide it
+    [self.view endEditing:YES];
     [self refreshGroups];
 }
 
@@ -95,7 +98,7 @@
     PFUser *user = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Group"];
     [query whereKey:@"members" equalTo:user];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.

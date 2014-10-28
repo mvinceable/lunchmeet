@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 
-@interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic)Group *group;
 
