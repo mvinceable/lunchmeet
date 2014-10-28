@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02BE0E3F19FF2A4F00BBAA16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209A312119FD71EC0060C3E2 /* CoreLocation.framework */; };
+		02BE0E4119FF2AAB00BBAA16 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4019FF2AAB00BBAA16 /* map.png */; };
+		02BE0E4319FF31F300BBAA16 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4219FF31F300BBAA16 /* image.png */; };
 		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
 		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
 		209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EE19FD632A0060C3E2 /* ViewController.m */; };
@@ -52,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02BE0E4019FF2AAB00BBAA16 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		02BE0E4219FF31F300BBAA16 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		209A30E319FD632A0060C3E2 /* lunchmeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lunchmeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A30E719FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BE0E3F19FF2A4F00BBAA16 /* CoreLocation.framework in Frameworks */,
 				20C2122D19FE426D009086A0 /* MapKit.framework in Frameworks */,
 				7323DDCCD106880763CB784B /* libPods.a in Frameworks */,
 			);
@@ -177,6 +183,8 @@
 		209A30E519FD632A0060C3E2 /* lunchmeet */ = {
 			isa = PBXGroup;
 			children = (
+				02BE0E4019FF2AAB00BBAA16 /* map.png */,
+				02BE0E4219FF31F300BBAA16 /* image.png */,
 				209A313E19FDA6FE0060C3E2 /* Models */,
 				209A313819FD9B9D0060C3E2 /* Views */,
 				209A311119FD63EF0060C3E2 /* View Controllers */,
@@ -383,11 +391,13 @@
 				20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */,
 				209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */,
 				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
+				02BE0E4119FF2AAB00BBAA16 /* map.png in Resources */,
 				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
 				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
 				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
 				209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */,
+				02BE0E4319FF31F300BBAA16 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
