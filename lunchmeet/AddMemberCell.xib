@@ -7,14 +7,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="KGk-i7-Jjw" customClass="AddMemberCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6o-LC-dGP">
-                        <rect key="frame" x="16" y="8" width="30" height="29"/>
+                        <rect key="frame" x="16" y="12" width="30" height="25"/>
                         <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <state key="normal" title="+">
@@ -22,18 +22,28 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25M-dA-gFa">
+                        <rect key="frame" x="0.0" y="48" width="320" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="SvK-YS-Wje"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add lunchmate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wf0-oI-Gtp">
-                        <rect key="frame" x="54" y="13" width="103" height="19"/>
+                        <rect key="frame" x="54" y="15" width="103" height="19"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="E6o-LC-dGP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0l1-Ua-oFm"/>
+                    <constraint firstItem="E6o-LC-dGP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="0l1-Ua-oFm"/>
+                    <constraint firstAttribute="bottom" secondItem="25M-dA-gFa" secondAttribute="bottom" id="5rY-tp-97d"/>
                     <constraint firstItem="Wf0-oI-Gtp" firstAttribute="leading" secondItem="E6o-LC-dGP" secondAttribute="trailing" constant="8" id="8Sb-7d-mfX"/>
+                    <constraint firstAttribute="trailing" secondItem="25M-dA-gFa" secondAttribute="trailing" id="Mhf-3k-q3r"/>
                     <constraint firstItem="Wf0-oI-Gtp" firstAttribute="centerY" secondItem="E6o-LC-dGP" secondAttribute="centerY" id="a9s-1w-jGi"/>
-                    <constraint firstAttribute="bottom" secondItem="E6o-LC-dGP" secondAttribute="bottom" constant="8" id="ieq-ml-rRH"/>
+                    <constraint firstAttribute="bottom" secondItem="E6o-LC-dGP" secondAttribute="bottom" constant="12" id="ieq-ml-rRH"/>
+                    <constraint firstItem="25M-dA-gFa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lnZ-LC-ng1"/>
                     <constraint firstItem="E6o-LC-dGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zD8-R9-RED"/>
                 </constraints>
             </tableViewCellContentView>
