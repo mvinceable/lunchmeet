@@ -9,11 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 
-@interface GroupDetailsCell : UITableViewCell
+@class GroupDetailsCell;
+
+@protocol GroupDetailsCellDelegate <NSObject>
+
+- (void)groupDetailsChanged:(GroupDetailsCell *)cell;
+
+@end
+
+@interface GroupDetailsCell : UITableViewCell <UITextViewDelegate>
 
 @property (strong, nonatomic) Group *group;
 
 - (NSString *)getName;
 - (NSString *)getDesc;
+
+@property (nonatomic, weak) id <GroupDetailsCellDelegate> delegate;
 
 @end

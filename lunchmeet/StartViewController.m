@@ -43,9 +43,6 @@ NSInteger const PARALLAX_CONSTANT = 24;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // update status bar appearance
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     // listen for keyboard appearances and disappearances
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -53,12 +50,12 @@ NSInteger const PARALLAX_CONSTANT = 24;
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
                                                object:nil];
     
     [[UINavigationBar appearance] setTitleTextAttributes: @{
-                                                            NSForegroundColorAttributeName: [UIColor blackColor],
+                                                            NSForegroundColorAttributeName: [UIColor whiteColor],
                                                             NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
                                                             }];
     
@@ -87,8 +84,8 @@ NSInteger const PARALLAX_CONSTANT = 24;
     [[UIInterpolatingMotionEffect alloc]
      initWithKeyPath:@"center.x"
      type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalMotionEffect.minimumRelativeValue = @(-PARALLAX_CONSTANT);
-    horizontalMotionEffect.maximumRelativeValue = @(PARALLAX_CONSTANT);
+    horizontalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
+    horizontalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
     
     // Create group to combine both
     UIMotionEffectGroup *group = [UIMotionEffectGroup new];
@@ -99,8 +96,30 @@ NSInteger const PARALLAX_CONSTANT = 24;
     [self.previousUrlsView addMotionEffect:group];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    [self resetFlickrTimer];
+    if (![self signedInUser]) {
+        [self resetFlickrTimer];
+    }
+}
+
+- (BOOL)signedInUser {
+    PFUser *user = [PFUser currentUser];
+    if (user) { // User logged in
+        NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
+        GroupsViewController *gvc = [[GroupsViewController alloc] init];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
+        nc.navigationBar.barTintColor = [UIColor orangeColor];
+        nc.navigationBar.tintColor = [UIColor whiteColor];
+        [self presentViewController:nc animated:YES completion:nil];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)resetFlickrTimer {
@@ -137,9 +156,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
             if (user) {
                 // Do stuff after successful login.
                 NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
-                GroupsViewController *gvc = [[GroupsViewController alloc] init];
-                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
-                [self presentViewController:nc animated:YES completion:nil];
+                [self signedInUser];
             } else {
                 // The login failed. Check error to see why.
                 NSString *errorString = [error userInfo][@"error"];
@@ -178,13 +195,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
                 if (!error) {
                     // Hooray! Let them use the app now.
                     NSLog(@"we've signed up");
-                    PFUser *user = [PFUser currentUser];
-                    if (user) { // User logged in
-                        NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
-                        GroupsViewController *gvc = [[GroupsViewController alloc] init];
-                        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
-                        [self presentViewController:nc animated:YES completion:nil];
-                    }
+                    [self signedInUser];
                 } else {
                     NSString *errorString = [error userInfo][@"error"];
                     // Show the errorString somewhere and let the user try again.
@@ -233,7 +244,7 @@ NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 150;
     }
 }
 
-- (void)keyboardDidHide:(NSNotification *)notification {
+- (void)keyboardWillHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     self.keyboardHeight = 0;
     [self adjustHeightForKeybaord];

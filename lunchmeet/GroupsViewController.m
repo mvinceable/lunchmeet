@@ -29,9 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // update status bar appearance
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    
     // set logout button
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onStop)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
@@ -59,6 +56,11 @@
     
     // show loading indicator
     self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,19 +117,18 @@
     }];
 }
 
-
 - (void)onStop {
     NSLog(@"Log out");
     [PFUser logOut];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    // update status bar appearance
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)onNew {
     GroupViewController *vc = [[GroupViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [nvc.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
+                                                 }];
     [self presentViewController:nvc animated:YES completion:nil];
 }
 
@@ -136,10 +137,13 @@
         NSLog(@"UIGestureRecognizerStateBegan.");
         CGPoint location = [sender locationInView:self.tableview];
         NSIndexPath *indexPath = [self.tableview indexPathForRowAtPoint:location];
-        NSLog(@"row is %ld", indexPath.row);
+        NSLog(@"row is %ld", (long)indexPath.row);
         GroupViewController *vc = [[GroupViewController alloc] init];
         vc.group = self.groups[indexPath.row];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [nvc.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
+                                                     }];
         [self presentViewController:nvc animated:YES completion:nil];
     }
 }

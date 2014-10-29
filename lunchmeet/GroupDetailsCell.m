@@ -23,6 +23,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.descriptionTextview.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,6 +50,14 @@
 - (IBAction)onDescriptionButton:(id)sender {
     NSLog(@"Description tapped");
     [self.descriptionTextview becomeFirstResponder];
+}
+
+- (IBAction)nameChanged:(id)sender {
+    [self.delegate groupDetailsChanged:self];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    [self.delegate groupDetailsChanged:self];
 }
 
 @end

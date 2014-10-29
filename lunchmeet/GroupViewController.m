@@ -9,6 +9,7 @@
 #import "GroupViewController.h"
 #import "GroupDetailsCell.h"
 #import "MBProgressHud.h"
+#import "AddMemberCell.h"
 #import "MemberCell.h"
 
 @interface GroupViewController ()
@@ -34,15 +35,19 @@
     if (_group) {
         self.navigationItem.title = _group.name;
     } else {
-        self.navigationItem.title = @"New Group";
+        self.navigationItem.title = @"New Lunchmeet";
     }
     
-    // add '+' button icon
+    // add Done button
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    // done button is disabled by default until group has changed
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     
     // register table cell nibs
     [self.tableview registerNib:[UINib nibWithNibName:@"GroupDetailsCell" bundle:nil] forCellReuseIdentifier:@"GroupDetailsCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"AddMemberCell" bundle:nil] forCellReuseIdentifier:@"AddMemberCell"];
+
     [self.tableview registerNib:[UINib nibWithNibName:@"MemberCell" bundle:nil] forCellReuseIdentifier:@"MemberCell"];
 
     // setup delegates
@@ -63,6 +68,11 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // status bar icons will be black for this modal
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,13 +97,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         GroupDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupDetailsCell"];
+        cell.delegate = self;
         cell.group = _group;
         return cell;
     } else {
         if (indexPath.row == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] init];
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            cell.textLabel.text = @"+ add member";
+            MemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddMemberCell"];
             return cell;
         } else {
             MemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemberCell"];
@@ -119,6 +128,9 @@
         NSLog(@"adding member");
         [self addMember];
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        // mark dirty
+        [self groupDetailsChanged:nil];
     }
 }
 
@@ -132,11 +144,11 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 320, 50)];
     switch (section) {
         case 0:
-            headerLabel.text = @"Group Details";
+            headerLabel.text = @"Lunchmeet Details";
             break;
         case 1:
         default:
-            headerLabel.text = @"Members";
+            headerLabel.text = @"Lunchmates";
             break;
     }
     headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
@@ -218,6 +230,9 @@
     NSIndexPath *indexPath = [self.tableview indexPathForCell:memberCell];
     [self.members removeObjectAtIndex:indexPath.row - 1];
     [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    // mark drity
+    [self groupDetailsChanged:nil];
 }
 
 - (void)syncNames {
@@ -271,6 +286,11 @@
         }
         [self.loadingIndicator hide:YES];
     }];
+}
+
+- (void)groupDetailsChanged:(GroupDetailsCell *)cell {
+    NSLog(@"Group changed so enabling done button");
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];
 }
 
 /*

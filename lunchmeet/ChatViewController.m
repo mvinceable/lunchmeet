@@ -53,8 +53,8 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
                                                object:nil];
     
     // register message cell nibs
@@ -149,7 +149,7 @@
     [self scrollToLastMessage];
 }
 
-- (void)keyboardDidHide:(NSNotification *)notification {
+- (void)keyboardWillHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     [UIView animateWithDuration:.24 animations:^{
         self.messageBottomConstraint.constant = 0;

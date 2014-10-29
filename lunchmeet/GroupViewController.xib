@@ -19,9 +19,11 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IEH-bl-HMZ">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="IEH-bl-HMZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3ee-OK-Qpc"/>
                 <constraint firstAttribute="trailing" secondItem="IEH-bl-HMZ" secondAttribute="trailing" id="Gef-gu-gAZ"/>

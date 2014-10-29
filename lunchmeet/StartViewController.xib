@@ -34,7 +34,7 @@
                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-4P-xiR">
                     <rect key="frame" x="-24" y="-24" width="648" height="648"/>
                 </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-rV-fnc">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-rV-fnc">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <gestureRecognizers/>
                     <connections>

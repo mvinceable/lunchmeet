@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 #import "MemberCell.h"
+#import "GroupDetailsCell.h"
 
-@interface GroupViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MemberCellDelegate>
+@interface GroupViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, GroupDetailsCellDelegate, MemberCellDelegate>
 
 @property (strong, nonatomic) Group *group;
 
