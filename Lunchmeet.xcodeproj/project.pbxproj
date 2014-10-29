@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028C03401A0194F500A741D3 /* BuildingMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C033F1A0194F500A741D3 /* BuildingMap.m */; };
+		028C034A1A019CF100A741D3 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 028C03491A019CF100A741D3 /* map.png */; };
 		02BE0E3F19FF2A4F00BBAA16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209A312119FD71EC0060C3E2 /* CoreLocation.framework */; };
-		02BE0E4119FF2AAB00BBAA16 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4019FF2AAB00BBAA16 /* map.png */; };
-		02BE0E4319FF31F300BBAA16 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 02BE0E4219FF31F300BBAA16 /* image.png */; };
+		02D305E71A00D0B200635D60 /* MapOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305E61A00D0B200635D60 /* MapOverlay.m */; };
+		02D305EA1A00D1E300635D60 /* MapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305E91A00D1E300635D60 /* MapOverlayView.m */; };
+		02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EC1A00D25500635D60 /* MapAnnotation.m */; };
+		02D305F01A00D2AE00635D60 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */; };
 		2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091FC0219FF6CFC00F4E41B /* FlickrCam.m */; };
 		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
 		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
@@ -56,8 +60,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02BE0E4019FF2AAB00BBAA16 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
-		02BE0E4219FF31F300BBAA16 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		028C033E1A0194F500A741D3 /* BuildingMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingMap.h; sourceTree = "<group>"; };
+		028C033F1A0194F500A741D3 /* BuildingMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingMap.m; sourceTree = "<group>"; };
+		028C03491A019CF100A741D3 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		02D305E51A00D0B200635D60 /* MapOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOverlay.h; sourceTree = "<group>"; };
+		02D305E61A00D0B200635D60 /* MapOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOverlay.m; sourceTree = "<group>"; };
+		02D305E81A00D1E300635D60 /* MapOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOverlayView.h; sourceTree = "<group>"; };
+		02D305E91A00D1E300635D60 /* MapOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOverlayView.m; sourceTree = "<group>"; };
+		02D305EB1A00D25500635D60 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		02D305EC1A00D25500635D60 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		02D305EE1A00D2AE00635D60 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotationView.h; sourceTree = "<group>"; };
+		02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotationView.m; sourceTree = "<group>"; };
 		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2091FC0119FF6CFC00F4E41B /* FlickrCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrCam.h; sourceTree = "<group>"; };
 		2091FC0219FF6CFC00F4E41B /* FlickrCam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCam.m; sourceTree = "<group>"; };
@@ -186,8 +199,7 @@
 		209A30E519FD632A0060C3E2 /* lunchmeet */ = {
 			isa = PBXGroup;
 			children = (
-				02BE0E4019FF2AAB00BBAA16 /* map.png */,
-				02BE0E4219FF31F300BBAA16 /* image.png */,
+				028C03491A019CF100A741D3 /* map.png */,
 				209A313E19FDA6FE0060C3E2 /* Models */,
 				209A313819FD9B9D0060C3E2 /* Views */,
 				209A311119FD63EF0060C3E2 /* View Controllers */,
@@ -199,6 +211,8 @@
 				209A30F319FD632A0060C3E2 /* Images.xcassets */,
 				209A30F519FD632A0060C3E2 /* LaunchScreen.xib */,
 				209A30E619FD632A0060C3E2 /* Supporting Files */,
+				02D305E81A00D1E300635D60 /* MapOverlayView.h */,
+				02D305E91A00D1E300635D60 /* MapOverlayView.m */,
 			);
 			path = lunchmeet;
 			sourceTree = "<group>";
@@ -272,6 +286,8 @@
 				20D03CB91A00AA0800351844 /* AddMemberCell.h */,
 				20D03CBA1A00AA0800351844 /* AddMemberCell.m */,
 				20D03CBB1A00AA0800351844 /* AddMemberCell.xib */,
+				02D305EE1A00D2AE00635D60 /* MapAnnotationView.h */,
+				02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -283,6 +299,12 @@
 				209A314019FDA7150060C3E2 /* Group.m */,
 				2091FC0119FF6CFC00F4E41B /* FlickrCam.h */,
 				2091FC0219FF6CFC00F4E41B /* FlickrCam.m */,
+				02D305E51A00D0B200635D60 /* MapOverlay.h */,
+				02D305E61A00D0B200635D60 /* MapOverlay.m */,
+				02D305EB1A00D25500635D60 /* MapAnnotation.h */,
+				02D305EC1A00D25500635D60 /* MapAnnotation.m */,
+				028C033E1A0194F500A741D3 /* BuildingMap.h */,
+				028C033F1A0194F500A741D3 /* BuildingMap.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -396,13 +418,12 @@
 				20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */,
 				209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */,
 				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
-				02BE0E4119FF2AAB00BBAA16 /* map.png in Resources */,
+				028C034A1A019CF100A741D3 /* map.png in Resources */,
 				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
 				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
 				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
 				209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */,
-				02BE0E4319FF31F300BBAA16 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,11 +476,16 @@
 			files = (
 				20C2121B19FE09DC009086A0 /* ChatViewController.m in Sources */,
 				2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */,
+				02D305F01A00D2AE00635D60 /* MapAnnotationView.m in Sources */,
+				028C03401A0194F500A741D3 /* BuildingMap.m in Sources */,
 				209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */,
 				20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */,
 				209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */,
 				20C2122019FE2670009086A0 /* UserMessageCell.m in Sources */,
+				02D305E71A00D0B200635D60 /* MapOverlay.m in Sources */,
+				02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */,
 				20C2120119FDB719009086A0 /* GroupViewController.m in Sources */,
+				02D305EA1A00D1E300635D60 /* MapOverlayView.m in Sources */,
 				20C2122519FE31AF009086A0 /* GroupMessageCell.m in Sources */,
 				209A313C19FD9BB50060C3E2 /* GroupCell.m in Sources */,
 				209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */,
