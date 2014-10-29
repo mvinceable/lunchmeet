@@ -1,9 +1,9 @@
 //
 //  MapOverlayView.m
-//  lunchmeet
+//  Map
 //
 //  Created by Sneha Datla on 10/29/14.
-//  Copyright (c) 2014 Vince Magistrado. All rights reserved.
+//  Copyright (c) 2014 Sneha  Datla. All rights reserved.
 //
 
 #import "MapOverlayView.h"
@@ -13,8 +13,7 @@
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage {
     self = [super initWithOverlay:overlay];
     if (self) {
-        self.overlayImage = overlayImage;
-        
+        _overlayImage = overlayImage;
     }
     
     return self;
@@ -27,8 +26,7 @@
     CGRect theRect = [self rectForMapRect:theMapRect];
     
     CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextTranslateCTM(context, 1.0, -theRect.size.height);
+    CGContextTranslateCTM(context, 0.0, -theRect.size.height);
     CGContextDrawImage(context, theRect, imageReference);
 }
-
 @end

@@ -28,9 +28,10 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 0.5, 0.5);
     [self.mapView setRegion:region animated:YES];
     
-    MapOverlay *mapOverlay = [[MapOverlay alloc] initWithMapView:self.mapView];
+    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
+    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
+    [self.mapView addOverlay:overlay];
     
-    [self.mapView addOverlay:mapOverlay];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
@@ -131,20 +132,11 @@
 
                         }];
 
-                        
-                        
-                        //[self addAn:annot.pinUser msg:annot.lastMsg lat:annot.latitude longitude:annot.longitude];
-                        
-
-                        
                     }
                 }];
-                
-                
             }
         }
     }];
-    
     
 }
    
@@ -155,19 +147,6 @@
 }
 
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
-    if([overlay isMemberOfClass:[MapOverlay class]]) {
-        
-        
-        // DimOverlayVIew *dimOverlayView = [[DimOverlayVIew alloc] initWithOverlay:overlay];
-        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
-        
-        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
-        
-        return overlayView;
-    }
-    return nil;
-}
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -231,8 +210,6 @@
     
     
     MapAnnotation *ann = (MapAnnotation *)annotation;
-    NSLog(@"ANNN %@", ann.pinColor );
-    //NSLog(@"ANNNN %@", ann.pinUser);
     if([annotation isKindOfClass:[MapAnnotation class]]){
         static NSString *userPinAnnotationId = @"userPinAnnotation";
         
@@ -265,6 +242,16 @@
     return nil;
 }
 
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    if ([overlay isKindOfClass:MapOverlay.class]) {
+        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
+        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
+        
+        return overlayView;
+    }
+    
+    return nil;
+}
 /*
 #pragma mark - Navigation
 

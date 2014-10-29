@@ -1,17 +1,14 @@
 //
 //  MapOverlayView.h
-//  lunchmeet
+//  Map
 //
 //  Created by Sneha Datla on 10/29/14.
-//  Copyright (c) 2014 Vince Magistrado. All rights reserved.
+//  Copyright (c) 2014 Sneha  Datla. All rights reserved.
 //
 
 #import <MapKit/MapKit.h>
 
-@interface MapOverlayView : MKOverlayView
-
+@interface MapOverlayView : MKOverlayRenderer
 @property (nonatomic, strong) UIImage *overlayImage;
-- (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context;
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage;
-
 @end

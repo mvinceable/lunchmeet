@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Vince Magistrado. All rights reserved.
 //
 
+#import "BuildingMap.h"
 #import "Group.h"
 #import "MapAnnotation.h"
 #import "MapAnnotationView.h"
@@ -19,11 +20,10 @@
 @property (strong, nonatomic)Group *group;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay;
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer;
 @property (nonatomic, strong) NSMutableArray *listOfPins;
 - (void)getPinsWithCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 - (void)retrievePinsWithCompletion:(PFObject *)pfObj completionHandler:(void (^)(NSArray *objects, NSError *))completion;
 -(void)findPins;
-
+@property (nonatomic, strong) BuildingMap *buildingMap;
 @end
