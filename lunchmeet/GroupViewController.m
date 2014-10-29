@@ -60,13 +60,13 @@
     
     // listen for keyboard appearances and disappearances
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
                                                object:nil];
 }
 
@@ -159,6 +159,7 @@
 }
 
 - (void)onStop {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -244,7 +245,7 @@
     }
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification {
+- (void)keyboardDidShow:(NSNotification *)notification {
     NSLog(@"Keyboard will show for group");
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
@@ -256,7 +257,7 @@
     }];
 }
 
-- (void)keyboardDidHide:(NSNotification *)notification {
+- (void)keyboardWillHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
     [UIView animateWithDuration:.24 animations:^{
         self.tableBottomConstraint.constant = 0;

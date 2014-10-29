@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lunchmeet/GroupViewController.m"
-            timestampString = "436253172.564594"
+            timestampString = "436254388.978545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lunchmeet/GroupViewController.m"
-            timestampString = "436253172.564594"
+            timestampString = "436253917.057518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-setGroup:"
             landmarkType = "5">
          </BreakpointContent>

@@ -36,6 +36,11 @@
 }
 
 - (void)makeFirstResponder {
+    // do after interval because it still may be animating
+    [NSTimer scheduledTimerWithTimeInterval:.24 target:self selector:@selector(doMakeFirstResponder) userInfo:nil repeats:NO];
+}
+
+- (void)doMakeFirstResponder {
     [self.usernameTextfield becomeFirstResponder];
 }
 

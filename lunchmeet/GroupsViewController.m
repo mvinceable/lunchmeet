@@ -64,8 +64,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    // sometimes the keyboard would still be present so hide it
-    [self.view endEditing:YES];
     [self refreshGroups];
 }
 
