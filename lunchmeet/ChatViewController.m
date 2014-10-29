@@ -220,6 +220,7 @@ NSInteger const DEFAULT_MESSAGETEXTVIEW_HEIGHT = 36;
 - (void)onMap {
     NSLog(@"Showing map");
     MapViewController *vc = [[MapViewController alloc] init];
+    vc.group = self.group;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

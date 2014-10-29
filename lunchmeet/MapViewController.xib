@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController">
             <connections>
-                <outlet property="mapImageView" destination="XeG-9D-267" id="Sik-Gn-XeX"/>
+                <outlet property="mapView" destination="pD9-0a-f9m" id="hsV-af-MPV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,11 +15,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XeG-9D-267">
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pD9-0a-f9m">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                </imageView>
+                </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pD9-0a-f9m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uj4-cJ-Fz3"/>
+                <constraint firstAttribute="bottom" secondItem="pD9-0a-f9m" secondAttribute="bottom" id="q5B-Rf-5ag"/>
+                <constraint firstAttribute="trailing" secondItem="pD9-0a-f9m" secondAttribute="trailing" id="t0N-cG-2Kk"/>
+                <constraint firstItem="pD9-0a-f9m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wpT-V9-AG1"/>
+            </constraints>
         </view>
     </objects>
 </document>
