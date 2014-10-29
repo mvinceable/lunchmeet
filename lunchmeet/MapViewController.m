@@ -47,8 +47,11 @@
 
 - (void)getPinsWithCompletion:(void (^)(NSArray *, NSError *))completion {
     
+    NSDate *now = [NSDate date];
+    NSDate *oneDayAgo = [now dateByAddingTimeInterval:-1*24*60*60];
     PFQuery *query = [PFQuery queryWithClassName:@"Point"];
     [query whereKey:@"group" equalTo:self.group.pfObject];
+    [query whereKey:@"createdAt" greaterThanOrEqualTo:oneDayAgo];
     [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -109,7 +112,6 @@
                             {
                                 if(object != nil)
                                 {
-                                    NSLog(@"THis is the user's last message %@", object[@"message"]);
                                     annot.lastMsg = object[@"message"];
                                 }
                             }
@@ -118,16 +120,10 @@
                                 annot.lastMsg = @"";
                                 
                             }
-                            NSLog(@"THIS IS THE USER %@", annot.pinUser);
                             if([annot.pinUser isEqualToString:[PFUser currentUser].username])
                             {
                                 annot.pinColor = @"green";
                             }
-                            NSLog(@"THIS IS THE LAT %f", annot.latitude);
-                            NSLog(@"THIS IS THE LONG %f", annot.longitude);
-
-                            NSLog(@"THIS IS THE MSG %@", annot.lastMsg);
-                            
                             [self.mapView addAnnotation:annot];
 
                         }];
@@ -203,6 +199,29 @@
     
     
     [self.mapView addAnnotation:annot];
+    
+    PFObject *chat = [PFObject objectWithClassName:@"Chat"];
+    PFObject *group = self.group.pfObject;
+    
+    NSString *message = @"I'm here!";
+    [chat setObject:message forKey:@"message"];
+    
+    // Create relationship
+    [chat setObject:[PFUser currentUser].username forKey:@"username"];
+    [chat setObject:group forKey:@"group"];
+    
+    // Save the new post
+    [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+        } else {
+            NSLog(@"Error creating chat");
+        }
+    }];
+    
+    // add to last message and user column
+    [group setObject:message forKey:@"lastMessage"];
+    [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
+    [group saveInBackground];
    
 }
 
