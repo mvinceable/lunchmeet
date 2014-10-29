@@ -28,9 +28,10 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 0.5, 0.5);
     [self.mapView setRegion:region animated:YES];
     
-    MapOverlay *mapOverlay = [[MapOverlay alloc] initWithMapView:self.mapView];
+    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
+    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
+    [self.mapView addOverlay:overlay];
     
-    [self.mapView addOverlay:mapOverlay];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
@@ -46,8 +47,11 @@
 
 - (void)getPinsWithCompletion:(void (^)(NSArray *, NSError *))completion {
     
+    NSDate *now = [NSDate date];
+    NSDate *oneDayAgo = [now dateByAddingTimeInterval:-1*24*60*60];
     PFQuery *query = [PFQuery queryWithClassName:@"Point"];
     [query whereKey:@"group" equalTo:self.group.pfObject];
+    [query whereKey:@"createdAt" greaterThanOrEqualTo:oneDayAgo];
     [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -108,7 +112,6 @@
                             {
                                 if(object != nil)
                                 {
-                                    NSLog(@"THis is the user's last message %@", object[@"message"]);
                                     annot.lastMsg = object[@"message"];
                                 }
                             }
@@ -117,34 +120,19 @@
                                 annot.lastMsg = @"";
                                 
                             }
-                            NSLog(@"THIS IS THE USER %@", annot.pinUser);
                             if([annot.pinUser isEqualToString:[PFUser currentUser].username])
                             {
                                 annot.pinColor = @"green";
                             }
-                            NSLog(@"THIS IS THE LAT %f", annot.latitude);
-                            NSLog(@"THIS IS THE LONG %f", annot.longitude);
-
-                            NSLog(@"THIS IS THE MSG %@", annot.lastMsg);
-                            
                             [self.mapView addAnnotation:annot];
 
                         }];
 
-                        
-                        
-                        //[self addAn:annot.pinUser msg:annot.lastMsg lat:annot.latitude longitude:annot.longitude];
-                        
-
-                        
                     }
                 }];
-                
-                
             }
         }
     }];
-    
     
 }
    
@@ -155,19 +143,6 @@
 }
 
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
-    if([overlay isMemberOfClass:[MapOverlay class]]) {
-        
-        
-        // DimOverlayVIew *dimOverlayView = [[DimOverlayVIew alloc] initWithOverlay:overlay];
-        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
-        
-        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
-        
-        return overlayView;
-    }
-    return nil;
-}
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -224,6 +199,29 @@
     
     
     [self.mapView addAnnotation:annot];
+    
+    PFObject *chat = [PFObject objectWithClassName:@"Chat"];
+    PFObject *group = self.group.pfObject;
+    
+    NSString *message = @"I'm here!";
+    [chat setObject:message forKey:@"message"];
+    
+    // Create relationship
+    [chat setObject:[PFUser currentUser].username forKey:@"username"];
+    [chat setObject:group forKey:@"group"];
+    
+    // Save the new post
+    [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+        } else {
+            NSLog(@"Error creating chat");
+        }
+    }];
+    
+    // add to last message and user column
+    [group setObject:message forKey:@"lastMessage"];
+    [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
+    [group saveInBackground];
    
 }
 
@@ -231,8 +229,6 @@
     
     
     MapAnnotation *ann = (MapAnnotation *)annotation;
-    NSLog(@"ANNN %@", ann.pinColor );
-    //NSLog(@"ANNNN %@", ann.pinUser);
     if([annotation isKindOfClass:[MapAnnotation class]]){
         static NSString *userPinAnnotationId = @"userPinAnnotation";
         
@@ -265,6 +261,16 @@
     return nil;
 }
 
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    if ([overlay isKindOfClass:MapOverlay.class]) {
+        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
+        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
+        
+        return overlayView;
+    }
+    
+    return nil;
+}
 /*
 #pragma mark - Navigation
 
