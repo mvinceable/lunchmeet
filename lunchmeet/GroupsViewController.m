@@ -37,7 +37,7 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     // set title text
-    self.navigationItem.title = @"Groups";
+    self.navigationItem.title = @"Lunchmeets";
     
     // add '+' button icon
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onNew)];

@@ -22,8 +22,6 @@
 		209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A310E19FD63EB0060C3E2 /* StartViewController.xib */; };
 		209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A311319FD6ED40060C3E2 /* GroupsViewController.m */; };
 		209A311619FD6ED40060C3E2 /* GroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A311419FD6ED40060C3E2 /* GroupsViewController.xib */; };
-		209A313619FD93270060C3E2 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A313419FD93270060C3E2 /* SignupViewController.m */; };
-		209A313719FD93270060C3E2 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A313519FD93270060C3E2 /* SignupViewController.xib */; };
 		209A313C19FD9BB50060C3E2 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A313A19FD9BB50060C3E2 /* GroupCell.m */; };
 		209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A313B19FD9BB50060C3E2 /* GroupCell.xib */; };
 		209A314119FDA7150060C3E2 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A314019FDA7150060C3E2 /* Group.m */; };
@@ -94,9 +92,6 @@
 		209A312D19FD721B0060C3E2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		209A312F19FD808B0060C3E2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		209A313119FD80A50060C3E2 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		209A313319FD93270060C3E2 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		209A313419FD93270060C3E2 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
-		209A313519FD93270060C3E2 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
 		209A313919FD9BB50060C3E2 /* GroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
 		209A313A19FD9BB50060C3E2 /* GroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		209A313B19FD9BB50060C3E2 /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
@@ -238,9 +233,6 @@
 				209A311219FD6ED40060C3E2 /* GroupsViewController.h */,
 				209A311319FD6ED40060C3E2 /* GroupsViewController.m */,
 				209A311419FD6ED40060C3E2 /* GroupsViewController.xib */,
-				209A313319FD93270060C3E2 /* SignupViewController.h */,
-				209A313419FD93270060C3E2 /* SignupViewController.m */,
-				209A313519FD93270060C3E2 /* SignupViewController.xib */,
 				20C211FE19FDB719009086A0 /* GroupViewController.h */,
 				20C211FF19FDB719009086A0 /* GroupViewController.m */,
 				20C2120019FDB719009086A0 /* GroupViewController.xib */,
@@ -387,7 +379,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				209A313719FD93270060C3E2 /* SignupViewController.xib in Resources */,
 				20C2120719FDBEC4009086A0 /* GroupDetailsCell.xib in Resources */,
 				209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */,
 				209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */,
@@ -454,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C2121B19FE09DC009086A0 /* ChatViewController.m in Sources */,
-				209A313619FD93270060C3E2 /* SignupViewController.m in Sources */,
 				2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */,
 				209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */,
 				20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */,

@@ -6,10 +6,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartViewController">
             <connections>
+                <outlet property="cancelButton" destination="Smg-Qb-EmW" id="pKi-fJ-ZTv"/>
+                <outlet property="emailTextfield" destination="wWT-vU-90y" id="zxu-6Y-h1A"/>
+                <outlet property="loginButton" destination="dTf-6v-Npu" id="hjG-95-w1E"/>
                 <outlet property="loginControlsVerticalConstraint" destination="94U-fW-JbL" id="4j8-2p-lUD"/>
                 <outlet property="loginControlsView" destination="iUd-t3-Srh" id="uIN-cp-N1M"/>
                 <outlet property="passwordTextfield" destination="fkU-I1-O67" id="l3C-6v-4ix"/>
                 <outlet property="previousUrlsView" destination="snp-0i-53w" id="xJv-Yd-zX2"/>
+                <outlet property="scrollview" destination="gtH-rV-fnc" id="YxS-r6-EWK"/>
+                <outlet property="urlsBottomConstraint" destination="G6l-aR-Irm" id="2yq-uG-dBX"/>
+                <outlet property="urlsLeftConstraint" destination="ine-cp-9pU" id="i0x-74-wcU"/>
+                <outlet property="urlsRightConstraint" destination="jWA-KM-bg5" id="ZZ0-Pl-0bS"/>
+                <outlet property="urlsTopConstraint" destination="KF5-vR-9xc" id="XEc-4I-11g"/>
                 <outlet property="urlsView" destination="sLn-4P-xiR" id="pxP-u0-3eW"/>
                 <outlet property="usernameTextfield" destination="jlx-u4-rug" id="vRv-U3-Iny"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,22 +29,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="snp-0i-53w" userLabel="staticUrls">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="-24" y="-24" width="648" height="648"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-4P-xiR">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="-24" y="-24" width="648" height="648"/>
                 </imageView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-rV-fnc">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="ANd-9M-uUv" appends="YES" id="jKF-Lc-PUZ"/>
+                    </connections>
+                </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUd-t3-Srh" userLabel="loginControls">
-                    <rect key="frame" x="180" y="141" width="240" height="259"/>
+                    <rect key="frame" x="180" y="141" width="240" height="309"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lunchmeet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-Y5-OFK">
-                            <rect key="frame" x="22" y="0.0" width="196.5" height="51"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                            <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <size key="shadowOffset" width="0.0" height="1"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-6v-Npu">
                             <rect key="frame" x="20" y="167" width="200" height="42"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
@@ -89,19 +96,58 @@
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wWT-vU-90y">
+                            <rect key="frame" x="20" y="167" width="200" height="42"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="Gd6-bk-xYg"/>
+                                <constraint firstAttribute="height" constant="42" id="a94-SX-LVZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lunchmeet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-Y5-OFK">
+                            <rect key="frame" x="22" y="0.0" width="197" height="51"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <size key="shadowOffset" width="0.0" height="1"/>
+                        </label>
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-Qb-EmW">
+                            <rect key="frame" x="20" y="267" width="200" height="42"/>
+                            <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="Plb-mK-rVF"/>
+                                <constraint firstAttribute="height" constant="42" id="p2J-5W-cPS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="2eV-iO-YHf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="sKp-YB-BeQ" secondAttribute="bottom" id="2uW-1S-Fpu"/>
+                        <constraint firstAttribute="bottom" secondItem="sKp-YB-BeQ" secondAttribute="bottom" constant="50" id="2uW-1S-Fpu"/>
+                        <constraint firstItem="sKp-YB-BeQ" firstAttribute="top" secondItem="fkU-I1-O67" secondAttribute="bottom" constant="58" id="5YR-Zw-tpx"/>
                         <constraint firstItem="dTf-6v-Npu" firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" id="8EV-tT-kNJ"/>
+                        <constraint firstItem="sKp-YB-BeQ" firstAttribute="top" secondItem="wWT-vU-90y" secondAttribute="bottom" constant="8" id="8vp-Az-gvb"/>
                         <constraint firstItem="cuB-Y5-OFK" firstAttribute="centerX" secondItem="sKp-YB-BeQ" secondAttribute="centerX" id="8wA-9R-b8z"/>
                         <constraint firstItem="fkU-I1-O67" firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" id="Brf-Mz-9gL"/>
-                        <constraint firstItem="dTf-6v-Npu" firstAttribute="top" secondItem="fkU-I1-O67" secondAttribute="bottom" constant="8" id="MFD-Mq-tgG"/>
+                        <constraint firstItem="wWT-vU-90y" firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" constant="-0.5" id="Lfg-n6-a1u"/>
                         <constraint firstAttribute="width" constant="240" id="Qty-JL-DpV"/>
                         <constraint firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" id="V77-4c-6tS"/>
                         <constraint firstItem="jlx-u4-rug" firstAttribute="centerX" secondItem="cuB-Y5-OFK" secondAttribute="centerX" id="cFc-4a-DaO"/>
+                        <constraint firstItem="Smg-Qb-EmW" firstAttribute="top" secondItem="sKp-YB-BeQ" secondAttribute="bottom" constant="8" id="e50-ST-azs"/>
+                        <constraint firstItem="cuB-Y5-OFK" firstAttribute="centerX" secondItem="Smg-Qb-EmW" secondAttribute="centerX" constant="0.5" id="l5J-gd-a9a"/>
                         <constraint firstItem="sKp-YB-BeQ" firstAttribute="top" secondItem="dTf-6v-Npu" secondAttribute="bottom" constant="8" id="qtc-bd-lQu"/>
+                        <constraint firstItem="wWT-vU-90y" firstAttribute="top" secondItem="fkU-I1-O67" secondAttribute="bottom" constant="8" id="t5c-h0-neR"/>
                         <constraint firstItem="cuB-Y5-OFK" firstAttribute="top" secondItem="iUd-t3-Srh" secondAttribute="top" id="tIK-Xi-qEz"/>
                         <constraint firstItem="jlx-u4-rug" firstAttribute="top" secondItem="cuB-Y5-OFK" secondAttribute="bottom" constant="16" id="wZK-IY-y1Q"/>
                         <constraint firstItem="fkU-I1-O67" firstAttribute="top" secondItem="jlx-u4-rug" secondAttribute="bottom" constant="8" id="zEU-Wx-z1J"/>
@@ -114,16 +160,20 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="snp-0i-53w" secondAttribute="bottom" id="3ka-3Y-rrz"/>
-                <constraint firstAttribute="bottom" secondItem="iUd-t3-Srh" secondAttribute="bottom" constant="200" id="94U-fW-JbL"/>
+                <constraint firstAttribute="bottom" secondItem="gtH-rV-fnc" secondAttribute="bottom" id="4Yg-hv-MNi"/>
+                <constraint firstAttribute="trailing" secondItem="gtH-rV-fnc" secondAttribute="trailing" id="6Ss-rR-EjD"/>
+                <constraint firstAttribute="bottom" secondItem="iUd-t3-Srh" secondAttribute="bottom" constant="150" id="94U-fW-JbL"/>
                 <constraint firstAttribute="centerX" secondItem="iUd-t3-Srh" secondAttribute="centerX" id="Bmc-8A-WEI"/>
-                <constraint firstAttribute="bottom" secondItem="sLn-4P-xiR" secondAttribute="bottom" id="G6l-aR-Irm"/>
-                <constraint firstItem="snp-0i-53w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Iw2-W8-W1i"/>
-                <constraint firstItem="sLn-4P-xiR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KF5-vR-9xc"/>
-                <constraint firstItem="snp-0i-53w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OP7-aW-fww"/>
-                <constraint firstAttribute="trailing" secondItem="snp-0i-53w" secondAttribute="trailing" id="dQU-q5-1oc"/>
-                <constraint firstItem="sLn-4P-xiR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ine-cp-9pU"/>
-                <constraint firstAttribute="trailing" secondItem="sLn-4P-xiR" secondAttribute="trailing" id="jWA-KM-bg5"/>
+                <constraint firstAttribute="bottom" secondItem="sLn-4P-xiR" secondAttribute="bottom" constant="-24" id="G6l-aR-Irm"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="top" secondItem="snp-0i-53w" secondAttribute="top" id="HiX-hG-6P5"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-24" id="KF5-vR-9xc"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="bottom" secondItem="snp-0i-53w" secondAttribute="bottom" id="KLX-ft-wX6"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-24" id="ine-cp-9pU"/>
+                <constraint firstAttribute="trailing" secondItem="sLn-4P-xiR" secondAttribute="trailing" constant="-24" id="jWA-KM-bg5"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="trailing" secondItem="snp-0i-53w" secondAttribute="trailing" id="k4P-EV-S11"/>
+                <constraint firstItem="gtH-rV-fnc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pey-d2-r3U"/>
+                <constraint firstItem="gtH-rV-fnc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zGW-m8-TyD"/>
+                <constraint firstItem="sLn-4P-xiR" firstAttribute="leading" secondItem="snp-0i-53w" secondAttribute="leading" id="zUm-JO-hgt"/>
             </constraints>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="6bH-As-XDC" appends="YES" id="fBn-kO-N1t"/>
@@ -136,6 +186,11 @@
             </connections>
         </tapGestureRecognizer>
         <tapGestureRecognizer id="AHJ-TU-FA8"/>
+        <pinchGestureRecognizer id="ANd-9M-uUv">
+            <connections>
+                <action selector="didPinch:" destination="-1" id="TS0-y4-QlB"/>
+            </connections>
+        </pinchGestureRecognizer>
     </objects>
     <resources>
         <image name="URLs" width="640" height="426"/>

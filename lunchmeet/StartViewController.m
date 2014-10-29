@@ -9,7 +9,6 @@
 #import "StartViewController.h"
 #import <Parse/Parse.h>
 #import "GroupsViewController.h"
-#import "SignupViewController.h"
 #import "FlickrCam.h"
 #import "UIImageView+AFNetworking.h"
 
@@ -21,12 +20,24 @@
 @property (weak, nonatomic) IBOutlet UIImageView *previousUrlsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginControlsVerticalConstraint;
 @property (weak, nonatomic) IBOutlet UIView *loginControlsView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *urlsBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *urlsTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *urlsRightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *urlsLeftConstraint;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) NSTimer *flickrTimer;
+@property (nonatomic) BOOL isLoginScreen;
+@property (nonatomic) CGFloat keyboardHeight;
 
 @end
 
 @implementation StartViewController
+
+NSInteger const PARALLAX_CONSTANT = 24;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,16 +61,45 @@
                                                             NSForegroundColorAttributeName: [UIColor blackColor],
                                                             NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
                                                             }];
+    
+    self.scrollview.delegate = self;
+    
+    // starts as login screen
+    self.isLoginScreen = YES;
+    
+    // detect orientation change
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(orientationChanged:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:[UIDevice currentDevice]];
+    
+    // Set vertical effect
+    UIInterpolatingMotionEffect *verticalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc]
+     initWithKeyPath:@"center.y"
+     type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
+    verticalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
+    
+    // Set horizontal effect
+    UIInterpolatingMotionEffect *horizontalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc]
+     initWithKeyPath:@"center.x"
+     type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalMotionEffect.minimumRelativeValue = @(-PARALLAX_CONSTANT);
+    horizontalMotionEffect.maximumRelativeValue = @(PARALLAX_CONSTANT);
+    
+    // Create group to combine both
+    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+    
+    // Add both effects to your view
+    [self.urlsView addMotionEffect:group];
+    [self.previousUrlsView addMotionEffect:group];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    PFUser *user = [PFUser currentUser];
-    if (user) { // User logged in
-        NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
-        GroupsViewController *gvc = [[GroupsViewController alloc] init];
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
-        [self presentViewController:nc animated:YES completion:nil];
-    }
     [self resetFlickrTimer];
 }
 
@@ -78,6 +118,9 @@
         [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
         [UIView animateWithDuration:3 animations:^{
             self.urlsView.alpha = 1;
+        } completion:^(BOOL finished) {
+            [self.previousUrlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
+            self.urlsView.alpha = 0;
         }];
     }];
 }
@@ -107,13 +150,76 @@
 
 - (IBAction)onSignup:(id)sender {
     NSLog(@"Sign up button");
-    SignupViewController *svc = [[SignupViewController alloc] init];
-    [self presentViewController:svc animated:NO completion:nil];
-    svc.username = self.usernameTextfield.text;
-    svc.password = self.passwordTextfield.text;
+    
+    if (self.isLoginScreen) {
+        // switch to sign up screen
+        [UIView animateWithDuration:.24 animations:^{
+            self.loginButton.alpha = 0;
+            self.emailTextfield.alpha = 1;
+            self.cancelButton.alpha = 1;
+            [self.view layoutIfNeeded];
+        }];
+        self.isLoginScreen = NO;
+        [self adjustHeightForKeybaord];
+    } else {
+        // sign up
+        NSString *trimmedEmail = [self.emailTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *trimmedUsername = [self.usernameTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if ([trimmedEmail isEqualToString:@""] || [trimmedUsername isEqualToString:@""]) {
+            [[[UIAlertView alloc] initWithTitle:@"Please enter all fields" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        } else {
+            PFUser *user = [PFUser user];
+            user.email = trimmedEmail;
+            user.username = trimmedUsername;
+            user.password = self.passwordTextfield.text;
+            
+            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    // Hooray! Let them use the app now.
+                    NSLog(@"we've signed up");
+                    PFUser *user = [PFUser currentUser];
+                    if (user) { // User logged in
+                        NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
+                        GroupsViewController *gvc = [[GroupsViewController alloc] init];
+                        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
+                        [self presentViewController:nc animated:YES completion:nil];
+                    }
+                } else {
+                    NSString *errorString = [error userInfo][@"error"];
+                    // Show the errorString somewhere and let the user try again.
+                    [[[UIAlertView alloc] initWithTitle:@"Failed to sign up" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                }
+            }];
+        }
+    }
+    
 }
 
-NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 200;
+- (IBAction)onCancel:(id)sender {
+    // switch to login screen
+    [UIView animateWithDuration:.24 animations:^{
+        self.loginButton.alpha = 1;
+        self.emailTextfield.alpha = 0;
+        self.cancelButton.alpha = 0;
+        [self.view layoutIfNeeded];
+    }];
+    self.isLoginScreen = YES;
+    [self adjustHeightForKeybaord];
+}
+
+NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 150;
+
+- (void)adjustHeightForKeybaord {
+    [UIView animateWithDuration:.24 animations:^{
+        if (self.keyboardHeight > 0) {
+            self.loginControlsVerticalConstraint.constant = self.keyboardHeight + 16 - (self.isLoginScreen ? 50 : 0);
+        } else {
+            self.loginControlsVerticalConstraint.constant = DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT;
+        }
+        [self.view layoutIfNeeded];
+    }];
+}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSLog(@"Keyboard will show for start vc");
@@ -121,36 +227,98 @@ NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 200;
     NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
     
-    if (keyboardFrameEndRect.size.height + 16 > DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT) {
-        [UIView animateWithDuration:.24 animations:^{
-            self.loginControlsVerticalConstraint.constant = keyboardFrameEndRect.size.height + 16;
-            [self.view layoutIfNeeded];
-        }];
+    self.keyboardHeight = keyboardFrameEndRect.size.height;
+    if (self.keyboardHeight + 16 > DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT) {
+        [self adjustHeightForKeybaord];
     }
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification {
     NSLog(@"Keyboard hidden");
-    [UIView animateWithDuration:.24 animations:^{
-        self.loginControlsVerticalConstraint.constant = DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT;
-        [self.view layoutIfNeeded];
-    }];
+    self.keyboardHeight = 0;
+    [self adjustHeightForKeybaord];
 }
 
-- (IBAction)onTap:(id)sender {
-    NSLog(@"Screen tapped");
-    
+- (void)showControls:(BOOL)show {
     CGFloat finalValue;
     
-    if (self.loginControlsView.alpha == 0) {
+    if (show) {
         finalValue = 1;
     } else {
         finalValue = 0;
+        [self.view endEditing:YES];
     }
     
     [UIView animateWithDuration:.24 animations:^{
         self.loginControlsView.alpha = finalValue;
     }];
+}
+
+- (IBAction)onTap:(id)sender {
+    NSLog(@"Screen tapped");
+    // hide keyboard
+    [self.view endEditing:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat xOffset = scrollView.contentOffset.x;
+    CGFloat yOffset = scrollView.contentOffset.y;
+
+    if (xOffset < 0) {
+        // pull right
+        self.urlsRightConstraint.constant = xOffset - PARALLAX_CONSTANT;
+    } else {
+        // pull left
+        self.urlsLeftConstraint.constant = -xOffset - PARALLAX_CONSTANT;
+    }
+    
+    if (yOffset < 0) {
+        // pulling down
+        self.urlsBottomConstraint.constant = yOffset - PARALLAX_CONSTANT;
+    } else {
+        // pulling up
+        self.urlsTopConstraint.constant = -yOffset - PARALLAX_CONSTANT;
+    }
+}
+
+- (IBAction)didPinch:(UIPinchGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        if (sender.scale > 1) {
+            CGFloat scaleTo = (2 + sender.scale)/3;
+            self.previousUrlsView.transform = CGAffineTransformMakeScale(scaleTo, scaleTo);
+            self.urlsView.transform = CGAffineTransformMakeScale(scaleTo, scaleTo);
+            [self.view layoutIfNeeded];
+        }
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:.24 animations:^{
+            self.previousUrlsView.transform = CGAffineTransformMakeScale(1, 1);
+            self.urlsView.transform = CGAffineTransformMakeScale(1, 1);
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
+- (void) orientationChanged:(NSNotification *)note {
+    UIDevice * device = note.object;
+    
+    switch (device.orientation) {
+        case UIDeviceOrientationPortrait:
+            /* start special animation */
+            [self showControls:YES];
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            /* start special animation */
+            break;
+            
+        case UIDeviceOrientationLandscapeLeft:
+        case UIDeviceOrientationLandscapeRight:
+            [self showControls:NO];
+            break;
+            
+        default:
+            break;
+    };
 }
 
 /*
