@@ -185,6 +185,9 @@
     
     [self.mapView addAnnotation:annot];
     
+    // get nearest landmark
+    NSString *closestLandmark = [self getClosestLandmark:touchMapCoordinate.latitude lon:touchMapCoordinate.longitude];
+    
     // remove previous annotation if it exists
     if ([self.userPins objectForKey:username] != nil && [self.userAnnots objectForKey:username] != nil) {
         [self.mapView removeAnnotation:self.userAnnots[username]];
@@ -195,7 +198,7 @@
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
     PFObject *group = self.group.pfObject;
     
-    NSString *message = @"I'm here!";
+    NSString *message = [NSString stringWithFormat:@"I'm at %@!", closestLandmark];
     [chat setObject:message forKey:@"message"];
     
     // Create relationship
@@ -317,6 +320,31 @@
     
     return annotations;
 }
+
+- (NSString *)getClosestLandmark:(CLLocationDegrees)lat lon:(CLLocationDegrees)lon {
+    NSString *currentClosestLandmark = nil;
+    CLLocationDistance currentClosestDistance = 1000;  // in meters
+    CLLocation *locA = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+    
+    // iterate through landmarks and get the closest
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"landmarks" ofType:@"plist"];
+    NSMutableDictionary *locations = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    for (int i = 0; i < locations.count; i++) {
+        NSString *str = [NSString stringWithFormat:@"Item%d", (i + 1) ];
+        NSDictionary *row = [locations objectForKey:str];
+        NSString *latitude = [row objectForKey:@"latitude"];
+        NSString *longitude = [row objectForKey:@"longitude"];
+        NSString *title = [row objectForKey:@"title"];
+        CLLocation *locB = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
+        CLLocationDistance distance = [locA distanceFromLocation:locB];
+        if (distance < currentClosestDistance) {
+            currentClosestLandmark = title;
+            currentClosestDistance = distance;
+        }
+    }
+    return currentClosestLandmark;
+}
+
 /*
 #pragma mark - Navigation
 
