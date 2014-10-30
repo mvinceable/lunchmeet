@@ -26,16 +26,25 @@
     self.mapView.showsPointsOfInterest = NO;
     self.mapView.delegate = self;
     
+    CLLocationCoordinate2D coords[10] = {{37.419199, -122.024525},{37.418974, -122.023814},{37.417923, -122.024215}, {37.417944 ,-122.024363}, {37.417706, -122.024472}, {37.417893, -122.025300}, {37.418247, -122.025210}, {37.418659, -122.025217}, {37.418643, -122.024752}, {37.419199, -122.024544}};
+    MKPolygon *polygon = [MKPolygon polygonWithCoordinates:coords count:10];
+    [self.mapView addOverlay:polygon];
+    
+    
     self.listOfPins = [[NSMutableArray alloc] init];
     
-    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
-    MKMapCamera* camera = [MKMapCamera
-                           cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
-                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
-                           eyeAltitude:(CLLocationDistance)30];
-    [self.mapView setCamera:camera animated:YES];
+//    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
+//    MKMapCamera* camera = [MKMapCamera
+//                           cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
+//                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
+//                           eyeAltitude:(CLLocationDistance)30];
+//    [self.mapView setCamera:camera animated:YES];
 //    [self.mapView setRegion:region animated:YES];
+    
+    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418211, -122.025255);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 400, 400);
+    [self.mapView setRegion:region animated:YES];
     
 //    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
 //    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
@@ -281,15 +290,29 @@
     return nil;
 }
 
+//- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+//    if ([overlay isKindOfClass:MapOverlay.class]) {
+//        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
+//        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
+//        
+//        return overlayView;
+//        
+//    }
+//    
+//    return nil;
+//}
+
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    if ([overlay isKindOfClass:MapOverlay.class]) {
-        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
-        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
+    if (overlay) {
         
-        return overlayView;
+        MKPolygonRenderer *polygonView = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
         
+        polygonView.strokeColor = [UIColor magentaColor];
+        polygonView.lineWidth = 3;
+        polygonView.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
+        
+        return polygonView;
     }
-    
     return nil;
 }
 
@@ -317,6 +340,8 @@
     
     return annotations;
 }
+
+
 /*
 #pragma mark - Navigation
 
