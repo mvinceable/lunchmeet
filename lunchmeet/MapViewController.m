@@ -26,8 +26,24 @@
     self.mapView.showsPointsOfInterest = NO;
     self.mapView.delegate = self;
     
-    CLLocationCoordinate2D coords[10] = {{37.419199, -122.024525},{37.418974, -122.023814},{37.417923, -122.024215}, {37.417944 ,-122.024363}, {37.417706, -122.024472}, {37.417893, -122.025300}, {37.418247, -122.025210}, {37.418659, -122.025217}, {37.418643, -122.024752}, {37.419199, -122.024544}};
-    MKPolygon *polygon = [MKPolygon polygonWithCoordinates:coords count:10];
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
+    
+    CLLocationCoordinate2D coords[13] = {
+        {37.419184, -122.024497},
+        {37.418960, -122.023896},
+        {37.417904, -122.024251},
+        {37.417946, -122.024349},
+        {37.417701, -122.024497},
+        {37.417717, -122.024908},
+        {37.417856, -122.025261},
+        {37.418085, -122.025194},
+        {37.418199, -122.025138},
+        {37.418166, -122.025077},
+        {37.418607, -122.025032},
+        {37.418574, -122.024695},
+        {37.419178, -122.024495}
+    };
+    MKPolygon *polygon = [MKPolygon polygonWithCoordinates:coords count:13];
     [self.mapView addOverlay:polygon];
     
     
@@ -40,10 +56,9 @@
 //                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
 //                           eyeAltitude:(CLLocationDistance)30];
 //    [self.mapView setCamera:camera animated:YES];
-//    [self.mapView setRegion:region animated:YES];
     
-    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418211, -122.025255);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 400, 400);
+    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418109, -122.024740);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 24, 24);
     [self.mapView setRegion:region animated:YES];
     
 //    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
@@ -155,23 +170,6 @@
     annot.pinUser = username;
     PFRelation *relation = [point relationForKey:@"group"];
     [relation addObject:self.group.pfObject];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
-    [query whereKey:@"group" equalTo:self.group.pfObject];
-    [query whereKey:@"username" equalTo:username];
-    [query orderByDescending:@"createdAt"];
-    
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if(!error)
-            {
-                if(object != nil)
-                {
-                    NSLog(@"THis is the user's last message %@", object[@"message"]);
-                    annot.lastMsg = object[@"message"];
-                }
-            }
-        }];
-    
     
     annot.latitude = touchMapCoordinate.latitude;
     annot.longitude = touchMapCoordinate.longitude;
@@ -316,8 +314,8 @@
         MKPolygonRenderer *polygonView = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
         
         polygonView.strokeColor = [UIColor magentaColor];
-        polygonView.lineWidth = 3;
-        polygonView.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
+        polygonView.lineWidth = 1;
+        polygonView.fillColor = [[UIColor purpleColor] colorWithAlphaComponent:0.1];
         
         return polygonView;
     }
@@ -368,6 +366,7 @@
         if (distance < currentClosestDistance) {
             currentClosestLandmark = title;
             currentClosestDistance = distance;
+            NSLog(@"%@ is %f meters away", title, distance);
         }
     }
     return currentClosestLandmark;

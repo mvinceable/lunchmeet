@@ -90,11 +90,12 @@
     
     // Follow relationship
     [query whereKey:@"group" equalTo:self.group.pfObject];
-    [query orderByAscending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:50];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            self.messages = objects;
+            self.messages = [[objects reverseObjectEnumerator] allObjects];
             [self.tableview reloadData];   // Reload table
             
             // scroll to last if just typed a new message
