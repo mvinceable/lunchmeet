@@ -278,6 +278,7 @@
         [myLabel setFont: [UIFont fontWithName:@"HelveticaNeue-Light" size:10.0f]];
         myLabel.text = ann.title;
         [v addSubview:myLabel];
+        v.transform = CGAffineTransformMakeTranslation(-15, -30);
         //[self.mapView addSubview:v];
         
         if(annotationView)

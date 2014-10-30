@@ -2,6 +2,60 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Item16</key>
+	<dict>
+		<key>title</key>
+		<string>Dish Drop</string>
+		<key>latitude</key>
+		<string>37.418004</string>
+		<key>longitude</key>
+		<string>-122.024915</string>
+	</dict>
+	<key>Item15</key>
+	<dict>
+		<key>title</key>
+		<string>Basketball Courts</string>
+		<key>latitude</key>
+		<string>37.418854</string>
+		<key>longitude</key>
+		<string>-122.024892</string>
+	</dict>
+	<key>Item14</key>
+	<dict>
+		<key>title</key>
+		<string>Lawn</string>
+		<key>latitude</key>
+		<string>37.417947</string>
+		<key>longitude</key>
+		<string>-122.025523</string>
+	</dict>
+	<key>Item13</key>
+	<dict>
+		<key>title</key>
+		<string>URLs Entrance</string>
+		<key>latitude</key>
+		<string>37.417760</string>
+		<key>longitude</key>
+		<string>-122.024987</string>
+	</dict>
+	<key>Item12</key>
+	<dict>
+		<key>title</key>
+		<string>Utensils Area</string>
+		<key>latitude</key>
+		<string>37.417950</string>
+		<key>longitude</key>
+		<string>-122.024760</string>
+	</dict>
+	<key>Item11</key>
+	<dict>
+		<key>title</key>
+		<string>Fountain</string>
+		<key>latitude</key>
+		<string>37.417442</string>
+		<key>longitude</key>
+		<string>-122.025342</string>
+	</dict>
 	<key>Item10</key>
 	<dict>
 		<key>longitude</key>
@@ -25,27 +79,27 @@
 		<key>title</key>
 		<string>Ice Cream</string>
 		<key>latitude</key>
-		<string>37.417938 </string>
+		<string>37.417888</string>
 		<key>longitude</key>
-		<string>-122.024502</string>
+		<string>-122.024425</string>
 	</dict>
 	<key>Item7</key>
 	<dict>
 		<key>title</key>
 		<string>Espresso</string>
 		<key>latitude</key>
-		<string>37.418143 </string>
+		<string>37.418134</string>
 		<key>longitude</key>
-		<string>-122.024940</string>
+		<string>-122.024956</string>
 	</dict>
 	<key>Item6</key>
 	<dict>
 		<key>title</key>
 		<string>Gym</string>
 		<key>latitude</key>
-		<string>37.418346 </string>
+		<string>37.418371</string>
 		<key>longitude</key>
-		<string>-122.024824</string>
+		<string>-122.024827</string>
 	</dict>
 	<key>Item5</key>
 	<dict>
