@@ -18,15 +18,20 @@
     [super viewDidLoad];
     
     self.mapView.showsBuildings = YES;
-    self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = YES;
+    self.mapView.showsPointsOfInterest = NO;
     self.mapView.delegate = self;
     
     self.listOfPins = [[NSMutableArray alloc] init];
     
-    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418167, -122.024921);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 0.5, 0.5);
-    [self.mapView setRegion:region animated:YES];
+    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
+    MKMapCamera* camera = [MKMapCamera
+                           cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
+                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
+                           eyeAltitude:(CLLocationDistance)30];
+    [self.mapView setCamera:camera animated:YES];
+//    [self.mapView setRegion:region animated:YES];
     
     self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
     MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
@@ -35,7 +40,7 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1.0; //user needs to press for 2 seconds
+    lpgr.minimumPressDuration = 0.7; //user needs to press for 2 seconds
     [self.mapView addGestureRecognizer:lpgr];
     
     [self findPins];
@@ -254,7 +259,7 @@
         }
         
         annotationView.animatesDrop = YES;
-        annotationView.draggable = YES;
+        annotationView.draggable = NO;
         annotationView.canShowCallout = YES;
         return annotationView;
     }

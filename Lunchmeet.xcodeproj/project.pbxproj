@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		028C03401A0194F500A741D3 /* BuildingMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C033F1A0194F500A741D3 /* BuildingMap.m */; };
-		028C034A1A019CF100A741D3 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 028C03491A019CF100A741D3 /* map.png */; };
 		02BE0E3F19FF2A4F00BBAA16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209A312119FD71EC0060C3E2 /* CoreLocation.framework */; };
+		02C91ACE1A0214B800BE4E1B /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 02C91ACD1A0214B800BE4E1B /* map.png */; };
 		02D305E71A00D0B200635D60 /* MapOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305E61A00D0B200635D60 /* MapOverlay.m */; };
 		02D305EA1A00D1E300635D60 /* MapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305E91A00D1E300635D60 /* MapOverlayView.m */; };
 		02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EC1A00D25500635D60 /* MapAnnotation.m */; };
@@ -62,7 +62,7 @@
 /* Begin PBXFileReference section */
 		028C033E1A0194F500A741D3 /* BuildingMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingMap.h; sourceTree = "<group>"; };
 		028C033F1A0194F500A741D3 /* BuildingMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingMap.m; sourceTree = "<group>"; };
-		028C03491A019CF100A741D3 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		02C91ACD1A0214B800BE4E1B /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		02D305E51A00D0B200635D60 /* MapOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOverlay.h; sourceTree = "<group>"; };
 		02D305E61A00D0B200635D60 /* MapOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOverlay.m; sourceTree = "<group>"; };
 		02D305E81A00D1E300635D60 /* MapOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOverlayView.h; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		209A30E519FD632A0060C3E2 /* lunchmeet */ = {
 			isa = PBXGroup;
 			children = (
-				028C03491A019CF100A741D3 /* map.png */,
+				02C91ACD1A0214B800BE4E1B /* map.png */,
 				209A313E19FDA6FE0060C3E2 /* Models */,
 				209A313819FD9B9D0060C3E2 /* Views */,
 				209A311119FD63EF0060C3E2 /* View Controllers */,
@@ -418,8 +418,8 @@
 				20C2121C19FE09DC009086A0 /* ChatViewController.xib in Resources */,
 				20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */,
 				209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */,
+				02C91ACE1A0214B800BE4E1B /* map.png in Resources */,
 				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
-				028C034A1A019CF100A741D3 /* map.png in Resources */,
 				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
 				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
