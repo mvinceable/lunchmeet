@@ -2,6 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Item20</key>
+	<dict>
+		<key>title</key>
+		<string>Tables Near A</string>
+		<key>latitude</key>
+		<string>37.418137</string>
+		<key>longitude</key>
+		<string>-122.025680</string>
+	</dict>
+	<key>Item19</key>
+	<dict>
+		<key>title</key>
+		<string>Tables Near Gym</string>
+		<key>latitude</key>
+		<string>37.418484</string>
+		<key>longitude</key>
+		<string>-122.025220</string>
+	</dict>
+	<key>Item18</key>
+	<dict>
+		<key>title</key>
+		<string>Tables Near Lawn</string>
+		<key>latitude</key>
+		<string>37.417830</string>
+		<key>longitude</key>
+		<string>-122.025333</string>
+	</dict>
+	<key>Item17</key>
+	<dict>
+		<key>title</key>
+		<string>URLs A/B Entrance</string>
+		<key>latitude</key>
+		<string>37.418082</string>
+		<key>longitude</key>
+		<string>-122.025277</string>
+	</dict>
 	<key>Item16</key>
 	<dict>
 		<key>title</key>
@@ -32,7 +68,7 @@
 	<key>Item13</key>
 	<dict>
 		<key>title</key>
-		<string>URLs Entrance</string>
+		<string>URLs D Entrance</string>
 		<key>latitude</key>
 		<string>37.417760</string>
 		<key>longitude</key>
