@@ -2,6 +2,60 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Item10</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.024920</string>
+		<key>latitude</key>
+		<string>37.417654 </string>
+		<key>title</key>
+		<string>BBQ Grills</string>
+	</dict>
+	<key>Item9</key>
+	<dict>
+		<key>title</key>
+		<string>FYI Stage</string>
+		<key>latitude</key>
+		<string>37.417962 </string>
+		<key>longitude</key>
+		<string>-122.025168</string>
+	</dict>
+	<key>Item8</key>
+	<dict>
+		<key>title</key>
+		<string>Ice Cream</string>
+		<key>latitude</key>
+		<string>37.417938 </string>
+		<key>longitude</key>
+		<string>-122.024502</string>
+	</dict>
+	<key>Item7</key>
+	<dict>
+		<key>title</key>
+		<string>Espresso</string>
+		<key>latitude</key>
+		<string>37.418143 </string>
+		<key>longitude</key>
+		<string>-122.024940</string>
+	</dict>
+	<key>Item6</key>
+	<dict>
+		<key>title</key>
+		<string>Gym</string>
+		<key>latitude</key>
+		<string>37.418346 </string>
+		<key>longitude</key>
+		<string>-122.024824</string>
+	</dict>
+	<key>Item5</key>
+	<dict>
+		<key>title</key>
+		<string>Vending Machine</string>
+		<key>latitude</key>
+		<string>37.417794 </string>
+		<key>longitude</key>
+		<string>-122.024502</string>
+	</dict>
 	<key>Item1</key>
 	<dict>
 		<key>longitude</key>
