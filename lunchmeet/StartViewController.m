@@ -207,17 +207,24 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
 
 - (IBAction)onLogin:(id)sender {
     NSLog(@"Log in button");
-    [PFUser logInWithUsernameInBackground:self.usernameTextfield.text password:self.passwordTextfield.text
-        block:^(PFUser *user, NSError *error) {
-            if (user) {
-                // Do stuff after successful login.
-                [self signedInUser];
-            } else {
-                // The login failed. Check error to see why.
-                NSString *errorString = [error userInfo][@"error"];
-                [[[UIAlertView alloc] initWithTitle:@"Failed to log in" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }
-        }];
+    
+    NSString *trimmedUsername = [self.usernameTextfield.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ([trimmedUsername isEqualToString:@""] || [self.passwordTextfield.text isEqualToString:@""]) {
+        [[[UIAlertView alloc] initWithTitle:@"Please enter all fields" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    } else {
+        [PFUser logInWithUsernameInBackground:self.usernameTextfield.text password:self.passwordTextfield.text
+            block:^(PFUser *user, NSError *error) {
+                if (user) {
+                    // Do stuff after successful login.
+                    [self signedInUser];
+                } else {
+                    // The login failed. Check error to see why.
+                    NSString *errorString = [error userInfo][@"error"];
+                    [[[UIAlertView alloc] initWithTitle:@"Failed to log in" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                }
+            }];
+    }
 }
 
 - (IBAction)onSignup:(id)sender {

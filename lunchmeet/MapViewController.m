@@ -11,6 +11,9 @@
 
 @interface MapViewController ()
 
+@property (strong, nonatomic) NSMutableDictionary *userPins;
+@property (strong, nonatomic) NSMutableDictionary *userAnnots;
+
 @end
 
 @implementation MapViewController
@@ -44,11 +47,10 @@
     lpgr.minimumPressDuration = 0.5; //user needs to press for 2 seconds
     [self.mapView addGestureRecognizer:lpgr];
     
+    self.userPins = [NSMutableDictionary dictionary];
+    self.userAnnots = [NSMutableDictionary dictionary];
+    
     [self findPins];
-    
-   
-    
-    
 }
 
 - (void)getPinsWithCompletion:(void (^)(NSArray *, NSError *))completion {
@@ -58,7 +60,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Point"];
     [query whereKey:@"group" equalTo:self.group.pfObject];
     [query whereKey:@"createdAt" greaterThanOrEqualTo:oneDayAgo];
-    [query orderByAscending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             completion(objects, nil);
@@ -70,27 +72,13 @@
 
 }
 
-- (void)retrievePinsWithCompletion:(PFObject *)pfObj completionHandler:(void (^)(NSArray *objects, NSError *))completion{
-    PFRelation *relation = pfObj[@"createdBy"];
-    PFQuery *query = [relation query];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (error) {
-        completion(nil, error);
-    } else {
-       // NSLog(@"Person who created %@", objects[0][@"username"]);
-        completion(objects, nil);
-    }
-    }];
-}
 -(void)findPins{
-    
-    
     [self getPinsWithCompletion:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error getting pins");
             //completion(nil, error);
         } else {
+            NSLog(@"Got gropu pins %@", objects);
             
             for(int i = 0; i < objects.count; i++)
             {
@@ -98,44 +86,35 @@
                 PFObject *obj = [objects objectAtIndex:i];
                 annot.latitude = [obj[@"lat"] floatValue];
                 annot.longitude = [obj[@"long"] floatValue];
-                [self retrievePinsWithCompletion:obj completionHandler:^(NSArray *objects, NSError *error) {
-                    if(error)
-                    {
-                        NSLog(@"errorrr");
-                        
-                    }
-                    else
-                    {
-                        annot.pinUser = objects[0][@"username"];
-                        
+                NSLog(@"got pin for %@", obj[@"username"]);
+                
+                if (obj[@"username"]) {
+                    NSString *username = obj[@"username"];
+                    // one pin per user
+                    if ([self.userPins objectForKey:username] == nil) {
+                        annot.pinUser = username;
                         PFQuery *query2 = [PFQuery queryWithClassName:@"Chat"];
                         [query2 whereKey:@"group" equalTo:self.group.pfObject];
                         [query2 whereKey:@"username" equalTo:annot.pinUser];
                         [query2 orderByDescending:@"createdAt"];
                         
                         [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                            if(!error)
-                            {
-                                if(object != nil)
-                                {
+                            if (!error) {
+                                if(object != nil) {
                                     annot.lastMsg = object[@"message"];
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 annot.lastMsg = @"";
-                                
                             }
-                            if([annot.pinUser isEqualToString:[PFUser currentUser].username])
-                            {
+                            if([username isEqualToString:[PFUser currentUser].username]) {
                                 annot.pinColor = @"green";
                             }
                             [self.mapView addAnnotation:annot];
-
+                            self.userAnnots[username] = annot;
                         }];
-
+                        self.userPins[username] = @YES;
                     }
-                }];
+                }
             }
         }
     }];
@@ -163,15 +142,14 @@
     
     PFObject *point = [PFObject objectWithClassName:@"Point"];
     PFUser *user = [PFUser currentUser];
-    annot.pinUser = user.username;
-    PFRelation *relation = [point relationForKey:@"createdBy"];
-    [relation addObject:[PFUser currentUser]];
-    PFRelation *relation2 = [point relationForKey:@"group"];
-    [relation2 addObject:self.group.pfObject];
+    NSString *username = user.username;
+    annot.pinUser = username;
+    PFRelation *relation = [point relationForKey:@"group"];
+    [relation addObject:self.group.pfObject];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
     [query whereKey:@"group" equalTo:self.group.pfObject];
-    [query whereKey:@"username" equalTo:user.username];
+    [query whereKey:@"username" equalTo:username];
     [query orderByDescending:@"createdAt"];
     
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -193,6 +171,7 @@
     NSString *longitude = [NSString stringWithFormat:@"%f", annot.longitude];
     [point setObject:lat forKey:@"lat"];
     [point setObject:longitude forKey:@"long"];
+    [point setObject:username forKey:@"username"];
     
     [point saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
@@ -205,6 +184,13 @@
     
     
     [self.mapView addAnnotation:annot];
+    
+    // remove previous annotation if it exists
+    if ([self.userPins objectForKey:username] != nil && [self.userAnnots objectForKey:username] != nil) {
+        [self.mapView removeAnnotation:self.userAnnots[username]];
+    }
+    self.userPins[username] = @YES;
+    self.userAnnots[username] = annot;
     
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
     PFObject *group = self.group.pfObject;
