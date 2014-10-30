@@ -188,21 +188,39 @@
 }
 
 + (NSString *)friendlyTimestamp:(NSDate *)date {
+    NSDate *todayDate = [NSDate date];
     NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:[NSDate date]];
+    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:todayDate];
     
     // check if today
-    if ([today day] == [otherDay day] &&
-        [today month] == [otherDay month] &&
-        [today year] == [otherDay year] &&
-        [today era] == [otherDay era]) {
+    if ([self areSameDays:today secondDay:otherDay]) {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"h:mm a"];
         return [NSString stringWithFormat:@"Today %@", [dateFormat stringFromDate:date]];
     } else {
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"M/d/yy h:mm a"];
-        return [dateFormat stringFromDate:date];
+        // check if yesterday
+        NSDate *yesterdayDate = [todayDate dateByAddingTimeInterval: -86400.0];
+        NSDateComponents *yesterday = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:yesterdayDate];
+        if ([self areSameDays:yesterday secondDay:otherDay]) {
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"h:mm a"];
+            return [NSString stringWithFormat:@"Yesterday %@", [dateFormat stringFromDate:date]];
+        } else {
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"M/d/yy h:mm a"];
+            return [dateFormat stringFromDate:date];
+        }
+    }
+}
+
++ (BOOL)areSameDays:(NSDateComponents *)firstDay secondDay:(NSDateComponents *)secondDay {
+    if ([firstDay day] == [secondDay day] &&
+        [firstDay month] == [secondDay month] &&
+        [firstDay year] == [secondDay year] &&
+        [firstDay era] == [secondDay era]) {
+        return YES;
+    } else {
+        return NO;
     }
 }
 

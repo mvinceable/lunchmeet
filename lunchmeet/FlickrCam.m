@@ -75,7 +75,7 @@ NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/
 - (NSString *)getImageUrlAtIndex:(NSInteger)index {
     if (self.photos.count > index) {
         NSDictionary *photo = self.photos[index];
-        return [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_c.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
+        return [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_b.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
     } else {
         return nil;
     }

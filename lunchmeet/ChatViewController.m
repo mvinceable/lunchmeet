@@ -193,6 +193,7 @@ NSInteger const DEFAULT_MESSAGETEXTVIEW_HEIGHT = 36;
     
     NSString *trimmedMessage = [self.messageTextview.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [chat setObject:trimmedMessage forKey:@"message"];
+    [chat setObject:@NO forKey:@"isPin"];
     
     // Create relationship
     [chat setObject:[PFUser currentUser].username forKey:@"username"];

@@ -31,6 +31,7 @@
 
 @property (strong, nonatomic) NSTimer *flickrTimer;
 @property (strong, nonatomic) NSTimer *timelapseTimer;
+@property (strong, nonatomic) NSTimer *startTimelapseTimer;
 @property (nonatomic) BOOL isLoginScreen;
 @property (nonatomic) CGFloat keyboardHeight;
 
@@ -144,7 +145,8 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
     self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:360 target:self selector:@selector(onFlickrTimer) userInfo:nil repeats:YES];
     [self onFlickrTimer];
     // start timelapse after 1 second delay to allow time for initial fetch
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimelapse) userInfo:nil repeats:NO];
+    [self.startTimelapseTimer invalidate];
+    self.startTimelapseTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimelapse) userInfo:nil repeats:NO];
 }
 
 - (void)onFlickrTimer {
@@ -322,6 +324,16 @@ NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 150;
     NSLog(@"Screen tapped");
     // hide keyboard
     [self.view endEditing:YES];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    NSLog(@"Stopping timelapse");
+    [self.timelapseTimer invalidate];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.startTimelapseTimer invalidate];
+    self.startTimelapseTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimelapse) userInfo:nil repeats:NO];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
