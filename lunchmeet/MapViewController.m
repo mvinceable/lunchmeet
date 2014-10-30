@@ -183,10 +183,15 @@
             }];
     
     
-    [self.mapView addAnnotation:annot];
-    
     // get nearest landmark
     NSString *closestLandmark = [self getClosestLandmark:touchMapCoordinate.latitude lon:touchMapCoordinate.longitude];
+    NSString *message = [NSString stringWithFormat:@"I'm at %@!", closestLandmark];
+    
+    annot.lastMsg = message;
+    
+    [self.mapView addAnnotation:annot];
+    
+    [self.mapView selectAnnotation:annot animated:YES];
     
     // remove previous annotation if it exists
     if ([self.userPins objectForKey:username] != nil && [self.userAnnots objectForKey:username] != nil) {
@@ -198,7 +203,6 @@
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
     PFObject *group = self.group.pfObject;
     
-    NSString *message = [NSString stringWithFormat:@"I'm at %@!", closestLandmark];
     [chat setObject:message forKey:@"message"];
     
     // Create relationship
