@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Vince Magistrado. All rights reserved.
 //
 
+#import "LabelAnnotationView.h"
 #import "MapViewController.h"
 
 @interface MapViewController ()
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.mapView addAnnotations:[self createAnnotations]];
     self.mapView.showsBuildings = YES;
     self.mapView.zoomEnabled = YES;
     self.mapView.showsPointsOfInterest = NO;
@@ -25,7 +26,7 @@
     self.listOfPins = [[NSMutableArray alloc] init];
     
     CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
-    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
     MKMapCamera* camera = [MKMapCamera
                            cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
                            fromEyeCoordinate:(CLLocationCoordinate2D)pt
@@ -33,14 +34,14 @@
     [self.mapView setCamera:camera animated:YES];
 //    [self.mapView setRegion:region animated:YES];
     
-    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
-    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
-    [self.mapView addOverlay:overlay];
+//    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
+//    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
+//    [self.mapView addOverlay:overlay];
     
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.7; //user needs to press for 2 seconds
+    lpgr.minimumPressDuration = 0.5; //user needs to press for 2 seconds
     [self.mapView addGestureRecognizer:lpgr];
     
     [self findPins];
@@ -263,6 +264,34 @@
         annotationView.canShowCallout = YES;
         return annotationView;
     }
+    else if([annotation isKindOfClass:[LabelAnnotationView class]]){
+        LabelAnnotationView *ann = (LabelAnnotationView *)annotation;
+        NSLog(@"%@", ann.title);
+        static NSString *userPinAnnotationId = @"userPinAnnotation";
+        
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:userPinAnnotationId];
+        
+        MKPinAnnotationView *v = [[MKPinAnnotationView alloc] init];
+        UILabel *myLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 300.f, 100.f)];
+        [myLabel setFont: [UIFont fontWithName:@"HelveticaNeue-Light" size:10.0f]];
+        myLabel.text = ann.title;
+        [v addSubview:myLabel];
+        //[self.mapView addSubview:v];
+        
+        if(annotationView)
+        {
+            annotationView.annotation = annotation;
+            annotationView = v;
+            annotationView.image = nil;
+        }
+        else{
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userPinAnnotationId];
+            annotationView = v;
+            annotationView.image = nil;
+        }
+        return annotationView;
+    }
+
     return nil;
 }
 
@@ -272,9 +301,35 @@
         MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
         
         return overlayView;
+        
     }
     
     return nil;
+}
+
+- (NSMutableArray *)createAnnotations
+{
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    //Read locations details from plist
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"landmarks" ofType:@"plist"];
+    NSMutableDictionary *locations = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    for (int i = 0; i < locations.count; i++) {
+        NSString *str = [NSString stringWithFormat:@"Item%d", (i + 1) ];
+        NSDictionary *row = [locations objectForKey:str];
+        NSString *latitude = [row objectForKey:@"latitude"];
+        NSString *longitude = [row objectForKey:@"longitude"];
+        NSString *title = [row objectForKey:@"title"];
+        //Create coordinates from the latitude and longitude values
+        CLLocationCoordinate2D coord;
+        coord.latitude = [latitude floatValue];
+        coord.longitude = [longitude floatValue];
+        LabelAnnotationView *annotation = [[LabelAnnotationView alloc] initWithTitle:title AndCoordinate:coord];
+        NSLog(@"%@",annotation.title);
+        [annotations addObject:annotation];
+        
+    }
+    
+    return annotations;
 }
 /*
 #pragma mark - Navigation
