@@ -130,24 +130,28 @@ NSInteger const PARALLAX_CONSTANT = 24;
 - (void)resetFlickrTimer {
     NSLog(@"Resetting flickr timer");
     [self.flickrTimer invalidate];
-    // flickrcam updates every 6 minutes, so refresh every 8 or so
-    self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:480 target:self selector:@selector(onFlickrTimer:) userInfo:nil repeats:YES];
-    [self onFlickrTimer:YES];
+    // flickrcam updates every 6 minutes (360 seconds)
+    self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:360 target:self selector:@selector(onFlickrTimer) userInfo:nil repeats:YES];
+    [self onFlickrTimer];
+    // start timelapse after 1 second to allow time for initial fetch
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimelapse) userInfo:nil repeats:NO];
 }
 
-- (void)onFlickrTimer:(BOOL)startTimelapseOnCompletion {
+- (void)onFlickrTimer {
     // get live image of urls
     [[FlickrCam sharedInstance] getLatestPhotosWithCompletion:^(NSArray *photos, NSError *error) {
-        if (startTimelapseOnCompletion) {
-            if (error && photos.count > 0) {
-                NSLog(@"Error getting latest photos so using what's cached");
-            }
-            [self.timelapseTimer invalidate];
-            // timelapse timer will update every 3 seconds
-            self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
-            [self onTimelapseTimer];
+        if (error && photos.count > 0) {
+            NSLog(@"Error getting latest photos so using what's cached");
         }
     }];
+}
+
+- (void)startTimelapse {
+    NSLog(@"Starting timelapse");
+    [self.timelapseTimer invalidate];
+    // timelapse timer will update every 3 seconds
+    self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
+    [self onTimelapseTimer];
 }
 
 - (void)onTimelapseTimer {
@@ -156,7 +160,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
     if (imageUrl) {
 //        NSLog(@"showing frame %ld with image %@", self.currentTimelapseFrame, imageUrl);
         [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
-        [UIView animateWithDuration:2.9 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:2.8 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.urlsView.alpha = 1;
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {

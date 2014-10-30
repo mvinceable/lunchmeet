@@ -14,12 +14,12 @@
 		02D305EA1A00D1E300635D60 /* MapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305E91A00D1E300635D60 /* MapOverlayView.m */; };
 		02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EC1A00D25500635D60 /* MapAnnotation.m */; };
 		02D305F01A00D2AE00635D60 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */; };
+		201EE18A1A01F78700FD06C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F319FD632A0060C3E2 /* Images.xcassets */; };
 		2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091FC0219FF6CFC00F4E41B /* FlickrCam.m */; };
 		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
 		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
 		209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EE19FD632A0060C3E2 /* ViewController.m */; };
 		209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F019FD632A0060C3E2 /* Main.storyboard */; };
-		209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F319FD632A0060C3E2 /* Images.xcassets */; };
 		209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F519FD632A0060C3E2 /* LaunchScreen.xib */; };
 		209A310319FD632A0060C3E2 /* lunchmeetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A310219FD632A0060C3E2 /* lunchmeetTests.m */; };
 		209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A310D19FD63EB0060C3E2 /* StartViewController.m */; };
@@ -409,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				201EE18A1A01F78700FD06C6 /* Images.xcassets in Resources */,
 				20C2120719FDBEC4009086A0 /* GroupDetailsCell.xib in Resources */,
 				209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */,
 				209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */,
@@ -423,7 +424,6 @@
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
 				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
 				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
-				209A30F419FD632A0060C3E2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +617,7 @@
 			baseConfigurationReference = 3A955841503776519A66E59C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -633,6 +634,7 @@
 			baseConfigurationReference = 1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
