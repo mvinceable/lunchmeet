@@ -58,7 +58,7 @@
 //    [self.mapView setCamera:camera animated:YES];
     
     CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418109, -122.024740);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 24, 24);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 1, 1);
     [self.mapView setRegion:region animated:YES];
     
 //    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
