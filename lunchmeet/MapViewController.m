@@ -339,8 +339,8 @@
     //Read locations details from plist
     NSString *path = [[NSBundle mainBundle] pathForResource:@"landmarks" ofType:@"plist"];
     NSMutableDictionary *locations = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    for (int i = 0; i < locations.count; i++) {
-        NSString *str = [NSString stringWithFormat:@"Item%d", (i + 1) ];
+    
+    for (NSString *str in locations) {
         NSDictionary *row = [locations objectForKey:str];
         NSString *latitude = [row objectForKey:@"latitude"];
         NSString *longitude = [row objectForKey:@"longitude"];
@@ -352,7 +352,6 @@
         LabelAnnotationView *annotation = [[LabelAnnotationView alloc] initWithTitle:title AndCoordinate:coord];
         NSLog(@"%@",annotation.title);
         [annotations addObject:annotation];
-        
     }
     
     return annotations;
