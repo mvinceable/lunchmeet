@@ -30,7 +30,7 @@
     return instance;
 }
 
-NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/?&method=flickr.people.getPublicPhotos&api_key=ed809cd4adc84c29118dbd32f5ccb655&user_id=120759744@N07&format=json&nojsoncallback=1&per_page=10";
+NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/?&method=flickr.people.getPublicPhotos&api_key=ed809cd4adc84c29118dbd32f5ccb655&user_id=120759744@N07&format=json&nojsoncallback=1&per_page=240";
 
 - (void)getLatestPhotosWithCompletion:(void (^)(NSArray *, NSError *))completion {
     NSURL *url = [NSURL URLWithString:LATEST_IMG_REQUEST_URL];
@@ -75,7 +75,7 @@ NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/
 - (NSString *)getImageUrlAtIndex:(NSInteger)index {
     if (self.photos.count > index) {
         NSDictionary *photo = self.photos[index];
-        return [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_b.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
+        return [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_c.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
     } else {
         return nil;
     }

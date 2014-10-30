@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lunchmeet/StartViewController.m"
-            timestampString = "436336088.100843"
+            timestampString = "436339638.937813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-onFlickrTimer"
             landmarkType = "5">
          </BreakpointContent>

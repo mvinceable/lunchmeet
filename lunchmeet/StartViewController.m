@@ -34,13 +34,16 @@
 @property (nonatomic) BOOL isLoginScreen;
 @property (nonatomic) CGFloat keyboardHeight;
 
-@property(nonatomic) NSInteger currentTimelapseFrame;
+@property (nonatomic) NSInteger currentTimelapseFrame;
+@property (nonatomic) BOOL timelapseCountingUp;
 
 @end
 
 @implementation StartViewController
 
 NSInteger const PARALLAX_CONSTANT = 24;
+CGFloat const TIMELAPSE_SPF = 3.0f;
+NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -99,6 +102,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
     [self.previousUrlsView addMotionEffect:group];
     
     self.currentTimelapseFrame = 0;
+    self.timelapseCountingUp = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,6 +114,12 @@ NSInteger const PARALLAX_CONSTANT = 24;
     if (![self signedInUser]) {
         [self resetFlickrTimer];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"Stopping flickr and timelapse timers");
+    [self.flickrTimer invalidate];
+    [self.timelapseTimer invalidate];
 }
 
 - (BOOL)signedInUser {
@@ -133,7 +143,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
     // flickrcam updates every 6 minutes (360 seconds)
     self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:360 target:self selector:@selector(onFlickrTimer) userInfo:nil repeats:YES];
     [self onFlickrTimer];
-    // start timelapse after 1 second to allow time for initial fetch
+    // start timelapse after 1 second delay to allow time for initial fetch
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimelapse) userInfo:nil repeats:NO];
 }
 
@@ -149,8 +159,8 @@ NSInteger const PARALLAX_CONSTANT = 24;
 - (void)startTimelapse {
     NSLog(@"Starting timelapse");
     [self.timelapseTimer invalidate];
-    // timelapse timer will update every 3 seconds
-    self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
+    // timelapse timer will update every TIMELAPSE_SPF seconds
+    self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:TIMELAPSE_SPF target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
     [self onTimelapseTimer];
 }
 
@@ -160,7 +170,7 @@ NSInteger const PARALLAX_CONSTANT = 24;
     if (imageUrl) {
 //        NSLog(@"showing frame %ld with image %@", self.currentTimelapseFrame, imageUrl);
         [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
-        [UIView animateWithDuration:2.8 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:TIMELAPSE_SPF-.2f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.urlsView.alpha = 1;
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
@@ -168,8 +178,20 @@ NSInteger const PARALLAX_CONSTANT = 24;
             self.urlsView.alpha = 0;
             [self.view layoutIfNeeded];
         }];
-        if (++self.currentTimelapseFrame == 10) {
-            self.currentTimelapseFrame = 0;
+        if (self.timelapseCountingUp) {
+            // rewinding
+            self.currentTimelapseFrame++;
+            if (self.currentTimelapseFrame == FLICKR_CAM_FRAME_COUNT) {
+                self.currentTimelapseFrame = FLICKR_CAM_FRAME_COUNT - 2;
+                self.timelapseCountingUp = NO;
+            }
+        } else {
+            // going forward
+            self.currentTimelapseFrame--;
+            if (self.currentTimelapseFrame == -1) {
+                self.currentTimelapseFrame = 0;
+                self.timelapseCountingUp = YES;
+            }
         }
     } else {
         NSLog(@"No image for frame received");
@@ -187,7 +209,6 @@ NSInteger const PARALLAX_CONSTANT = 24;
         block:^(PFUser *user, NSError *error) {
             if (user) {
                 // Do stuff after successful login.
-                NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
                 [self signedInUser];
             } else {
                 // The login failed. Check error to see why.
