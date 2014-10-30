@@ -12,7 +12,7 @@
 
 + (FlickrCam *)sharedInstance;
 
-- (void)getLatestImageUrlWithCompletion:(void (^)(NSString *imageUrl, NSError *error))completion;
-- (NSString *)getStoredImageUrl;
+- (void)getLatestPhotosWithCompletion:(void (^)(NSArray *photos, NSError *error))completion;
+- (NSString *)getImageUrlAtIndex:(NSInteger)index;
 
 @end

@@ -30,8 +30,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) NSTimer *flickrTimer;
+@property (strong, nonatomic) NSTimer *timelapseTimer;
 @property (nonatomic) BOOL isLoginScreen;
 @property (nonatomic) CGFloat keyboardHeight;
+
+@property(nonatomic) NSInteger currentTimelapseFrame;
 
 @end
 
@@ -94,6 +97,8 @@ NSInteger const PARALLAX_CONSTANT = 24;
     // Add both effects to your view
     [self.urlsView addMotionEffect:group];
     [self.previousUrlsView addMotionEffect:group];
+    
+    self.currentTimelapseFrame = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -126,22 +131,45 @@ NSInteger const PARALLAX_CONSTANT = 24;
     NSLog(@"Resetting flickr timer");
     [self.flickrTimer invalidate];
     // flickrcam updates every 6 minutes, so refresh every 8 or so
-    self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:480 target:self selector:@selector(onFlickrTimer) userInfo:nil repeats:YES];
-    [self onFlickrTimer];
+    self.flickrTimer = [NSTimer scheduledTimerWithTimeInterval:480 target:self selector:@selector(onFlickrTimer:) userInfo:nil repeats:YES];
+    [self onFlickrTimer:YES];
 }
 
-- (void)onFlickrTimer {
+- (void)onFlickrTimer:(BOOL)startTimelapseOnCompletion {
     // get live image of urls
-    [[FlickrCam sharedInstance] getLatestImageUrlWithCompletion:^(NSString *imageUrl, NSError *error) {
-        NSLog(@"Got flickr url %@", imageUrl);
+    [[FlickrCam sharedInstance] getLatestPhotosWithCompletion:^(NSArray *photos, NSError *error) {
+        if (startTimelapseOnCompletion) {
+            if (error && photos.count > 0) {
+                NSLog(@"Error getting latest photos so using what's cached");
+            }
+            [self.timelapseTimer invalidate];
+            // timelapse timer will update every 3 seconds
+            self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
+            [self onTimelapseTimer];
+        }
+    }];
+}
+
+- (void)onTimelapseTimer {
+    NSString *imageUrl = [[FlickrCam sharedInstance] getImageUrlAtIndex:self.currentTimelapseFrame];
+    
+    if (imageUrl) {
+//        NSLog(@"showing frame %ld with image %@", self.currentTimelapseFrame, imageUrl);
         [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
-        [UIView animateWithDuration:3 animations:^{
+        [UIView animateWithDuration:2.9 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.urlsView.alpha = 1;
+            [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
             [self.previousUrlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
             self.urlsView.alpha = 0;
+            [self.view layoutIfNeeded];
         }];
-    }];
+        if (++self.currentTimelapseFrame == 10) {
+            self.currentTimelapseFrame = 0;
+        }
+    } else {
+        NSLog(@"No image for frame received");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -292,24 +320,7 @@ NSInteger const DEFAULT_LOGIN_CONTROLS_VERTICAL_CONSTRAINT = 150;
     }
 }
 
-- (IBAction)didPinch:(UIPinchGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateChanged) {
-        if (sender.scale > 1) {
-            CGFloat scaleTo = (2 + sender.scale)/3;
-            self.previousUrlsView.transform = CGAffineTransformMakeScale(scaleTo, scaleTo);
-            self.urlsView.transform = CGAffineTransformMakeScale(scaleTo, scaleTo);
-            [self.view layoutIfNeeded];
-        }
-    } else if (sender.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:.24 animations:^{
-            self.previousUrlsView.transform = CGAffineTransformMakeScale(1, 1);
-            self.urlsView.transform = CGAffineTransformMakeScale(1, 1);
-            [self.view layoutIfNeeded];
-        }];
-    }
-}
-
-- (void) orientationChanged:(NSNotification *)note {
+- (void)orientationChanged:(NSNotification *)note {
     UIDevice * device = note.object;
     
     switch (device.orientation) {

@@ -13,7 +13,7 @@
                 <outlet property="loginControlsView" destination="iUd-t3-Srh" id="uIN-cp-N1M"/>
                 <outlet property="passwordTextfield" destination="fkU-I1-O67" id="l3C-6v-4ix"/>
                 <outlet property="previousUrlsView" destination="snp-0i-53w" id="xJv-Yd-zX2"/>
-                <outlet property="scrollview" destination="gtH-rV-fnc" id="YxS-r6-EWK"/>
+                <outlet property="scrollview" destination="gtH-rV-fnc" id="Mla-xf-E8D"/>
                 <outlet property="urlsBottomConstraint" destination="G6l-aR-Irm" id="2yq-uG-dBX"/>
                 <outlet property="urlsLeftConstraint" destination="ine-cp-9pU" id="i0x-74-wcU"/>
                 <outlet property="urlsRightConstraint" destination="jWA-KM-bg5" id="ZZ0-Pl-0bS"/>
@@ -34,12 +34,9 @@
                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="URLs" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-4P-xiR">
                     <rect key="frame" x="-24" y="-24" width="648" height="648"/>
                 </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-rV-fnc">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-rV-fnc">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <gestureRecognizers/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="ANd-9M-uUv" appends="YES" id="jKF-Lc-PUZ"/>
-                    </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUd-t3-Srh" userLabel="loginControls">
                     <rect key="frame" x="180" y="141" width="240" height="309"/>
@@ -186,11 +183,6 @@
             </connections>
         </tapGestureRecognizer>
         <tapGestureRecognizer id="AHJ-TU-FA8"/>
-        <pinchGestureRecognizer id="ANd-9M-uUv">
-            <connections>
-                <action selector="didPinch:" destination="-1" id="TS0-y4-QlB"/>
-            </connections>
-        </pinchGestureRecognizer>
     </objects>
     <resources>
         <image name="URLs" width="640" height="426"/>

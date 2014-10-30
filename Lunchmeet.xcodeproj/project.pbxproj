@@ -74,7 +74,7 @@
 		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2091FC0119FF6CFC00F4E41B /* FlickrCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrCam.h; sourceTree = "<group>"; };
 		2091FC0219FF6CFC00F4E41B /* FlickrCam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCam.m; sourceTree = "<group>"; };
-		209A30E319FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunchmeet.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		209A30E319FD632A0060C3E2 /* Lunchmeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunchmeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A30E719FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		209A30E819FD632A0060C3E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		209A30EA19FD632A0060C3E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		209A30F119FD632A0060C3E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		209A30F319FD632A0060C3E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		209A30F619FD632A0060C3E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		209A30FC19FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lunchmeet.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		209A30FC19FD632A0060C3E2 /* LunchmeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchmeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A310119FD632A0060C3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		209A310219FD632A0060C3E2 /* lunchmeetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lunchmeetTests.m; sourceTree = "<group>"; };
 		209A310C19FD63EB0060C3E2 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 		209A30E419FD632A0060C3E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				209A30E319FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename.app */,
-				209A30FC19FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_renameTests.xctest */,
+				209A30E319FD632A0060C3E2 /* Lunchmeet.app */,
+				209A30FC19FD632A0060C3E2 /* LunchmeetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,9 +330,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		209A30E219FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename */ = {
+		209A30E219FD632A0060C3E2 /* Lunchmeet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet.temp_caseinsensitive_rename" */;
+			buildConfigurationList = 209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet" */;
 			buildPhases = (
 				818A1C3510A8646290DEE8B6 /* Check Pods Manifest.lock */,
 				209A30DF19FD632A0060C3E2 /* Sources */,
@@ -344,14 +344,14 @@
 			);
 			dependencies = (
 			);
-			name = Lunchmeet.temp_caseinsensitive_rename;
+			name = Lunchmeet;
 			productName = lunchmeet;
-			productReference = 209A30E319FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename.app */;
+			productReference = 209A30E319FD632A0060C3E2 /* Lunchmeet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		209A30FB19FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_renameTests */ = {
+		209A30FB19FD632A0060C3E2 /* LunchmeetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet.temp_caseinsensitive_renameTests" */;
+			buildConfigurationList = 209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "LunchmeetTests" */;
 			buildPhases = (
 				209A30F819FD632A0060C3E2 /* Sources */,
 				209A30F919FD632A0060C3E2 /* Frameworks */,
@@ -362,9 +362,9 @@
 			dependencies = (
 				209A30FE19FD632A0060C3E2 /* PBXTargetDependency */,
 			);
-			name = Lunchmeet.temp_caseinsensitive_renameTests;
+			name = LunchmeetTests;
 			productName = lunchmeetTests;
-			productReference = 209A30FC19FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_renameTests.xctest */;
+			productReference = 209A30FC19FD632A0060C3E2 /* LunchmeetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -398,8 +398,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				209A30E219FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename */,
-				209A30FB19FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_renameTests */,
+				209A30E219FD632A0060C3E2 /* Lunchmeet */,
+				209A30FB19FD632A0060C3E2 /* LunchmeetTests */,
 			);
 		};
 /* End PBXProject section */
@@ -511,7 +511,7 @@
 /* Begin PBXTargetDependency section */
 		209A30FE19FD632A0060C3E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 209A30E219FD632A0060C3E2 /* Lunchmeet.temp_caseinsensitive_rename */;
+			target = 209A30E219FD632A0060C3E2 /* Lunchmeet */;
 			targetProxy = 209A30FD19FD632A0060C3E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -623,7 +623,7 @@
 				);
 				INFOPLIST_FILE = lunchmeet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = Lunchmeet.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Lunchmeet;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -639,7 +639,7 @@
 				);
 				INFOPLIST_FILE = lunchmeet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = Lunchmeet.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Lunchmeet;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -658,7 +658,7 @@
 				);
 				INFOPLIST_FILE = lunchmeetTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = Lunchmeet.temp_caseinsensitive_renameTests;
+				PRODUCT_NAME = LunchmeetTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lunchmeet.app/lunchmeet";
 			};
 			name = Debug;
@@ -673,7 +673,7 @@
 				);
 				INFOPLIST_FILE = lunchmeetTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = Lunchmeet.temp_caseinsensitive_renameTests;
+				PRODUCT_NAME = LunchmeetTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lunchmeet.app/lunchmeet";
 			};
 			name = Release;
@@ -690,7 +690,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet.temp_caseinsensitive_rename" */ = {
+		209A310619FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				209A310719FD632A0060C3E2 /* Debug */,
@@ -699,7 +699,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "Lunchmeet.temp_caseinsensitive_renameTests" */ = {
+		209A310919FD632A0060C3E2 /* Build configuration list for PBXNativeTarget "LunchmeetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				209A310A19FD632A0060C3E2 /* Debug */,

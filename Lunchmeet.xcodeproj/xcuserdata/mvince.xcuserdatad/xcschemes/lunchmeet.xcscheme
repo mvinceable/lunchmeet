@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "209A30E219FD632A0060C3E2"
-               BuildableName = "Lunchmeet.temp_caseinsensitive_rename.app"
-               BlueprintName = "Lunchmeet.temp_caseinsensitive_rename"
+               BuildableName = "Lunchmeet.app"
+               BlueprintName = "Lunchmeet"
                ReferencedContainer = "container:Lunchmeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "209A30FB19FD632A0060C3E2"
-               BuildableName = "Lunchmeet.temp_caseinsensitive_renameTests.xctest"
-               BlueprintName = "Lunchmeet.temp_caseinsensitive_renameTests"
+               BuildableName = "LunchmeetTests.xctest"
+               BlueprintName = "LunchmeetTests"
                ReferencedContainer = "container:Lunchmeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "209A30FB19FD632A0060C3E2"
-               BuildableName = "Lunchmeet.temp_caseinsensitive_renameTests.xctest"
-               BlueprintName = "Lunchmeet.temp_caseinsensitive_renameTests"
+               BuildableName = "LunchmeetTests.xctest"
+               BlueprintName = "LunchmeetTests"
                ReferencedContainer = "container:Lunchmeet.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "209A30E219FD632A0060C3E2"
-            BuildableName = "Lunchmeet.temp_caseinsensitive_rename.app"
-            BlueprintName = "Lunchmeet.temp_caseinsensitive_rename"
+            BuildableName = "Lunchmeet.app"
+            BlueprintName = "Lunchmeet"
             ReferencedContainer = "container:Lunchmeet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "209A30E219FD632A0060C3E2"
-            BuildableName = "Lunchmeet.temp_caseinsensitive_rename.app"
-            BlueprintName = "Lunchmeet.temp_caseinsensitive_rename"
+            BuildableName = "Lunchmeet.app"
+            BlueprintName = "Lunchmeet"
             ReferencedContainer = "container:Lunchmeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,8 +94,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "209A30E219FD632A0060C3E2"
-            BuildableName = "Lunchmeet.temp_caseinsensitive_rename.app"
-            BlueprintName = "Lunchmeet.temp_caseinsensitive_rename"
+            BuildableName = "Lunchmeet.app"
+            BlueprintName = "Lunchmeet"
             ReferencedContainer = "container:Lunchmeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -11,7 +11,7 @@
 
 @interface FlickrCam()
 
-@property (strong, nonatomic) NSString *currentImageUrl;
+@property (strong, nonatomic) NSArray *photos;
 
 @end
 
@@ -30,9 +30,9 @@
     return instance;
 }
 
-NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/?&method=flickr.people.getPublicPhotos&api_key=ed809cd4adc84c29118dbd32f5ccb655&user_id=120759744@N07&format=json&nojsoncallback=1&per_page=1";
+NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/?&method=flickr.people.getPublicPhotos&api_key=ed809cd4adc84c29118dbd32f5ccb655&user_id=120759744@N07&format=json&nojsoncallback=1&per_page=10";
 
-- (void)getLatestImageUrlWithCompletion:(void (^)(NSString *, NSError *))completion {
+- (void)getLatestPhotosWithCompletion:(void (^)(NSArray *, NSError *))completion {
     NSURL *url = [NSURL URLWithString:LATEST_IMG_REQUEST_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -41,32 +41,43 @@ NSString *const LATEST_IMG_REQUEST_URL = @"https://api.flickr.com/services/rest/
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         // https://www.flickr.com/services/api/misc.urls.html
-        NSDictionary *photo = responseObject[@"photos"][@"photo"][0];
-        NSString *imageUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_b.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
+        self.photos = responseObject[@"photos"][@"photo"];
+        [self storePhotos];
         
-        [self storeImageUrl:imageUrl];
-        completion(self.currentImageUrl, nil);
+        if (completion) {
+            completion(self.photos, nil);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // fail silently, return the last stored result
-        completion([self getStoredImageUrl], error);
+        if (completion) {
+            completion([self getStoredPhotos], error);
+        }
     }];
     
     [operation start];
 }
 
-- (void)storeImageUrl:(NSString *)imageUrl {
-    self.currentImageUrl = imageUrl;
+- (void)storePhotos {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:imageUrl forKey:@"currentImageUrl"];
+    [defaults setObject:self.photos forKey:@"photos"];
     [defaults synchronize];
 }
      
-- (NSString *)getStoredImageUrl {
-    if (_currentImageUrl) {
-        return _currentImageUrl;
+- (NSArray *)getStoredPhotos {
+    if (self.photos) {
+        return self.photos;
     } else {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        return [defaults stringForKey:@"currentImageUrl"];
+        return [defaults objectForKey:@"photos"];
+    }
+}
+
+- (NSString *)getImageUrlAtIndex:(NSInteger)index {
+    if (self.photos.count > index) {
+        NSDictionary *photo = self.photos[index];
+        return [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_b.jpg", photo[@"farm"], photo[@"server"], photo[@"id"], photo[@"secret"]];
+    } else {
+        return nil;
     }
 }
 
