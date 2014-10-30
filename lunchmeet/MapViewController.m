@@ -13,6 +13,9 @@
 
 @property (strong, nonatomic) NSMutableDictionary *userPins;
 @property (strong, nonatomic) NSMutableDictionary *userAnnots;
+@property (strong, nonatomic) NSTimer *getPinsTimer;
+
+@property (nonatomic) BOOL selectedLatestPin;
 
 @end
 
@@ -20,6 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // set title text
+    self.navigationItem.title = @"Campus Map";
+    
     [self.mapView addAnnotations:[self createAnnotations]];
     self.mapView.showsBuildings = YES;
     self.mapView.zoomEnabled = YES;
@@ -69,11 +76,13 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.5; //user needs to press for 2 seconds
+    lpgr.minimumPressDuration = 0.24; //user needs to press for .24 seconds
     [self.mapView addGestureRecognizer:lpgr];
     
     self.userPins = [NSMutableDictionary dictionary];
     self.userAnnots = [NSMutableDictionary dictionary];
+    
+    self.selectedLatestPin = NO;
     
     [self findPins];
 }
@@ -103,20 +112,17 @@
             NSLog(@"Error getting pins");
             //completion(nil, error);
         } else {
-            NSLog(@"Got gropu pins %@", objects);
             
-            for(int i = 0; i < objects.count; i++)
-            {
-                MapAnnotation *annot = [[MapAnnotation alloc] init];
+            for(int i = 0; i < objects.count; i++) {
                 PFObject *obj = [objects objectAtIndex:i];
-                annot.latitude = [obj[@"lat"] floatValue];
-                annot.longitude = [obj[@"long"] floatValue];
-                NSLog(@"got pin for %@", obj[@"username"]);
                 
                 if (obj[@"username"]) {
                     NSString *username = obj[@"username"];
                     // one pin per user
                     if ([self.userPins objectForKey:username] == nil) {
+                        MapAnnotation *annot = [[MapAnnotation alloc] init];
+                        annot.latitude = [obj[@"lat"] floatValue];
+                        annot.longitude = [obj[@"long"] floatValue];
                         annot.pinUser = username;
                         PFQuery *query2 = [PFQuery queryWithClassName:@"Chat"];
                         [query2 whereKey:@"group" equalTo:self.group.pfObject];
@@ -136,6 +142,10 @@
                             }
                             [self.mapView addAnnotation:annot];
                             self.userAnnots[username] = annot;
+                            if (!self.selectedLatestPin) {
+                                [self.mapView selectAnnotation:annot animated:NO];
+                                self.selectedLatestPin = YES;
+                            }
                         }];
                         self.userPins[username] = @YES;
                     }
@@ -314,7 +324,7 @@
         
         MKPolygonRenderer *polygonView = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
         
-        polygonView.strokeColor = [UIColor magentaColor];
+        polygonView.strokeColor = [[UIColor magentaColor] colorWithAlphaComponent:0.5];
         polygonView.lineWidth = 1;
         polygonView.fillColor = [[UIColor purpleColor] colorWithAlphaComponent:0.1];
         
@@ -356,12 +366,16 @@
     // iterate through landmarks and get the closest
     NSString *path = [[NSBundle mainBundle] pathForResource:@"landmarks" ofType:@"plist"];
     NSMutableDictionary *locations = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    for (int i = 0; i < locations.count; i++) {
-        NSString *str = [NSString stringWithFormat:@"Item%d", (i + 1) ];
+    for (NSString *str in locations) {
         NSDictionary *row = [locations objectForKey:str];
         NSString *latitude = [row objectForKey:@"latitude"];
         NSString *longitude = [row objectForKey:@"longitude"];
-        NSString *title = [row objectForKey:@"title"];
+        NSString *title;
+        if ([(NSString *)row[@"connector"] isEqualToString:@""]) {
+            title = row[@"title"];
+        } else {
+            title = [NSString stringWithFormat:@"%@ %@", row[@"connector"], row[@"title"]];
+        }
         CLLocation *locB = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
         CLLocationDistance distance = [locA distanceFromLocation:locB];
         if (distance < currentClosestDistance) {
