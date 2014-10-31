@@ -12,7 +12,7 @@
 #import "Group.h"
 #import "MBProgressHud.h"
 #import "GroupViewController.h"
-#import "ChatViewController.h"
+#import "MapViewController.h"
 
 @interface GroupsViewController ()
 
@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     
     // set logout button
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onStop)];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onStop)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     // set title text
@@ -88,7 +88,7 @@
     // unhighlight selection
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ChatViewController *vc = [[ChatViewController alloc] init];
+    MapViewController *vc = [[MapViewController alloc] init];
     vc.group = self.groups[indexPath.row];
     
     [self.navigationController pushViewController:vc animated:YES];

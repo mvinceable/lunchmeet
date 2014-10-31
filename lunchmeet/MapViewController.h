@@ -23,6 +23,5 @@
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer;
 @property (nonatomic, strong) NSMutableArray *listOfPins;
 - (void)getPinsWithCompletion:(void (^)(NSArray *objects, NSError *error))completion;
--(void)findPins;
 @property (nonatomic, strong) BuildingMap *buildingMap;
 @end

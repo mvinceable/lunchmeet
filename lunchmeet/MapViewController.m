@@ -8,11 +8,13 @@
 
 #import "LabelAnnotationView.h"
 #import "MapViewController.h"
+#import "ChatViewController.h"
 
 @interface MapViewController ()
 
 @property (strong, nonatomic) NSMutableDictionary *userPins;
 @property (strong, nonatomic) NSMutableDictionary *userAnnots;
+@property (strong, nonatomic) NSMutableDictionary *userLatLongs;
 @property (strong, nonatomic) NSTimer *getPinsTimer;
 
 @property (nonatomic) BOOL selectedLatestPin;
@@ -25,7 +27,11 @@
     [super viewDidLoad];
     
     // set title text
-    self.navigationItem.title = @"Campus Map";
+    self.navigationItem.title = [NSString stringWithFormat:@"Map: %@", self.group.name];
+    
+    // set right bar button
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Chat" style:UIBarButtonItemStylePlain target:self action:@selector(onChat)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     
     [self.mapView addAnnotations:[self createAnnotations]];
     self.mapView.showsBuildings = YES;
@@ -81,10 +87,103 @@
     
     self.userPins = [NSMutableDictionary dictionary];
     self.userAnnots = [NSMutableDictionary dictionary];
+    self.userLatLongs = [NSMutableDictionary dictionary];
     
     self.selectedLatestPin = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self resetTimer];
+}
+
+- (void)resetTimer {
+    NSLog(@"Resetting get pins timer");
+    [self.getPinsTimer invalidate];
+    self.getPinsTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onGetPinsTimer) userInfo:nil repeats:YES];
+    [self onGetPinsTimer];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"Stopping get pins timer");
+    [self.getPinsTimer invalidate];
+}
+
+- (void)onGetPinsTimer {
+    self.selectedLatestPin = NO;
     
-    [self findPins];
+    [self getPinsWithCompletion:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error getting pins");
+            //completion(nil, error);
+        } else {
+            NSLog(@"got more pins");
+            NSMutableDictionary *currentPins = [NSMutableDictionary dictionary];
+            for (PFObject *obj in objects) {
+                if (obj[@"username"]) {
+                    NSString *username = obj[@"username"];
+                    // make a dictionary of current pins
+                    if ([currentPins objectForKey:username] == nil) {
+                        currentPins[username] = obj;
+                    }
+                }
+            }
+            // remove annotations that no longer exist
+            for (NSString *username in self.userPins) {
+                if ([currentPins objectForKey:username] == nil) {
+                    [self.mapView removeAnnotation:self.userAnnots[username]];
+                }
+            }
+            // don't add annotations that already exist
+            for (NSString *username in currentPins) {
+                PFObject *obj = currentPins[username];
+                BOOL addAnnotation = YES;
+                MapAnnotation *annot = [[MapAnnotation alloc] init];
+                annot.latitude = [obj[@"lat"] doubleValue];
+                annot.longitude = [obj[@"long"] doubleValue];
+                annot.pinUser = username;
+                
+                if (self.userPins[username]) {
+                    if ([[NSString stringWithFormat:@"%f:%f", [obj[@"lat"] doubleValue], [obj[@"long"] doubleValue]] isEqualToString:self.userLatLongs[username]]) {
+                        NSLog(@"pin for %@ already added", username);
+                        addAnnotation = NO;
+                    } else {
+                        // remove old pin
+                        [self.mapView removeAnnotation:self.userAnnots[username]];
+                    }
+                }
+                
+                if (!self.userPins[username] || addAnnotation) {
+                    NSLog(@"adding annotation for %@", username);
+                    // add new annotations
+                    PFQuery *query2 = [PFQuery queryWithClassName:@"Chat"];
+                    [query2 whereKey:@"group" equalTo:self.group.pfObject];
+                    [query2 whereKey:@"username" equalTo:annot.pinUser];
+                    [query2 orderByDescending:@"createdAt"];
+                    
+                    [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                        if (!error) {
+                            if(object != nil) {
+                                annot.lastMsg = object[@"message"];
+                            }
+                        } else {
+                            annot.lastMsg = @"";
+                        }
+                        if([username isEqualToString:[PFUser currentUser].username]) {
+                            annot.pinColor = @"green";
+                        }
+                        [self.mapView addAnnotation:annot];
+                        self.userAnnots[username] = annot;
+                        self.userLatLongs[username] = [NSString stringWithFormat:@"%f:%f", annot.latitude, annot.longitude];
+                        if (!self.selectedLatestPin) {
+                            [self.mapView selectAnnotation:annot animated:NO];
+                            self.selectedLatestPin = YES;
+                        }
+                    }];
+                    self.userPins[username] = @YES;
+                }
+            }
+        }
+    }];
 }
 
 - (void)getPinsWithCompletion:(void (^)(NSArray *, NSError *))completion {
@@ -106,63 +205,10 @@
 
 }
 
--(void)findPins{
-    [self getPinsWithCompletion:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error getting pins");
-            //completion(nil, error);
-        } else {
-            
-            for(int i = 0; i < objects.count; i++) {
-                PFObject *obj = [objects objectAtIndex:i];
-                
-                if (obj[@"username"]) {
-                    NSString *username = obj[@"username"];
-                    // one pin per user
-                    if ([self.userPins objectForKey:username] == nil) {
-                        MapAnnotation *annot = [[MapAnnotation alloc] init];
-                        annot.latitude = [obj[@"lat"] floatValue];
-                        annot.longitude = [obj[@"long"] floatValue];
-                        annot.pinUser = username;
-                        PFQuery *query2 = [PFQuery queryWithClassName:@"Chat"];
-                        [query2 whereKey:@"group" equalTo:self.group.pfObject];
-                        [query2 whereKey:@"username" equalTo:annot.pinUser];
-                        [query2 orderByDescending:@"createdAt"];
-                        
-                        [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                            if (!error) {
-                                if(object != nil) {
-                                    annot.lastMsg = object[@"message"];
-                                }
-                            } else {
-                                annot.lastMsg = @"";
-                            }
-                            if([username isEqualToString:[PFUser currentUser].username]) {
-                                annot.pinColor = @"green";
-                            }
-                            [self.mapView addAnnotation:annot];
-                            self.userAnnots[username] = annot;
-                            if (!self.selectedLatestPin) {
-                                [self.mapView selectAnnotation:annot animated:NO];
-                                self.selectedLatestPin = YES;
-                            }
-                        }];
-                        self.userPins[username] = @YES;
-                    }
-                }
-            }
-        }
-    }];
-    
-}
-   
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -217,6 +263,7 @@
     }
     self.userPins[username] = @YES;
     self.userAnnots[username] = annot;
+    self.userLatLongs[username] = [NSString stringWithFormat:@"%f:%f", annot.latitude, annot.longitude];
     
     PFObject *chat = [PFObject objectWithClassName:@"Chat"];
     PFObject *group = self.group.pfObject;
@@ -384,6 +431,13 @@
         }
     }
     return currentClosestLandmark;
+}
+
+- (void)onChat {
+    NSLog(@"Showing chat");
+    ChatViewController *vc = [[ChatViewController alloc] init];
+    vc.group = self.group;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

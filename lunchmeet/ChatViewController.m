@@ -32,11 +32,7 @@
     // Do any additional setup after loading the view from its nib.
     
     // set title text
-    self.navigationItem.title = self.group.name;
-    
-    // set right bar button
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(onMap)];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+    self.navigationItem.title = [NSString stringWithFormat:@"Chat: %@", self.group.name];
     
     // set delegates
     self.tableview.dataSource = self;
@@ -69,14 +65,14 @@
 }
 
 - (void)resetTimer {
-    NSLog(@"Resetting timer");
+    NSLog(@"Resetting chat timer");
     [self.chatTimer invalidate];
     self.chatTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onChatTimer) userInfo:nil repeats:YES];
     [self onChatTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"Stopping timer");
+    NSLog(@"Stopping chat timer");
     [self.chatTimer invalidate];
 }
 
@@ -91,7 +87,7 @@
     // Follow relationship
     [query whereKey:@"group" equalTo:self.group.pfObject];
     [query orderByDescending:@"createdAt"];
-    [query setLimit:50];
+    [query setLimit:30];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -217,13 +213,6 @@ NSInteger const DEFAULT_MESSAGETEXTVIEW_HEIGHT = 36;
     [group setObject:trimmedMessage forKey:@"lastMessage"];
     [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
     [group saveInBackground];
-}
-
-- (void)onMap {
-    NSLog(@"Showing map");
-    MapViewController *vc = [[MapViewController alloc] init];
-    vc.group = self.group;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

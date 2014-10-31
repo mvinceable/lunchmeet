@@ -86,21 +86,21 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
     verticalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
     verticalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
     
-    // Set horizontal effect
-    UIInterpolatingMotionEffect *horizontalMotionEffect =
-    [[UIInterpolatingMotionEffect alloc]
-     initWithKeyPath:@"center.x"
-     type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
-    horizontalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
-    
-    // Create group to combine both
-    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
-    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-    
-    // Add both effects to your view
-    [self.urlsView addMotionEffect:group];
-    [self.previousUrlsView addMotionEffect:group];
+//    // Set horizontal effect
+//    UIInterpolatingMotionEffect *horizontalMotionEffect =
+//    [[UIInterpolatingMotionEffect alloc]
+//     initWithKeyPath:@"center.x"
+//     type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+//    horizontalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
+//    horizontalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
+//    
+//    // Create group to combine both
+//    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+//    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+//    
+//    // Add both effects to your view
+//    [self.urlsView addMotionEffect:group];
+//    [self.previousUrlsView addMotionEffect:group];
     
     self.currentTimelapseFrame = 0;
     self.timelapseCountingUp = YES;
