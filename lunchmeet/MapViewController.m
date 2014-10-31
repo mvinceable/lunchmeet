@@ -144,8 +144,32 @@
                 
                 if (self.userPins[username]) {
                     if ([[NSString stringWithFormat:@"%f:%f", [obj[@"lat"] doubleValue], [obj[@"long"] doubleValue]] isEqualToString:self.userLatLongs[username]]) {
-                        NSLog(@"pin for %@ already added", username);
                         addAnnotation = NO;
+                        
+                        // add associated message because it might have changed
+                        PFQuery *query2 = [PFQuery queryWithClassName:@"Chat"];
+                        [query2 whereKey:@"group" equalTo:self.group.pfObject];
+                        [query2 whereKey:@"username" equalTo:annot.pinUser];
+                        [query2 orderByDescending:@"createdAt"];
+                        
+                        [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                            if (!error) {
+                                if(object != nil) {
+                                    // if message changed, re-add it
+                                    MapAnnotation *oldAnnot = (MapAnnotation *)self.userAnnots[username];
+                                    if (![oldAnnot.lastMsg isEqualToString:object[@"message"]]) {
+                                        NSLog(@"updating message %@ to %@", oldAnnot.lastMsg, object[@"message"]);
+                                        oldAnnot.lastMsg = object[@"message"];
+                                        [self.mapView removeAnnotation:oldAnnot];
+                                        [self.mapView addAnnotation:oldAnnot];
+                                        if (!self.selectedLatestPin) {
+                                            [self.mapView selectAnnotation:oldAnnot animated:NO];
+                                            self.selectedLatestPin = YES;
+                                        }
+                                    }
+                                }
+                            }
+                        }];
                     } else {
                         // remove old pin
                         [self.mapView removeAnnotation:self.userAnnots[username]];
