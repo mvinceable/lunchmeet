@@ -43,7 +43,7 @@
 @implementation StartViewController
 
 NSInteger const PARALLAX_CONSTANT = 24;
-CGFloat const TIMELAPSE_SPF = 3.0f;
+CGFloat const TIMELAPSE_SECONDS_PER_FRAME = 1;
 NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
 
 - (void)viewDidLoad {
@@ -78,14 +78,14 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
      name:UIDeviceOrientationDidChangeNotification
      object:[UIDevice currentDevice]];
     
-    // Set vertical effect
-    UIInterpolatingMotionEffect *verticalMotionEffect =
-    [[UIInterpolatingMotionEffect alloc]
-     initWithKeyPath:@"center.y"
-     type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    verticalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
-    verticalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
-    
+//    // Set vertical effect
+//    UIInterpolatingMotionEffect *verticalMotionEffect =
+//    [[UIInterpolatingMotionEffect alloc]
+//     initWithKeyPath:@"center.y"
+//     type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+//    verticalMotionEffect.minimumRelativeValue = @(PARALLAX_CONSTANT);
+//    verticalMotionEffect.maximumRelativeValue = @(-PARALLAX_CONSTANT);
+//    
 //    // Set horizontal effect
 //    UIInterpolatingMotionEffect *horizontalMotionEffect =
 //    [[UIInterpolatingMotionEffect alloc]
@@ -104,6 +104,7 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
     
     self.currentTimelapseFrame = 0;
     self.timelapseCountingUp = YES;
+    self.urlsView.tag = -1;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -161,8 +162,8 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
 - (void)startTimelapse {
     NSLog(@"Starting timelapse");
     [self.timelapseTimer invalidate];
-    // timelapse timer will update every TIMELAPSE_SPF seconds
-    self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:TIMELAPSE_SPF target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
+    // timelapse timer will update every TIMELAPSE_SECONDS_PER_FRAME seconds
+    self.timelapseTimer = [NSTimer scheduledTimerWithTimeInterval:TIMELAPSE_SECONDS_PER_FRAME target:self selector:@selector(onTimelapseTimer) userInfo:nil repeats:YES];
     [self onTimelapseTimer];
 }
 
@@ -170,16 +171,24 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
     NSString *imageUrl = [[FlickrCam sharedInstance] getImageUrlAtIndex:self.currentTimelapseFrame];
     
     if (imageUrl) {
+        if (self.urlsView.tag != self.currentTimelapseFrame) {
 //        NSLog(@"showing frame %ld with image %@", self.currentTimelapseFrame, imageUrl);
-        [self.urlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
-        [UIView animateWithDuration:TIMELAPSE_SPF-.2f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.urlsView.alpha = 1;
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            [self.previousUrlsView setImageWithURL:[NSURL URLWithString:imageUrl]];
-            self.urlsView.alpha = 0;
-            [self.view layoutIfNeeded];
-        }];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+            [self.urlsView setImageWithURLRequest:request placeholderImage:self.previousUrlsView.image success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                self.urlsView.tag = self.currentTimelapseFrame;
+                self.urlsView.image = image;
+                [UIView animateWithDuration:TIMELAPSE_SECONDS_PER_FRAME-.2f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                    self.urlsView.alpha = 1;
+                    [self.view layoutIfNeeded];
+                } completion:^(BOOL finished) {
+                    self.previousUrlsView.image = image;
+                    self.urlsView.alpha = 0;
+                    [self.view layoutIfNeeded];
+                }];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                // fail silently
+            }];
+        }
         if (self.timelapseCountingUp) {
             // rewinding
             self.currentTimelapseFrame++;

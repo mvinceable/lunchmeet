@@ -141,6 +141,11 @@
                 annot.latitude = [obj[@"lat"] doubleValue];
                 annot.longitude = [obj[@"long"] doubleValue];
                 annot.pinUser = username;
+                if ([username isEqualToString:[PFUser currentUser].username]) {
+                    annot.pinColor = @"green";
+                } else {
+                    annot.pinColor = @"purple";
+                }
                 
                 if (self.userPins[username]) {
                     if ([[NSString stringWithFormat:@"%f:%f", [obj[@"lat"] doubleValue], [obj[@"long"] doubleValue]] isEqualToString:self.userLatLongs[username]]) {
@@ -192,9 +197,6 @@
                         } else {
                             annot.lastMsg = @"";
                         }
-                        if([username isEqualToString:[PFUser currentUser].username]) {
-                            annot.pinColor = @"green";
-                        }
                         [self.mapView addAnnotation:annot];
                         self.userAnnots[username] = annot;
                         self.userLatLongs[username] = [NSString stringWithFormat:@"%f:%f", annot.latitude, annot.longitude];
@@ -236,8 +238,19 @@
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Stopping get pins timer for long press");
+        [self.getPinsTimer invalidate];
+    } else {
+        if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"Restarting get pins timer after long press");
+            self.getPinsTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onGetPinsTimer) userInfo:nil repeats:YES];
+        }
+    }
+    
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
         return;
+    }
     
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
     CLLocationCoordinate2D touchMapCoordinate =
@@ -310,7 +323,6 @@
     [group setObject:message forKey:@"lastMessage"];
     [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
     [group saveInBackground];
-   
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
