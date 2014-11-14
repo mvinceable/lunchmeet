@@ -310,5 +310,38 @@
 		<key>title</key>
 		<string>Building D</string>
 	</dict>
+	<key>Item35</key>
+	<dict>
+		<key>connector</key>
+		<string></string>
+		<key>latitude</key>
+		<string>37.415707</string>
+		<key>longitude</key>
+		<string>-122.025496</string>
+		<key>title</key>
+		<string>Building E</string>
+	</dict>
+	<key>Item36</key>
+	<dict>
+		<key>connector</key>
+		<string></string>
+		<key>latitude</key>
+		<string>37.415281</string>
+		<key>longitude</key>
+		<string>-122.024263</string>
+		<key>title</key>
+		<string>Building F</string>
+	</dict>
+	<key>Item37</key>
+	<dict>
+		<key>connector</key>
+		<string></string>
+		<key>latitude</key>
+		<string>37.414531</string>
+		<key>longitude</key>
+		<string>-122.024343</string>
+		<key>title</key>
+		<string>Building G</string>
+	</dict>
 </dict>
 </plist>
