@@ -9,13 +9,26 @@
 #import "LabelAnnotationView.h"
 #import "MapViewController.h"
 #import "ChatViewController.h"
+#import "UserMessageCell.h"
+#import "GroupMessageCell.h"
 
-@interface MapViewController ()
+@interface MapViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *userPins;
 @property (strong, nonatomic) NSMutableDictionary *userAnnots;
 @property (strong, nonatomic) NSMutableDictionary *userLatLongs;
 @property (strong, nonatomic) NSTimer *getPinsTimer;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageViewBottomContraint;
+@property (weak, nonatomic) IBOutlet UITextView *messageTextview;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextviewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *mapButton;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
+
+@property (strong, nonatomic)NSArray *messages;
+@property (nonatomic) BOOL shouldScrollDown;
+
 
 @property (nonatomic) BOOL selectedLatestPin;
 
@@ -23,15 +36,13 @@
 
 @implementation MapViewController
 
+NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // set title text
-    self.navigationItem.title = [NSString stringWithFormat:@"Map: %@", self.group.name];
-    
-    // set right bar button
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Chat" style:UIBarButtonItemStylePlain target:self action:@selector(onChat)];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", self.group.name];
     
     [self.mapView addAnnotations:[self createAnnotations]];
     self.mapView.showsBuildings = YES;
@@ -584,11 +595,34 @@
     
     self.selectedLatestPin = NO;
     
+    self.messageViewBottomContraint.constant = self.tabBarController.tabBar.frame.size.height;
     
+    // set delegates
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.estimatedRowHeight = 90;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.messageTextview.delegate = self;
+    
+    // listen for keyboard appearances and disappearances
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    // register message cell nibs
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupMessageCell" bundle:nil] forCellReuseIdentifier:@"GroupMessageCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UserMessageCell" bundle:nil] forCellReuseIdentifier:@"UserMessageCell"];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    self.shouldScrollDown = YES;
     [self resetTimer];
 }
 
@@ -704,6 +738,31 @@
                     self.userPins[username] = @YES;
                 }
             }
+        }
+    }];
+    
+    
+    // onChatTimer
+    PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
+    
+    // Follow relationship
+    [query whereKey:@"group" equalTo:self.group.pfObject];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:30];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Got group messages %ld", (long)objects.count);
+            self.messages = [[objects reverseObjectEnumerator] allObjects];
+            [self.tableView reloadData];   // Reload table
+            
+            // scroll to last if just typed a new message
+            if (self.shouldScrollDown) {
+                [self scrollToLastMessage];
+                self.shouldScrollDown = NO;
+            }
+        } else {
+            NSLog(@"Error getting messages for group: %@ %@", error, [error userInfo]);
         }
     }];
 }
@@ -1099,11 +1158,160 @@
     return currentClosestLandmark;
 }
 
-- (void)onChat {
-    //NSLog(@"Showing chat");
-    ChatViewController *vc = [[ChatViewController alloc] init];
-    vc.group = self.group;
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)scrollToLastMessage {
+    if (self.messages.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.messages.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PFObject *message = self.messages[indexPath.row];
+    
+    // getting the user who created the message
+    NSString *username = [message objectForKey:@"username"];
+    
+    if ([username isEqualToString:[PFUser currentUser].username]) {
+        UserMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserMessageCell"];
+        cell.message = self.messages[indexPath.row];
+        return cell;
+    } else {
+        GroupMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupMessageCell"];
+        cell.message = self.messages[indexPath.row];
+        return cell;
+    }
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSLog(@"Keyboard will show");
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
+    
+    [UIView animateWithDuration:.24 animations:^{
+        self.messageViewBottomContraint.constant = keyboardFrameEndRect.size.height;
+        [self.view layoutIfNeeded];
+    }];
+    
+//    [self scrollToLastMessage];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    NSLog(@"Keyboard hidden");
+    [UIView animateWithDuration:.24 animations:^{
+        self.messageViewBottomContraint.constant = self.tabBarController.tabBar.frame.size.height;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NSString *trimmedMessage = [self.messageTextview.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];    if (![trimmedMessage isEqualToString:@""]) {
+        [self.sendButton setEnabled:YES];
+    } else {
+        [self.sendButton setEnabled:NO];
+    }
+    
+    // set height of textview if necessary
+    [self updateMessageTextviewHeight];
+}
+
+- (void)updateMessageTextviewHeight {
+    CGSize sizeThatShouldFitTheContent = [self.messageTextview sizeThatFits:self.messageTextview.frame.size];
+    if (sizeThatShouldFitTheContent.height > DEFAULT_MESSAGEVIEW_HEIGHT) {
+        [UIView animateWithDuration:.24 animations:^{
+            self.messageTextviewHeightConstraint.constant = sizeThatShouldFitTheContent.height;
+            [self.view layoutIfNeeded];
+        }];
+    } else {
+        [UIView animateWithDuration:.24 animations:^{
+            self.messageTextviewHeightConstraint.constant = DEFAULT_MESSAGEVIEW_HEIGHT;
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
+- (IBAction)onSend:(id)sender {
+    [self.sendButton setEnabled:NO];
+    
+    PFObject *chat = [PFObject objectWithClassName:@"Chat"];
+    PFObject *group = self.group.pfObject;
+    
+    NSString *trimmedMessage = [self.messageTextview.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [chat setObject:trimmedMessage forKey:@"message"];
+    [chat setObject:@NO forKey:@"isPin"];
+    
+    // Create relationship
+    [chat setObject:[PFUser currentUser].username forKey:@"username"];
+    [chat setObject:group forKey:@"group"];
+    
+    // Save the new post
+    [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            self.messageTextview.text = @"";
+            [self updateMessageTextviewHeight];
+            self.shouldScrollDown = YES;
+            [self resetTimer];
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            [[[UIAlertView alloc] initWithTitle:@"Failed to send message" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
+    }];
+    
+    // add to last message and user column
+    [group setObject:trimmedMessage forKey:@"lastMessage"];
+    [group setObject:[PFUser currentUser].username forKey:@"lastUser"];
+    [group saveInBackground];
+}
+
+- (IBAction)mapTapped:(id)sender {
+    [UIView animateWithDuration:.24 animations:^{
+        self.chatButton.alpha = 1;
+        self.mapButton.alpha = 0;
+        [self.view layoutIfNeeded];
+    }];
+    [self showMap];
+}
+
+- (IBAction)chatTapped:(id)sender {
+    [UIView animateWithDuration:.24 animations:^{
+        self.mapButton.alpha = 1;
+        self.chatButton.alpha = 0;
+        [self.view layoutIfNeeded];
+    }];
+    [self showChat];
+}
+
+- (void)showChat {
+    NSLog(@"Showing chat");
+    self.mapView.alpha = 1;
+    self.tableView.alpha = 0;
+    [UIView animateWithDuration:.24 animations:^{
+        self.mapView.alpha = 0.1;
+        self.tableView.alpha = 1;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self.view addSubview:self.tableView];
+    }];
+}
+
+- (void)showMap {
+    NSLog(@"Showing map");
+    self.tableView.alpha = 1;
+    self.mapView.alpha = 0.1;
+    [UIView animateWithDuration:.24 animations:^{
+        self.tableView.alpha = 0;
+        self.mapView.alpha = 1;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self.view addSubview:self.mapView];
+    }];
+}
+
+- (IBAction)onMapTap:(id)sender {
+    [self.view endEditing:YES];
 }
 
 /*

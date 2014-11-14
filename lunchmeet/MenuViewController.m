@@ -143,11 +143,15 @@
     }
     
     [[Menu sharedInstance] getMenuForCafeWithCompletion:cafeId completion:^(NSDictionary *cafeInfo, NSError *error) {
-        NSLog(@"Got menu for %@: %@", cafeId, cafeInfo);
+//        NSLog(@"Got menu for %@: %@", cafeId, cafeInfo);
         self.cafeInfo = cafeInfo;
         [self.tableView reloadData];
         [self.refreshMenuControl endRefreshing];
         [self.loadingIndicator hide:YES];
+        [UIView animateWithDuration:.24 animations:^{
+            self.tableView.alpha = 1;
+            [self.view layoutIfNeeded];
+        }];
     }];
 }
 

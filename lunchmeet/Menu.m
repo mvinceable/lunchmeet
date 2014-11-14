@@ -92,7 +92,6 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
                                   @"votes": @(votesForItem),
                                   @"iVoted": @(currentUserVoted)
                                   };
-                NSLog(@"Saw %ld votes for item %@", votesForItem, itemId);
             }
             self.cafeInfo[@"votes"] = votes;
             completion(self.cafeInfo, nil);
@@ -111,7 +110,7 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
     NSInteger month = [components month];
     NSInteger day = [components day];
     
-    NSString *dayString = [NSString stringWithFormat:@"%ld-%ld-%ld", year, month, day];
+    NSString *dayString = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)year, (long)month, (long)day];
     
     return dayString;
 }

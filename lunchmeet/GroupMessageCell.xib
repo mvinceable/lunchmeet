@@ -45,6 +45,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="7y9-oJ-wQR" secondAttribute="bottom" constant="16" id="1hW-9C-mkJ"/>
                     <constraint firstItem="fVs-4A-Er2" firstAttribute="top" secondItem="PkM-fK-P8A" secondAttribute="top" constant="8" id="3Ez-Qf-5hS"/>
@@ -56,6 +57,7 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7y9-oJ-wQR" secondAttribute="trailing" constant="64" id="rrW-vA-Lny"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="messageLabel" destination="Txj-YW-PRT" id="OwO-ml-uIP"/>
                 <outlet property="timestampLabel" destination="fVs-4A-Er2" id="GkQ-MN-cYP"/>
