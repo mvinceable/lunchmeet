@@ -40,7 +40,7 @@
     self.mapView.delegate = self;
     
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
-
+    
     CLLocationCoordinate2D coords_A[13] = {
         
         {37.418134, -122.025541},
@@ -203,7 +203,43 @@
         {37.418367, -122.025737}
         
     };
-
+    CLLocationCoordinate2D coords_Lawn[9] = {
+        {37.418636, -122.025123},
+        {37.418700, -122.025125},
+        {37.418811, -122.025323},
+        {37.418111, -122.025238},
+        {37.418220, -122.025155},
+        
+        {37.418235, -122.025200},
+        {37.418374, -122.025161},
+        {37.418383, -122.025192},
+        {37.418625, -122.025183}
+    };
+    CLLocationCoordinate2D coords_Lawn2[5] = {
+        {37.418259, -122.025539},
+        {37.418684, -122.025347},
+        {37.418052, -122.025268},
+        {37.418124, -122.025403},
+        {37.418202, -122.025382}
+    };
+    CLLocationCoordinate2D coords_Lawn3[6] = {
+        {37.418088, -122.025464},
+        {37.418024, -122.025279},
+        {37.418011, -122.025301},
+        {37.417992, -122.025260},
+        {37.417785, -122.025515},
+        {37.418005, -122.025510}
+    };
+    
+    CLLocationCoordinate2D coords_Lawn4[4] = {
+        {37.417844, -122.025329},
+        {37.417735, -122.025492},
+        {37.417304, -122.025248},
+        {37.417735, -122.025164}
+    };
+    
+    
+    
     MKPolygon *polygon_A = [MKPolygon polygonWithCoordinates:coords_A count:13];
     MKPolygon *polygon_B = [MKPolygon polygonWithCoordinates:coords_B count:14];
     MKPolygon *polygon_C = [MKPolygon polygonWithCoordinates:coords_C count:17];
@@ -213,6 +249,10 @@
     MKPolygon *polygon_G = [MKPolygon polygonWithCoordinates:coords_G count:13];
     MKPolygon *polygon_Roof = [MKPolygon polygonWithCoordinates:coords_Roof count:7];
     MKPolygon *polygon_Bridge = [MKPolygon polygonWithCoordinates:coords_Bridge count:5];
+    MKPolygon *polygon_Lawn= [MKPolygon polygonWithCoordinates:coords_Lawn count:9];
+    MKPolygon *polygon_Lawn2= [MKPolygon polygonWithCoordinates:coords_Lawn2 count:5];
+    MKPolygon *polygon_Lawn3= [MKPolygon polygonWithCoordinates:coords_Lawn3 count:6];
+    MKPolygon *polygon_Lawn4= [MKPolygon polygonWithCoordinates:coords_Lawn4 count:4];
     
     polygon_A.title = @"BLDG_A";
     polygon_B.title = @"BLDG_B";
@@ -223,7 +263,10 @@
     polygon_G.title = @"BLDG_G";
     polygon_Roof.title = @"Roof";
     polygon_Bridge.title = @"Bridge";
-    
+    polygon_Lawn.title = @"Lawn";
+    polygon_Lawn2.title = @"Lawn";
+    polygon_Lawn3.title = @"Lawn";
+    polygon_Lawn4.title = @"Lawn";
     [self.mapView addOverlay:polygon_A];
     [self.mapView addOverlay:polygon_B];
     [self.mapView addOverlay:polygon_C];
@@ -233,26 +276,29 @@
     [self.mapView addOverlay:polygon_G];
     [self.mapView addOverlay:polygon_Roof];
     [self.mapView addOverlay:polygon_Bridge];
-    
+    [self.mapView addOverlay:polygon_Lawn];
+    [self.mapView addOverlay:polygon_Lawn2];
+    [self.mapView addOverlay:polygon_Lawn3];
+    [self.mapView addOverlay:polygon_Lawn4];
     
     self.listOfPins = [[NSMutableArray alloc] init];
     
-//    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
-//    MKMapCamera* camera = [MKMapCamera
-//                           cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
-//                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
-//                           eyeAltitude:(CLLocationDistance)30];
-//    [self.mapView setCamera:camera animated:YES];
+    //    CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418475, -122.024540);
+    //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 20, 20);
+    //    MKMapCamera* camera = [MKMapCamera
+    //                           cameraLookingAtCenterCoordinate:(CLLocationCoordinate2D)pt
+    //                           fromEyeCoordinate:(CLLocationCoordinate2D)pt
+    //                           eyeAltitude:(CLLocationDistance)30];
+    //    [self.mapView setCamera:camera animated:YES];
     
     
     CLLocationCoordinate2D pt = CLLocationCoordinate2DMake(37.418109, -122.024740);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pt, 1, 1);
     [self.mapView setRegion:region animated:YES];
     
-//    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
-//    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
-//    [self.mapView addOverlay:overlay];
+    //    self.buildingMap = [[BuildingMap alloc] initWithCoordinates];
+    //    MapOverlay *overlay = [[MapOverlay alloc] initWithBuildingMap:self.buildingMap];
+    //    [self.mapView addOverlay:overlay];
     
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
@@ -403,7 +449,7 @@
             completion(nil, error);
         }
     }];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -450,13 +496,13 @@
     [point setObject:username forKey:@"username"];
     
     [point saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    NSLog(@"Saved location point (%@, %@)", lat, longitude);
-                } else {
-                    NSLog(@"%@", error);
-                    
-                }
-            }];
+        if (succeeded) {
+            NSLog(@"Saved location point (%@, %@)", lat, longitude);
+        } else {
+            NSLog(@"%@", error);
+            
+        }
+    }];
     
     
     // get nearest landmark
@@ -522,9 +568,9 @@
             }
             else
             {
-                 annotationView.pinColor = MKPinAnnotationColorPurple;
+                annotationView.pinColor = MKPinAnnotationColorPurple;
             }
-           
+            
             
         }
         
@@ -561,7 +607,7 @@
         }
         return annotationView;
     }
-
+    
     return nil;
 }
 
@@ -569,11 +615,11 @@
 //    if ([overlay isKindOfClass:MapOverlay.class]) {
 //        UIImage *mapImage = [UIImage imageNamed:@"map.png"];
 //        MapOverlayView *overlayView = [[MapOverlayView alloc] initWithOverlay:overlay overlayImage:mapImage];
-//        
+//
 //        return overlayView;
-//        
+//
 //    }
-//    
+//
 //    return nil;
 //}
 
@@ -702,13 +748,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
