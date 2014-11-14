@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import "FoodCell.h"
 #import "MBProgressHud.h"
+#import <Parse/Parse.h>
 
 @interface MenuViewController () <UITableViewDataSource, UITableViewDelegate, FoodCellDelegate>
 
@@ -27,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onStop)];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    
     [self.cafeSegmentedControl sizeToFit];
     self.navigationItem.titleView = self.cafeSegmentedControl;
     
@@ -167,6 +172,12 @@
                                         };
     
     NSLog(@"item now contains %@", self.cafeInfo[@"votes"][itemId]);
+}
+
+- (void)onStop {
+    NSLog(@"Log out");
+    [PFUser logOut];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

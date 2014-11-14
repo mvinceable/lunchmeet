@@ -76,20 +76,21 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu votes.", (unsigned long)objects.count);
             for (PFObject *object in objects) {
-                NSMutableDictionary *votesPerUser = [NSMutableDictionary dictionary];
                 NSString *itemId = object[@"itemId"];
                 NSString *username = object[@"username"];
-                NSInteger votesForItem = 0;
                 BOOL currentUserVoted = NO;
-                if (votesPerUser[username] == nil) {
-                    votesForItem++;
-                    if ([username isEqualToString:[PFUser currentUser].username]) {
-                        currentUserVoted = YES;
-                    }
-                    votesPerUser[username] = @YES;
+                NSInteger currentCount = 0;
+                if ([username isEqualToString:[PFUser currentUser].username]) {
+                    currentUserVoted = YES;
                 }
+                if (votes[itemId] != nil) {
+                    currentCount = [votes[itemId][@"votes"] integerValue];
+                } else {
+                    currentCount = 0;
+                }
+                currentCount++;
                 votes[itemId] = @{
-                                  @"votes": @(votesForItem),
+                                  @"votes": @(currentCount),
                                   @"iVoted": @(currentUserVoted)
                                   };
             }

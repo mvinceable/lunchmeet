@@ -30,7 +30,8 @@
     // Do any additional setup after loading the view from its nib.
     
     // set logout button
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onStop)];
+//    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onStop)];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onStop)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     // set title text
