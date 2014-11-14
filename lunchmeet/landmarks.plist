@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Item43</key>
+	<dict>
+		<key>title</key>
+		<string>Building C</string>
+		<key>longitude</key>
+		<string>-122.024542</string>
+		<key>latitude</key>
+		<string>37.418362</string>
+		<key>connector</key>
+		<string></string>
+	</dict>
 	<key>Item34</key>
 	<dict>
 		<key>connector</key>

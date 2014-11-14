@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FoodCellDelegate <NSObject>
+
+- (void)voteChangedForItem:(NSString *)itemId vote:(NSInteger)count up:(BOOL)up;
+
+@end
+
 @interface FoodCell : UITableViewCell
+
+@property (strong, nonatomic) NSDictionary *item;
+@property (strong, nonatomic) NSDictionary *votes;
+
+@property (nonatomic, weak) id <FoodCellDelegate> delegate;
 
 @end

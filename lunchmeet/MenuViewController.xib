@@ -6,9 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
-                <outlet property="menuTopConstraint" destination="N4I-I4-cIK" id="CUq-zm-giu"/>
-                <outlet property="menuWebView" destination="bVp-KC-5LB" id="TWB-Oo-X5T"/>
-                <outlet property="tabHeightConstraint" destination="Uxd-yi-Ydm" id="42J-DJ-H4L"/>
+                <outlet property="cafeSegmentedControl" destination="hSb-DI-O78" id="NfG-E4-9WW"/>
+                <outlet property="tableView" destination="nlf-3O-tnV" id="3Av-ex-iwP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,28 +16,30 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-KC-5LB">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-3O-tnV">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </webView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRD-pI-X4K" userLabel="tabBarView">
-                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Uxd-yi-Ydm"/>
-                    </constraints>
-                </view>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gRD-pI-X4K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Mc-c6-m2u"/>
-                <constraint firstAttribute="bottom" secondItem="gRD-pI-X4K" secondAttribute="bottom" id="Bsy-i8-M3Q"/>
-                <constraint firstItem="bVp-KC-5LB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="N4I-I4-cIK"/>
-                <constraint firstItem="bVp-KC-5LB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vqd-M2-Q2R"/>
-                <constraint firstAttribute="trailing" secondItem="gRD-pI-X4K" secondAttribute="trailing" id="nqr-Fy-SIi"/>
-                <constraint firstItem="gRD-pI-X4K" firstAttribute="top" secondItem="bVp-KC-5LB" secondAttribute="bottom" id="uxb-oV-5tU"/>
-                <constraint firstAttribute="trailing" secondItem="bVp-KC-5LB" secondAttribute="trailing" id="wzG-OV-HnG"/>
+                <constraint firstItem="nlf-3O-tnV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kr4-c8-HiJ"/>
+                <constraint firstAttribute="trailing" secondItem="nlf-3O-tnV" secondAttribute="trailing" id="bkK-qk-Yua"/>
+                <constraint firstAttribute="bottom" secondItem="nlf-3O-tnV" secondAttribute="bottom" id="dXx-Qn-wQf"/>
+                <constraint firstItem="nlf-3O-tnV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ovr-cn-M7c"/>
             </constraints>
         </view>
+        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hSb-DI-O78">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <segments>
+                <segment title="URL's"/>
+                <segment title="Building E"/>
+                <segment title="Building G"/>
+            </segments>
+            <connections>
+                <action selector="cafeChanged:" destination="-1" eventType="valueChanged" id="xhl-II-oPc"/>
+            </connections>
+            <point key="canvasLocation" x="432.5" y="-67"/>
+        </segmentedControl>
     </objects>
 </document>

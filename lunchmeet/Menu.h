@@ -10,4 +10,9 @@
 
 @interface Menu : NSObject
 
++ (Menu *)sharedInstance;
+
+- (void)getMenuForCafeWithCompletion:(NSString *)cafeId completion:(void (^)(NSDictionary *cafeInfo, NSError *error))completion;
+- (void)voteForFoodItem:(BOOL)vote itemId:(NSString *)foodItemId;
+
 @end

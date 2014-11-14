@@ -18,10 +18,18 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pD9-0a-f9m">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </mapView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="agh-n7-3Bk">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="agh-n7-3Bk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1gB-8w-fru"/>
+                <constraint firstAttribute="trailing" secondItem="agh-n7-3Bk" secondAttribute="trailing" id="FJJ-bD-5wo"/>
                 <constraint firstItem="pD9-0a-f9m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uj4-cJ-Fz3"/>
+                <constraint firstAttribute="bottom" secondItem="agh-n7-3Bk" secondAttribute="bottom" id="YYH-wy-zzF"/>
+                <constraint firstItem="agh-n7-3Bk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mnI-un-M39"/>
                 <constraint firstAttribute="bottom" secondItem="pD9-0a-f9m" secondAttribute="bottom" id="q5B-Rf-5ag"/>
                 <constraint firstAttribute="trailing" secondItem="pD9-0a-f9m" secondAttribute="trailing" id="t0N-cG-2Kk"/>
                 <constraint firstItem="pD9-0a-f9m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wpT-V9-AG1"/>

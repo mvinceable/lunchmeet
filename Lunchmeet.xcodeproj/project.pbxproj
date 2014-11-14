@@ -17,6 +17,12 @@
 		02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EC1A00D25500635D60 /* MapAnnotation.m */; };
 		02D305F01A00D2AE00635D60 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */; };
 		201EE18A1A01F78700FD06C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A30F319FD632A0060C3E2 /* Images.xcassets */; };
+		205EF69E1A161422009692DC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205EF69B1A161422009692DC /* MenuViewController.m */; };
+		205EF69F1A161422009692DC /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205EF69D1A161422009692DC /* MenuViewController.xib */; };
+		205EF6A21A16144F009692DC /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 205EF6A11A16144F009692DC /* Menu.m */; };
+		205EF6A61A16145A009692DC /* FoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 205EF6A41A16145A009692DC /* FoodCell.m */; };
+		205EF6A71A16145A009692DC /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205EF6A51A16145A009692DC /* FoodCell.xib */; };
+		205EF6A91A16176B009692DC /* cafes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 205EF6A81A16176B009692DC /* cafes.plist */; };
 		2091FC0319FF6CFC00F4E41B /* FlickrCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091FC0219FF6CFC00F4E41B /* FlickrCam.m */; };
 		209A30E919FD632A0060C3E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30E819FD632A0060C3E2 /* main.m */; };
 		209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A30EB19FD632A0060C3E2 /* AppDelegate.m */; };
@@ -77,6 +83,15 @@
 		02D305EE1A00D2AE00635D60 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotationView.h; sourceTree = "<group>"; };
 		02D305EF1A00D2AE00635D60 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotationView.m; sourceTree = "<group>"; };
 		1A12AFF57140AC975C082DD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		205EF69B1A161422009692DC /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		205EF69C1A161422009692DC /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		205EF69D1A161422009692DC /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		205EF6A01A16144F009692DC /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		205EF6A11A16144F009692DC /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		205EF6A31A16145A009692DC /* FoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCell.h; sourceTree = "<group>"; };
+		205EF6A41A16145A009692DC /* FoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCell.m; sourceTree = "<group>"; };
+		205EF6A51A16145A009692DC /* FoodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
+		205EF6A81A16176B009692DC /* cafes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cafes.plist; sourceTree = "<group>"; };
 		2091FC0119FF6CFC00F4E41B /* FlickrCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrCam.h; sourceTree = "<group>"; };
 		2091FC0219FF6CFC00F4E41B /* FlickrCam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCam.m; sourceTree = "<group>"; };
 		209A30E319FD632A0060C3E2 /* Lunchmeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunchmeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +240,7 @@
 		209A30E619FD632A0060C3E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				205EF6A81A16176B009692DC /* cafes.plist */,
 				209A30E719FD632A0060C3E2 /* Info.plist */,
 				020841E21A1612CD00C4F65D /* landmarks.plist */,
 				209A30E819FD632A0060C3E2 /* main.m */,
@@ -252,6 +268,9 @@
 		209A311119FD63EF0060C3E2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				205EF69B1A161422009692DC /* MenuViewController.m */,
+				205EF69C1A161422009692DC /* MenuViewController.h */,
+				205EF69D1A161422009692DC /* MenuViewController.xib */,
 				209A310C19FD63EB0060C3E2 /* StartViewController.h */,
 				209A310D19FD63EB0060C3E2 /* StartViewController.m */,
 				209A310E19FD63EB0060C3E2 /* StartViewController.xib */,
@@ -274,6 +293,9 @@
 		209A313819FD9B9D0060C3E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				205EF6A31A16145A009692DC /* FoodCell.h */,
+				205EF6A41A16145A009692DC /* FoodCell.m */,
+				205EF6A51A16145A009692DC /* FoodCell.xib */,
 				209A313919FD9BB50060C3E2 /* GroupCell.h */,
 				209A313A19FD9BB50060C3E2 /* GroupCell.m */,
 				209A313B19FD9BB50060C3E2 /* GroupCell.xib */,
@@ -303,6 +325,8 @@
 		209A313E19FDA6FE0060C3E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				205EF6A01A16144F009692DC /* Menu.h */,
+				205EF6A11A16144F009692DC /* Menu.m */,
 				209A313F19FDA7150060C3E2 /* Group.h */,
 				209A314019FDA7150060C3E2 /* Group.m */,
 				2091FC0119FF6CFC00F4E41B /* FlickrCam.h */,
@@ -420,18 +444,21 @@
 				201EE18A1A01F78700FD06C6 /* Images.xcassets in Resources */,
 				20C2120719FDBEC4009086A0 /* GroupDetailsCell.xib in Resources */,
 				209A30F219FD632A0060C3E2 /* Main.storyboard in Resources */,
+				205EF6A71A16145A009692DC /* FoodCell.xib in Resources */,
 				209A311019FD63EB0060C3E2 /* StartViewController.xib in Resources */,
 				20D03CBD1A00AA0800351844 /* AddMemberCell.xib in Resources */,
 				209A311619FD6ED40060C3E2 /* GroupsViewController.xib in Resources */,
 				020841E31A1612CD00C4F65D /* landmarks.plist in Resources */,
 				20C2121C19FE09DC009086A0 /* ChatViewController.xib in Resources */,
 				20C2120219FDB719009086A0 /* GroupViewController.xib in Resources */,
+				205EF6A91A16176B009692DC /* cafes.plist in Resources */,
 				209A30F719FD632A0060C3E2 /* LaunchScreen.xib in Resources */,
 				02C91ACE1A0214B800BE4E1B /* map.png in Resources */,
 				20C2122619FE31AF009086A0 /* GroupMessageCell.xib in Resources */,
 				20C2122119FE2670009086A0 /* UserMessageCell.xib in Resources */,
 				20C2121119FDD5BA009086A0 /* MemberCell.xib in Resources */,
 				20C2122B19FE41FA009086A0 /* MapViewController.xib in Resources */,
+				205EF69F1A161422009692DC /* MenuViewController.xib in Resources */,
 				209A313D19FD9BB50060C3E2 /* GroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +517,7 @@
 				209A30EF19FD632A0060C3E2 /* ViewController.m in Sources */,
 				20C2120619FDBEC4009086A0 /* GroupDetailsCell.m in Sources */,
 				209A311519FD6ED40060C3E2 /* GroupsViewController.m in Sources */,
+				205EF6A61A16145A009692DC /* FoodCell.m in Sources */,
 				20C2122019FE2670009086A0 /* UserMessageCell.m in Sources */,
 				02D305E71A00D0B200635D60 /* MapOverlay.m in Sources */,
 				02D305ED1A00D25500635D60 /* MapAnnotation.m in Sources */,
@@ -497,6 +525,7 @@
 				02D305EA1A00D1E300635D60 /* MapOverlayView.m in Sources */,
 				20C2122519FE31AF009086A0 /* GroupMessageCell.m in Sources */,
 				209A313C19FD9BB50060C3E2 /* GroupCell.m in Sources */,
+				205EF6A21A16144F009692DC /* Menu.m in Sources */,
 				02C91AD81A023B6E00BE4E1B /* LabelAnnotationView.m in Sources */,
 				209A310F19FD63EB0060C3E2 /* StartViewController.m in Sources */,
 				209A30EC19FD632A0060C3E2 /* AppDelegate.m in Sources */,
@@ -505,6 +534,7 @@
 				20C2122A19FE41FA009086A0 /* MapViewController.m in Sources */,
 				209A314119FDA7150060C3E2 /* Group.m in Sources */,
 				20C2121019FDD5BA009086A0 /* MemberCell.m in Sources */,
+				205EF69E1A161422009692DC /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

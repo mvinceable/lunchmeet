@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>674</key>
+	<string>Building G</string>
+	<key>682</key>
+	<string>Building E</string>
+	<key>684</key>
+	<string>URL&apos;s Cafe</string>
+</dict>
 </plist>

@@ -11,6 +11,7 @@
 #import "GroupsViewController.h"
 #import "FlickrCam.h"
 #import "UIImageView+AFNetworking.h"
+#import "MenuViewController.h"
 
 @interface StartViewController ()
 
@@ -128,11 +129,30 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
     PFUser *user = [PFUser currentUser];
     if (user) { // User logged in
         NSLog(@"Welcome %@ (%@)", user.username, user.objectId);
+        
+        MenuViewController *mvc = [[MenuViewController alloc] init];
+        UINavigationController *menuNC = [[UINavigationController alloc] initWithRootViewController:mvc];
+        menuNC.navigationBar.barTintColor = [UIColor orangeColor];
+        menuNC.navigationBar.tintColor = [UIColor whiteColor];
+        menuNC.title = @"Menu";
+        menuNC.tabBarItem.image = [UIImage imageNamed:@"menu-50"];
+
         GroupsViewController *gvc = [[GroupsViewController alloc] init];
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
         nc.navigationBar.barTintColor = [UIColor orangeColor];
         nc.navigationBar.tintColor = [UIColor whiteColor];
-        [self presentViewController:nc animated:YES completion:nil];
+        nc.title = @"Lunchmeets";
+        nc.tabBarItem.image = [UIImage imageNamed:@"group-50"];
+        
+        NSArray *controllers = [NSArray arrayWithObjects:menuNC, nc, nil];
+        
+        UITabBarController *tbc = [[UITabBarController alloc] init];
+        tbc.viewControllers = controllers;
+        
+        
+        [self presentViewController:tbc animated:YES completion:nil];
+        
+        
         return YES;
     } else {
         return NO;
