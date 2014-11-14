@@ -677,9 +677,9 @@
             polygonView.fillColor = [[UIColor  blackColor] colorWithAlphaComponent:0.4];
         }
         else if([polygon.title isEqualToString:@"Lawn"]){
-            polygonView.strokeColor = [[UIColor greenColor] colorWithAlphaComponent:1];
+            polygonView.strokeColor = [[UIColor greenColor] colorWithAlphaComponent:0.1];
             polygonView.lineWidth = 1;
-            polygonView.fillColor = [[UIColor  greenColor] colorWithAlphaComponent:0.4];
+            polygonView.fillColor = [[UIColor  greenColor] colorWithAlphaComponent:0.1];
         }
         
         return polygonView;
