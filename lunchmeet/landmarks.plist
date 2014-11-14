@@ -9,9 +9,9 @@
 		<key>title</key>
 		<string>Stairs to 2nd floor</string>
 		<key>latitude</key>
-		<string>37.418195</string>
+		<string>37.418117</string>
 		<key>longitude</key>
-		<string>-122.025184</string>
+		<string>-122.025156</string>
 	</dict>
 	<key>Item29</key>
 	<dict>
@@ -20,9 +20,9 @@
 		<key>title</key>
 		<string>Food Lines</string>
 		<key>latitude</key>
-		<string>37.418095</string>
+		<string>37.417968</string>
 		<key>longitude</key>
-		<string>-122.024638</string>
+		<string>-122.024822</string>
 	</dict>
 	<key>Item25</key>
 	<dict>
@@ -31,9 +31,9 @@
 		<key>title</key>
 		<string>Tables near utensils</string>
 		<key>latitude</key>
-		<string>37.417902</string>
+		<string>37.417856</string>
 		<key>longitude</key>
-		<string>-122.024737</string>
+		<string>-122.024872</string>
 	</dict>
 	<key>Item26</key>
 	<dict>
@@ -42,18 +42,18 @@
 		<key>title</key>
 		<string>Tables near dish drop</string>
 		<key>latitude</key>
-		<string>37.417930</string>
+		<string>37.417986</string>
 		<key>longitude</key>
-		<string>-122.024996</string>
+		<string>-122.025106</string>
 	</dict>
 	<key>Item24</key>
 	<dict>
 		<key>connector</key>
 		<string>the</string>
 		<key>latitude</key>
-		<string>37.417831</string>
+		<string>37.417749</string>
 		<key>longitude</key>
-		<string>-122.024616</string>
+		<string>-122.024640</string>
 		<key>title</key>
 		<string>Tables next to drink refrigerator</string>
 	</dict>
@@ -64,9 +64,9 @@
 		<key>title</key>
 		<string>URLs Store</string>
 		<key>latitude</key>
-		<string>37.418281</string>
+		<string>37.418236</string>
 		<key>longitude</key>
-		<string>-122.024937</string>
+		<string>-122.024993</string>
 	</dict>
 	<key>Item22</key>
 	<dict>
@@ -75,9 +75,9 @@
 		<key>title</key>
 		<string>Tables near D</string>
 		<key>latitude</key>
-		<string>37.417593</string>
+		<string>37.417607</string>
 		<key>longitude</key>
-		<string>-122.024868</string>
+		<string>-122.024917</string>
 	</dict>
 	<key>Item21</key>
 	<dict>
@@ -86,9 +86,9 @@
 		<key>title</key>
 		<string>Tables next to FYI stage</string>
 		<key>latitude</key>
-		<string>37.417883</string>
+		<string>37.417865</string>
 		<key>longitude</key>
-		<string>-122.025065</string>
+		<string>-122.025109</string>
 	</dict>
 	<key>Item20</key>
 	<dict>
@@ -97,9 +97,9 @@
 		<key>connector</key>
 		<string>the</string>
 		<key>latitude</key>
-		<string>37.418137</string>
+		<string>37.418141</string>
 		<key>longitude</key>
-		<string>-122.025680</string>
+		<string>-122.025511</string>
 	</dict>
 	<key>Item19</key>
 	<dict>
@@ -108,9 +108,9 @@
 		<key>title</key>
 		<string>Tables near the gym</string>
 		<key>latitude</key>
-		<string>37.418484</string>
+		<string>37.418312</string>
 		<key>longitude</key>
-		<string>-122.025220</string>
+		<string>-122.025097</string>
 	</dict>
 	<key>Item18</key>
 	<dict>
@@ -119,9 +119,9 @@
 		<key>title</key>
 		<string>Tables near the lawn</string>
 		<key>latitude</key>
-		<string>37.417830</string>
+		<string>37.417829</string>
 		<key>longitude</key>
-		<string>-122.025333</string>
+		<string>-122.025279</string>
 	</dict>
 	<key>Item17</key>
 	<dict>
@@ -130,9 +130,9 @@
 		<key>title</key>
 		<string>URLs A/B Entrance</string>
 		<key>latitude</key>
-		<string>37.418082</string>
+		<string>37.418066</string>
 		<key>longitude</key>
-		<string>-122.025277</string>
+		<string>-122.025146</string>
 	</dict>
 	<key>Item16</key>
 	<dict>
@@ -141,9 +141,9 @@
 		<key>title</key>
 		<string>Dish Drop</string>
 		<key>latitude</key>
-		<string>37.418004</string>
+		<string>37.417944</string>
 		<key>longitude</key>
-		<string>-122.024915</string>
+		<string>-122.025040</string>
 	</dict>
 	<key>Item15</key>
 	<dict>
@@ -152,9 +152,9 @@
 		<key>title</key>
 		<string>Basketball Courts</string>
 		<key>latitude</key>
-		<string>37.418854</string>
+		<string>37.418725</string>
 		<key>longitude</key>
-		<string>-122.024892</string>
+		<string>-122.024909</string>
 	</dict>
 	<key>Item14</key>
 	<dict>
@@ -163,9 +163,9 @@
 		<key>title</key>
 		<string>Lawn</string>
 		<key>latitude</key>
-		<string>37.417947</string>
+		<string>37.418030</string>
 		<key>longitude</key>
-		<string>-122.025523</string>
+		<string>-122.025341</string>
 	</dict>
 	<key>Item13</key>
 	<dict>
@@ -174,9 +174,9 @@
 		<key>title</key>
 		<string>URLs D Entrance</string>
 		<key>latitude</key>
-		<string>37.417760</string>
+		<string>37.417710</string>
 		<key>longitude</key>
-		<string>-122.024987</string>
+		<string>-122.024798</string>
 	</dict>
 	<key>Item12</key>
 	<dict>
@@ -185,9 +185,9 @@
 		<key>title</key>
 		<string>Utensils Area</string>
 		<key>latitude</key>
-		<string>37.417950</string>
+		<string>37.417877</string>
 		<key>longitude</key>
-		<string>-122.024760</string>
+		<string>-122.024846</string>
 	</dict>
 	<key>Item11</key>
 	<dict>
@@ -196,18 +196,18 @@
 		<key>title</key>
 		<string>Fountain</string>
 		<key>latitude</key>
-		<string>37.417442</string>
+		<string>37.417294</string>
 		<key>longitude</key>
-		<string>-122.025342</string>
+		<string>-122.025311</string>
 	</dict>
 	<key>Item10</key>
 	<dict>
 		<key>connector</key>
 		<string>the</string>
 		<key>longitude</key>
-		<string>-122.024920</string>
+		<string>-122.024860</string>
 		<key>latitude</key>
-		<string>37.417654 </string>
+		<string>37.417636</string>
 		<key>title</key>
 		<string>BBQ Grills</string>
 	</dict>
@@ -218,9 +218,9 @@
 		<key>title</key>
 		<string>FYI Stage</string>
 		<key>latitude</key>
-		<string>37.417962 </string>
+		<string>37.417900</string>
 		<key>longitude</key>
-		<string>-122.025168</string>
+		<string>-122.025195</string>
 	</dict>
 	<key>Item8</key>
 	<dict>
@@ -229,9 +229,9 @@
 		<key>title</key>
 		<string>Ice Cream Machine</string>
 		<key>latitude</key>
-		<string>37.417888</string>
+		<string>37.417812</string>
 		<key>longitude</key>
-		<string>-122.024425</string>
+		<string>-122.024524</string>
 	</dict>
 	<key>Item7</key>
 	<dict>
@@ -240,9 +240,9 @@
 		<key>title</key>
 		<string>Espresso Bar</string>
 		<key>latitude</key>
-		<string>37.418134</string>
+		<string>37.418040</string>
 		<key>longitude</key>
-		<string>-122.024956</string>
+		<string>-122.025004</string>
 	</dict>
 	<key>Item6</key>
 	<dict>
@@ -251,9 +251,9 @@
 		<key>title</key>
 		<string>Gym</string>
 		<key>latitude</key>
-		<string>37.418371</string>
+		<string>37.418439</string>
 		<key>longitude</key>
-		<string>-122.024827</string>
+		<string>-122.024876</string>
 	</dict>
 	<key>Item5</key>
 	<dict>
@@ -262,18 +262,18 @@
 		<key>title</key>
 		<string>Drink Refrigerator</string>
 		<key>latitude</key>
-		<string>37.417794 </string>
+		<string>37.417717</string>
 		<key>longitude</key>
-		<string>-122.024502</string>
+		<string>-122.024500</string>
 	</dict>
 	<key>Item1</key>
 	<dict>
 		<key>connector</key>
 		<string>the</string>
 		<key>longitude</key>
-		<string>-122.024386</string>
+		<string>-122.024365</string>
 		<key>latitude</key>
-		<string>37.418590</string>
+		<string>37.418789</string>
 		<key>title</key>
 		<string>Garage</string>
 	</dict>
@@ -337,11 +337,66 @@
 		<key>connector</key>
 		<string></string>
 		<key>latitude</key>
-		<string>37.414531</string>
+		<string>37.414556</string>
 		<key>longitude</key>
-		<string>-122.024343</string>
+		<string>-122.024165</string>
 		<key>title</key>
 		<string>Building G</string>
+	</dict>
+	<key>Item38</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417815 </string>
+		<key>longitude</key>
+		<string>-122.024662</string>
+		<key>title</key>
+		<string>Table with the stools</string>
+	</dict>
+	<key>Item39</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417815 </string>
+		<key>longitude</key>
+		<string>-122.024662</string>
+		<key>title</key>
+		<string>Tables outside near drink refrigerator</string>
+	</dict>
+	<key>Item40</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417718</string>
+		<key>longitude</key>
+		<string>-122.024950</string>
+		<key>title</key>
+		<string>Tables outside near URLs D entrance</string>
+	</dict>
+	<key>Item41</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417920</string>
+		<key>longitude</key>
+		<string>-122.025243</string>
+		<key>title</key>
+		<string>Tables outside near URLs A/B entrance</string>
+	</dict>
+	<key>Item42</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417779</string>
+		<key>longitude</key>
+		<string>-122.024468</string>
+		<key>title</key>
+		<string>dessert/flavored water area</string>
 	</dict>
 </dict>
 </plist>
