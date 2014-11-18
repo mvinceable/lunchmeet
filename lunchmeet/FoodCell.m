@@ -40,23 +40,18 @@
 
 - (void)setItem:(NSDictionary *)item {
     _item = item;
+    self.foodImageView.alpha = 0;
+    self.foodLeftConstraint.constant = -64;
     self.foodLabel.text = item[@"label"];
     self.foodDescription.text = item[@"description"];
     self.foodStation.text = [self stringByStrippingHTML:item[@"station"]];
-    self.foodImageView.alpha = 0;
-    self.foodLeftConstraint.constant = -64;
     
     [[FlickrCam sharedInstance] getFoodPicWithCompletion:item[@"label"] completion:^(NSString *photoUrl, NSError *error) {
         if (photoUrl != nil) {
 //            NSLog(@"got photo url for %@: %@", item[@"label"], photoUrl);
             [self.foodImageView setImageWithURL:[NSURL URLWithString:photoUrl]];
-            [UIView animateWithDuration:.24 animations:^{
-                self.foodLeftConstraint.constant = 16;
-                self.foodImageView.alpha = 1;
-                [self layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                [self layoutIfNeeded];
-            }];
+            self.foodLeftConstraint.constant = 16;
+            self.foodImageView.alpha = 1;
         }
     }];
 }
