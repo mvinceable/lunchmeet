@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *pinImageView;
 
 @end
 
@@ -35,6 +36,11 @@
     self.timestampLabel.text = [Group friendlyTimestamp:message.createdAt];
     self.messageLabel.text = message[@"message"];
     self.userLabel.text = message[@"username"];
+    if ([message[@"isPin"] boolValue]) {
+        self.pinImageView.hidden = NO;
+    } else {
+        self.pinImageView.hidden = YES;
+    }
 }
 
 

@@ -60,7 +60,7 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZs-ds-un4">
-                            <rect key="frame" x="52" y="8" width="495" height="36"/>
+                            <rect key="frame" x="44" y="8" width="503" height="36"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="gRz-8h-aQq"/>
@@ -69,21 +69,21 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApZ-Ho-9fy" userLabel="mapButton">
-                            <rect key="frame" x="8" y="8" width="36" height="36"/>
+                            <rect key="frame" x="0.0" y="4" width="44" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="36" id="rQZ-mJ-OOu"/>
-                                <constraint firstAttribute="height" constant="36" id="wsh-Ab-gvU"/>
+                                <constraint firstAttribute="width" constant="44" id="rQZ-mJ-OOu"/>
+                                <constraint firstAttribute="height" constant="44" id="wsh-Ab-gvU"/>
                             </constraints>
-                            <state key="normal" image="map_marker-50">
+                            <state key="normal" image="map_marker-100">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="2cV-Ua-2IE"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0c-qk-9fj" userLabel="chatButton">
-                            <rect key="frame" x="8" y="8" width="36" height="36"/>
-                            <state key="normal" image="speech_bubble-50">
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0c-qk-9fj" userLabel="chatButton">
+                            <rect key="frame" x="0.0" y="4" width="44" height="44"/>
+                            <state key="normal" image="speech_bubble-100">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -101,12 +101,12 @@
                         <constraint firstItem="CrY-cZ-Ycm" firstAttribute="top" secondItem="aw5-wY-Fv1" secondAttribute="top" id="Rjt-59-YBW"/>
                         <constraint firstItem="aZs-ds-un4" firstAttribute="top" secondItem="aw5-wY-Fv1" secondAttribute="top" constant="8" id="UZB-X3-fa3"/>
                         <constraint firstAttribute="bottom" secondItem="Uaf-Ec-gfB" secondAttribute="bottom" constant="8" id="VFv-nh-MqW"/>
-                        <constraint firstItem="ApZ-Ho-9fy" firstAttribute="top" secondItem="aw5-wY-Fv1" secondAttribute="top" constant="8" id="WBN-ob-NYG"/>
+                        <constraint firstItem="ApZ-Ho-9fy" firstAttribute="top" secondItem="aw5-wY-Fv1" secondAttribute="top" constant="4" id="WBN-ob-NYG"/>
                         <constraint firstAttribute="bottom" secondItem="aZs-ds-un4" secondAttribute="bottom" constant="8" id="aZ8-F3-nJm"/>
                         <constraint firstItem="Y0c-qk-9fj" firstAttribute="centerY" secondItem="ApZ-Ho-9fy" secondAttribute="centerY" id="fAr-CR-8uZ"/>
-                        <constraint firstItem="ApZ-Ho-9fy" firstAttribute="leading" secondItem="aw5-wY-Fv1" secondAttribute="leading" constant="8" id="kbs-uL-C8Y"/>
+                        <constraint firstItem="ApZ-Ho-9fy" firstAttribute="leading" secondItem="aw5-wY-Fv1" secondAttribute="leading" id="kbs-uL-C8Y"/>
                         <constraint firstAttribute="trailing" secondItem="Uaf-Ec-gfB" secondAttribute="trailing" constant="8" id="lxY-he-JNr"/>
-                        <constraint firstItem="aZs-ds-un4" firstAttribute="leading" secondItem="ApZ-Ho-9fy" secondAttribute="trailing" constant="8" id="pmW-B0-VQR"/>
+                        <constraint firstItem="aZs-ds-un4" firstAttribute="leading" secondItem="ApZ-Ho-9fy" secondAttribute="trailing" id="pmW-B0-VQR"/>
                         <constraint firstItem="Y0c-qk-9fj" firstAttribute="height" secondItem="ApZ-Ho-9fy" secondAttribute="height" id="uPv-VI-CQn"/>
                     </constraints>
                 </view>
@@ -138,7 +138,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="map_marker-50" width="16" height="16"/>
-        <image name="speech_bubble-50" width="16" height="16"/>
+        <image name="map_marker-100" width="33" height="33"/>
+        <image name="speech_bubble-100" width="33" height="33"/>
     </resources>
 </document>

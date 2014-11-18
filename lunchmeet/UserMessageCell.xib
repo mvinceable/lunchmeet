@@ -14,16 +14,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfD-Xp-YpC">
-                        <rect key="frame" x="133" y="8" width="55" height="15"/>
+                        <rect key="frame" x="133" y="8" width="54.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKy-Kv-hWQ" userLabel="messageContent">
-                        <rect key="frame" x="191" y="31" width="113" height="42"/>
+                        <rect key="frame" x="191" y="30" width="113" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5u-pS-mPP">
-                                <rect key="frame" x="8" y="8" width="97" height="26"/>
+                                <rect key="frame" x="8" y="8" width="97" height="27.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -38,14 +38,22 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-ec-IyV">
-                        <rect key="frame" x="252" y="8" width="52" height="15"/>
+                        <rect key="frame" x="252" y="8" width="51.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin-100" translatesAutoresizingMaskIntoConstraints="NO" id="gwo-KC-jZe">
+                        <rect key="frame" x="159" y="38" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="kfY-7u-FEu"/>
+                            <constraint firstAttribute="width" constant="24" id="wfj-E3-XSL"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="gwo-KC-jZe" firstAttribute="top" secondItem="mKy-Kv-hWQ" secondAttribute="top" constant="8" id="3vF-sM-HIA"/>
                     <constraint firstAttribute="centerX" secondItem="HfD-Xp-YpC" secondAttribute="centerX" id="7tt-wc-sHp"/>
                     <constraint firstAttribute="trailing" secondItem="mKy-Kv-hWQ" secondAttribute="trailing" constant="16" id="AK4-Rx-Sn5"/>
                     <constraint firstItem="HfD-Xp-YpC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="IEC-E0-Ca8"/>
@@ -53,16 +61,21 @@
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="top" secondItem="HfD-Xp-YpC" secondAttribute="bottom" constant="8" id="S7h-1S-7gi"/>
                     <constraint firstItem="mKy-Kv-hWQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="fWg-5B-sz2"/>
                     <constraint firstItem="uDd-ec-IyV" firstAttribute="centerY" secondItem="HfD-Xp-YpC" secondAttribute="centerY" id="lNk-Xd-Ft7"/>
+                    <constraint firstItem="mKy-Kv-hWQ" firstAttribute="leading" secondItem="gwo-KC-jZe" secondAttribute="trailing" constant="8" id="oJB-CN-74O"/>
                     <constraint firstAttribute="trailing" secondItem="uDd-ec-IyV" secondAttribute="trailing" constant="16" id="tIM-YQ-0aY"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="messageLabel" destination="v5u-pS-mPP" id="BXX-E0-rA9"/>
+                <outlet property="pinImageView" destination="gwo-KC-jZe" id="bhi-Ju-0OO"/>
                 <outlet property="timestampLabel" destination="HfD-Xp-YpC" id="OF9-r4-R6P"/>
                 <outlet property="userLabel" destination="uDd-ec-IyV" id="YkT-E3-HTO"/>
             </connections>
             <point key="canvasLocation" x="267" y="391"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="pin-100" width="33" height="33"/>
+    </resources>
 </document>

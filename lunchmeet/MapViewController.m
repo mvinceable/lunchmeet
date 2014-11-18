@@ -586,7 +586,7 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.24; //user needs to press for .24 seconds
+    lpgr.minimumPressDuration = 0.15; //user needs to press for .24 seconds
     [self.mapView addGestureRecognizer:lpgr];
     
     self.userPins = [NSMutableDictionary dictionary];
@@ -603,6 +603,10 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
     self.tableView.estimatedRowHeight = 90;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.messageTextview.delegate = self;
+    
+    self.messageTextview.layer.borderWidth = 1.0f;
+    self.messageTextview.layer.borderColor = [[[UIColor blackColor] colorWithAlphaComponent:.1] CGColor];
+    self.messageTextview.layer.cornerRadius = 3;
     
     // listen for keyboard appearances and disappearances
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -866,6 +870,7 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
     // Create relationship
     [chat setObject:[PFUser currentUser].username forKey:@"username"];
     [chat setObject:group forKey:@"group"];
+    [chat setObject:@YES forKey:@"isPin"];
     
     // Save the new post
     [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -936,72 +941,73 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
         else{
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userPinAnnotationId2];
             
-            if([myLabel.text isEqualToString:@"Espresso Bar"]){
-                annotationView.image = [UIImage imageNamed:@"coffee.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Basketball Courts"]){
-                annotationView.image = [UIImage imageNamed:@"courts.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Gym"]){
-                annotationView.image = [UIImage imageNamed:@"gym.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Stairs to 2nd floor"]){
-                annotationView.image = [UIImage imageNamed:@"stairs.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Food Lines"]){
-                annotationView.image = [UIImage imageNamed:@"food.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Utensils Area"]){
-                annotationView.image = [UIImage imageNamed:@"utensils.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Dish Drop"]){
-                annotationView.image = [UIImage imageNamed:@"trash.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Drink Refrigerator"]){
-                annotationView.image = [UIImage imageNamed:@"fridge.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"URLs Store"]){
-                annotationView.image = [UIImage imageNamed:@"creditcard.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"FYI Stage"]){
-                annotationView.image = [UIImage imageNamed:@"stage.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"URLs A/B Entrance"]){
-                annotationView.image = [UIImage imageNamed:@"door.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"URLs D Entrance"]){
-                annotationView.image = [UIImage imageNamed:@"door.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Fountain"]){
-                annotationView.image = [UIImage imageNamed:@"fountain.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"BBQ Grills"]){
-                annotationView.image = [UIImage imageNamed:@"grill.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Ice Cream Machine"]){
-                annotationView.image = [UIImage imageNamed:@"icecream.png"];
-                
-            }
-            else if([myLabel.text isEqualToString:@"Garage"]){
-                annotationView.image = [UIImage imageNamed:@"garage.png"];
-                
-                
-            }
-            else if([myLabel.text isEqualToString:@"Building A"] || [myLabel.text isEqualToString:@"Building B"] || [myLabel.text isEqualToString:@"Building C"] || [myLabel.text isEqualToString:@"Building D"] || [myLabel.text isEqualToString:@"Building E"] || [myLabel.text isEqualToString:@"Building F"] || [myLabel.text isEqualToString:@"Building G"]){
+//            if([myLabel.text isEqualToString:@"Espresso Bar"]){
+//                annotationView.image = [UIImage imageNamed:@"coffee.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Basketball Courts"]){
+//                annotationView.image = [UIImage imageNamed:@"courts.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Gym"]){
+//                annotationView.image = [UIImage imageNamed:@"gym.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Stairs to 2nd floor"]){
+//                annotationView.image = [UIImage imageNamed:@"stairs.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Food Lines"]){
+//                annotationView.image = [UIImage imageNamed:@"food.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Utensils Area"]){
+//                annotationView.image = [UIImage imageNamed:@"utensils.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Dish Drop"]){
+//                annotationView.image = [UIImage imageNamed:@"trash.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Drink Refrigerator"]){
+//                annotationView.image = [UIImage imageNamed:@"fridge.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"URLs Store"]){
+//                annotationView.image = [UIImage imageNamed:@"creditcard.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"FYI Stage"]){
+//                annotationView.image = [UIImage imageNamed:@"stage.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"URLs A/B Entrance"]){
+//                annotationView.image = [UIImage imageNamed:@"door.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"URLs D Entrance"]){
+//                annotationView.image = [UIImage imageNamed:@"door.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Fountain"]){
+//                annotationView.image = [UIImage imageNamed:@"fountain.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"BBQ Grills"]){
+//                annotationView.image = [UIImage imageNamed:@"grill.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Ice Cream Machine"]){
+//                annotationView.image = [UIImage imageNamed:@"icecream.png"];
+//                
+//            }
+//            else if([myLabel.text isEqualToString:@"Garage"]){
+//                annotationView.image = [UIImage imageNamed:@"garage.png"];
+//                
+//                
+//            }
+//            else
+                if([myLabel.text isEqualToString:@"Building A"] || [myLabel.text isEqualToString:@"Building B"] || [myLabel.text isEqualToString:@"Building C"] || [myLabel.text isEqualToString:@"Building D"] || [myLabel.text isEqualToString:@"Building E"] || [myLabel.text isEqualToString:@"Building F"] || [myLabel.text isEqualToString:@"Building G"]){
                 annotationView = v;
                 [v addSubview:myLabel];
                 
@@ -1268,7 +1274,7 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
 
 - (IBAction)mapTapped:(id)sender {
     [UIView animateWithDuration:.24 animations:^{
-        self.chatButton.alpha = 1;
+        self.chatButton.alpha = .5;
         self.mapButton.alpha = 0;
         [self.view layoutIfNeeded];
     }];
@@ -1277,7 +1283,7 @@ NSInteger const DEFAULT_MESSAGEVIEW_HEIGHT = 36;
 
 - (IBAction)chatTapped:(id)sender {
     [UIView animateWithDuration:.24 animations:^{
-        self.mapButton.alpha = 1;
+        self.mapButton.alpha = .5;
         self.chatButton.alpha = 0;
         [self.view layoutIfNeeded];
     }];

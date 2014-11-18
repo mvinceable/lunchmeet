@@ -14,5 +14,6 @@
 
 - (void)getLatestPhotosWithCompletion:(void (^)(NSArray *photos, NSError *error))completion;
 - (NSString *)getImageUrlAtIndex:(NSInteger)index;
+- (void)getFoodPicWithCompletion:(NSString *)foodString completion:(void (^)(NSString *photoUrl, NSError *error))completion;
 
 @end

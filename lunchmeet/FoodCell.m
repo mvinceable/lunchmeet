@@ -8,6 +8,8 @@
 
 #import "FoodCell.h"
 #import "Menu.h"
+#import "FlickrCam.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface FoodCell()
 
@@ -16,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *foodStation;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *foodImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *foodLeftConstraint;
 
 @property (nonatomic) NSInteger likeCount;
 
@@ -25,6 +29,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,6 +43,22 @@
     self.foodLabel.text = item[@"label"];
     self.foodDescription.text = item[@"description"];
     self.foodStation.text = [self stringByStrippingHTML:item[@"station"]];
+    self.foodImageView.alpha = 0;
+    self.foodLeftConstraint.constant = -64;
+    
+    [[FlickrCam sharedInstance] getFoodPicWithCompletion:item[@"label"] completion:^(NSString *photoUrl, NSError *error) {
+        if (photoUrl != nil) {
+//            NSLog(@"got photo url for %@: %@", item[@"label"], photoUrl);
+            [self.foodImageView setImageWithURL:[NSURL URLWithString:photoUrl]];
+            [UIView animateWithDuration:.24 animations:^{
+                self.foodLeftConstraint.constant = 16;
+                self.foodImageView.alpha = 1;
+                [self layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                [self layoutIfNeeded];
+            }];
+        }
+    }];
 }
 
 - (void)setVotes:(NSDictionary *)votes {
@@ -62,20 +83,23 @@
     if (sender.alpha == 1) {
         NSLog(@"Remove vote for item %@", _item[@"id"]);
         self.likeCount--;
-        self.likeButton.alpha = .5;
+        [UIView animateWithDuration:.24 animations:^{
+            self.likeButton.alpha = .5;
+            [self layoutIfNeeded];
+        }];
         [[Menu sharedInstance] voteForFoodItem:NO itemId:_item[@"id"]];
         [self.delegate voteChangedForItem:_item[@"id"] vote:self.likeCount up:NO];
     } else {
         NSLog(@"Vote item %@ up", _item[@"id"]);
         self.likeCount++;
-        self.likeButton.alpha = 1;
+        [UIView animateWithDuration:.24 animations:^{
+            self.likeButton.alpha = 1;
+            [self layoutIfNeeded];
+        }];
         [[Menu sharedInstance] voteForFoodItem:YES itemId:_item[@"id"]];
         [self.delegate voteChangedForItem:_item[@"id"] vote:self.likeCount up:YES];
     }
     self.likeLabel.text = [NSString stringWithFormat:@"%ld", (long)self.likeCount];
-    [UIView animateWithDuration:.24 animations:^{
-        [self layoutIfNeeded];
-    }];
     
 }
 

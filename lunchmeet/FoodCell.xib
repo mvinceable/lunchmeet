@@ -14,63 +14,74 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRP-lA-7Wn">
-                        <rect key="frame" x="16" y="16" width="396" height="19"/>
+                        <rect key="frame" x="16" y="12" width="396" height="19"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kon-c3-wwF">
-                        <rect key="frame" x="16" y="51" width="396" height="103"/>
+                        <rect key="frame" x="16" y="39" width="66.5" height="123"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-Ex-daS" userLabel="likeButton">
-                        <rect key="frame" x="388" y="164" width="24" height="24"/>
+                        <rect key="frame" x="376" y="149" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="24" id="Bnt-AH-yYJ"/>
-                            <constraint firstAttribute="height" constant="24" id="N0U-KJ-J3T"/>
+                            <constraint firstAttribute="width" constant="44" id="Bnt-AH-yYJ"/>
+                            <constraint firstAttribute="height" constant="44" id="N0U-KJ-J3T"/>
                         </constraints>
-                        <state key="normal" image="happy-50">
+                        <state key="normal" image="happy-100">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="voteUp:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VbH-da-xN9"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mda-hN-ifp">
-                        <rect key="frame" x="373" y="169.5" width="7" height="14.5"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mda-hN-ifp">
+                        <rect key="frame" x="361" y="159" width="12" height="25"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" text="station" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQh-Pd-SDv">
-                        <rect key="frame" x="16" y="170" width="34.5" height="14.5"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="16" y="170" width="38" height="14.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yhe-ge-DiI">
+                        <rect key="frame" x="-64" y="16" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="64" id="IFA-hL-gte"/>
+                            <constraint firstAttribute="width" constant="64" id="TV6-VA-azr"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Kon-c3-wwF" firstAttribute="top" secondItem="BRP-lA-7Wn" secondAttribute="bottom" constant="16" id="082-gG-qZM"/>
-                    <constraint firstAttribute="trailing" secondItem="Kon-c3-wwF" secondAttribute="trailing" constant="16" id="1FH-qW-rBV"/>
-                    <constraint firstAttribute="bottom" secondItem="qUc-Ex-daS" secondAttribute="bottom" constant="12" id="3cK-hj-6LN"/>
-                    <constraint firstItem="BRP-lA-7Wn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="8eo-fn-ZPQ"/>
-                    <constraint firstAttribute="trailing" secondItem="qUc-Ex-daS" secondAttribute="trailing" constant="16" id="9FL-Ae-wmg"/>
+                    <constraint firstItem="Kon-c3-wwF" firstAttribute="top" secondItem="BRP-lA-7Wn" secondAttribute="bottom" constant="8" id="082-gG-qZM"/>
+                    <constraint firstAttribute="bottom" secondItem="qUc-Ex-daS" secondAttribute="bottom" constant="8" id="3cK-hj-6LN"/>
+                    <constraint firstItem="BRP-lA-7Wn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="8eo-fn-ZPQ"/>
+                    <constraint firstAttribute="trailing" secondItem="qUc-Ex-daS" secondAttribute="trailing" constant="8" id="9FL-Ae-wmg"/>
                     <constraint firstAttribute="bottom" secondItem="UQh-Pd-SDv" secondAttribute="bottom" constant="16" id="FEm-7W-Un3"/>
-                    <constraint firstItem="qUc-Ex-daS" firstAttribute="leading" secondItem="mda-hN-ifp" secondAttribute="trailing" constant="8" id="Fow-V1-XLQ"/>
+                    <constraint firstItem="qUc-Ex-daS" firstAttribute="leading" secondItem="mda-hN-ifp" secondAttribute="trailing" constant="3" id="Fow-V1-XLQ"/>
                     <constraint firstItem="mda-hN-ifp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UQh-Pd-SDv" secondAttribute="trailing" constant="16" id="HhD-1h-eup"/>
                     <constraint firstAttribute="trailing" secondItem="BRP-lA-7Wn" secondAttribute="trailing" constant="16" id="LBD-GZ-XBM"/>
-                    <constraint firstItem="UQh-Pd-SDv" firstAttribute="top" secondItem="Kon-c3-wwF" secondAttribute="bottom" constant="16" id="N7J-V0-Bcb"/>
-                    <constraint firstItem="UQh-Pd-SDv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ppb-0I-IYm"/>
-                    <constraint firstItem="Kon-c3-wwF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ReI-UV-kOZ"/>
+                    <constraint firstItem="UQh-Pd-SDv" firstAttribute="top" secondItem="Kon-c3-wwF" secondAttribute="bottom" constant="8" id="N7J-V0-Bcb"/>
+                    <constraint firstItem="UQh-Pd-SDv" firstAttribute="leading" secondItem="BRP-lA-7Wn" secondAttribute="leading" id="QFG-ei-io9"/>
+                    <constraint firstItem="BRP-lA-7Wn" firstAttribute="leading" secondItem="Yhe-ge-DiI" secondAttribute="trailing" constant="16" id="UA3-OH-icK"/>
+                    <constraint firstItem="mda-hN-ifp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kon-c3-wwF" secondAttribute="trailing" constant="16" id="aqJ-Iq-I7y"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Yhe-ge-DiI" secondAttribute="bottom" constant="16" id="iYC-hU-LoY"/>
+                    <constraint firstItem="Yhe-ge-DiI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="-64" id="m88-eO-wvB"/>
                     <constraint firstItem="mda-hN-ifp" firstAttribute="centerY" secondItem="qUc-Ex-daS" secondAttribute="centerY" id="n8i-ds-dhf"/>
-                    <constraint firstItem="BRP-lA-7Wn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="xSV-2z-mDn"/>
+                    <constraint firstItem="Yhe-ge-DiI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="sUT-vW-x0Y"/>
+                    <constraint firstItem="BRP-lA-7Wn" firstAttribute="leading" secondItem="Kon-c3-wwF" secondAttribute="leading" id="uye-ex-zEo"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="foodDescription" destination="Kon-c3-wwF" id="pFN-Mh-dWO"/>
+                <outlet property="foodImageView" destination="Yhe-ge-DiI" id="YV4-tT-rdU"/>
                 <outlet property="foodLabel" destination="BRP-lA-7Wn" id="lyb-6l-Zne"/>
+                <outlet property="foodLeftConstraint" destination="m88-eO-wvB" id="l5r-RA-HUb"/>
                 <outlet property="foodStation" destination="UQh-Pd-SDv" id="acW-7G-gJc"/>
                 <outlet property="likeButton" destination="qUc-Ex-daS" id="4gq-sr-XKL"/>
                 <outlet property="likeLabel" destination="mda-hN-ifp" id="1fX-ME-eNF"/>
@@ -79,6 +90,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="happy-50" width="16" height="16"/>
+        <image name="happy-100" width="33" height="33"/>
     </resources>
 </document>

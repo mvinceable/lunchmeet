@@ -36,6 +36,21 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
     return instance;
 }
 
+- (void)storeMenuForCafe:(NSString *)cafeId {
+    NSLog(@"Caching cafe info");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.cafeInfo forKey:cafeId];
+    [defaults synchronize];
+}
+
+- (void)loadMenuForCafe:(NSString *)cafeId {
+    NSLog(@"Retrieving cafe info from cache");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:cafeId] != nil) {
+        self.cafeInfo = [defaults objectForKey:cafeId];
+    }
+}
+
 - (void)getMenuForCafeWithCompletion:(NSString *)cafeId completion:(void (^)(NSDictionary *cafeInfo, NSError *error))completion {
     self.cafeInfoCompletion = completion;
     
@@ -54,10 +69,13 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
         [self getVotesWithCompletion:cafeId completion:^(NSDictionary *cafeInfo, NSError *error) {
             completion(self.cafeInfo, nil);
         }];
+        
+        [self storeMenuForCafe:cafeId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // fail silently, return the last stored result
         if (completion) {
-            completion(nil, error);
+            [self loadMenuForCafe:cafeId];
+            completion(self.cafeInfo, error);
         }
     }];
     
@@ -96,10 +114,13 @@ NSString *const MenuApiUrl = @"http://legacy.cafebonappetit.com/api/2/menus?form
             }
             self.cafeInfo[@"votes"] = votes;
             completion(self.cafeInfo, nil);
+            
+            [self storeMenuForCafe:cafeId];
         } else {
-            completion(nil, error);
-            NSString *errorString = [error userInfo][@"error"];
-            [[[UIAlertView alloc] initWithTitle:@"Failed to get votes" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            [self loadMenuForCafe:cafeId];
+            completion(self.cafeInfo, error);
+//            NSString *errorString = [error userInfo][@"error"];
+//            [[[UIAlertView alloc] initWithTitle:@"Failed to get votes" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
 

@@ -81,7 +81,7 @@
                                 <constraint firstAttribute="width" constant="200" id="nq8-bq-k10"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jlx-u4-rug">
                             <rect key="frame" x="20" y="67" width="200" height="42"/>
@@ -91,7 +91,7 @@
                                 <constraint firstAttribute="height" constant="42" id="pj8-vA-itw"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wWT-vU-90y">
                             <rect key="frame" x="20" y="167" width="200" height="42"/>
@@ -101,7 +101,7 @@
                                 <constraint firstAttribute="height" constant="42" id="a94-SX-LVZ"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Lunchmeet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-Y5-OFK">
                             <rect key="frame" x="22" y="0.0" width="197" height="51"/>

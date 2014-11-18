@@ -15,22 +15,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Ko-1dr">
-                        <rect key="frame" x="16" y="8" width="52" height="15"/>
+                        <rect key="frame" x="16" y="8" width="51.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVs-4A-Er2">
-                        <rect key="frame" x="133" y="8" width="55" height="15"/>
+                        <rect key="frame" x="133" y="8" width="54.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y9-oJ-wQR" userLabel="messageContent">
-                        <rect key="frame" x="16" y="30" width="113" height="44"/>
+                        <rect key="frame" x="16" y="30" width="113" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txj-YW-PRT">
-                                <rect key="frame" x="8" y="8" width="97" height="28"/>
+                                <rect key="frame" x="8" y="8" width="97" height="27.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -44,6 +44,13 @@
                             <constraint firstItem="Txj-YW-PRT" firstAttribute="leading" secondItem="7y9-oJ-wQR" secondAttribute="leading" constant="8" id="yz4-Ha-VZR"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin-100" translatesAutoresizingMaskIntoConstraints="NO" id="ib1-hK-sp7">
+                        <rect key="frame" x="137" y="38" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="9pv-Gb-NjB"/>
+                            <constraint firstAttribute="width" constant="24" id="D18-cG-SAR"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -51,19 +58,25 @@
                     <constraint firstItem="fVs-4A-Er2" firstAttribute="top" secondItem="PkM-fK-P8A" secondAttribute="top" constant="8" id="3Ez-Qf-5hS"/>
                     <constraint firstItem="Ewq-Ko-1dr" firstAttribute="centerY" secondItem="fVs-4A-Er2" secondAttribute="centerY" id="Idp-HR-aLf"/>
                     <constraint firstItem="Ewq-Ko-1dr" firstAttribute="leading" secondItem="PkM-fK-P8A" secondAttribute="leading" constant="16" id="OUc-15-aLe"/>
+                    <constraint firstItem="7y9-oJ-wQR" firstAttribute="top" secondItem="ib1-hK-sp7" secondAttribute="top" constant="-8" id="S74-df-se9"/>
                     <constraint firstItem="7y9-oJ-wQR" firstAttribute="leading" secondItem="PkM-fK-P8A" secondAttribute="leading" constant="16" id="TM5-9g-aQy"/>
                     <constraint firstItem="7y9-oJ-wQR" firstAttribute="top" secondItem="fVs-4A-Er2" secondAttribute="bottom" constant="8" id="XGN-L9-xQp"/>
                     <constraint firstAttribute="centerX" secondItem="fVs-4A-Er2" secondAttribute="centerX" id="gtm-9v-T9b"/>
+                    <constraint firstItem="ib1-hK-sp7" firstAttribute="leading" secondItem="7y9-oJ-wQR" secondAttribute="trailing" constant="8" id="iKD-L9-y90"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7y9-oJ-wQR" secondAttribute="trailing" constant="64" id="rrW-vA-Lny"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="messageLabel" destination="Txj-YW-PRT" id="OwO-ml-uIP"/>
+                <outlet property="pinImageView" destination="ib1-hK-sp7" id="d1H-cS-39D"/>
                 <outlet property="timestampLabel" destination="fVs-4A-Er2" id="GkQ-MN-cYP"/>
                 <outlet property="userLabel" destination="Ewq-Ko-1dr" id="3ZE-8m-E3m"/>
             </connections>
             <point key="canvasLocation" x="247" y="391"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="pin-100" width="33" height="33"/>
+    </resources>
 </document>

@@ -38,7 +38,7 @@
     // setup delegates
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 200;
+    self.tableView.estimatedRowHeight = 300;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     // register nib
@@ -59,11 +59,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // unhighlight selection
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

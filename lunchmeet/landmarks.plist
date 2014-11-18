@@ -2,6 +2,160 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>New item - 14</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.025846</string>
+		<key>latitude</key>
+		<string>37.416503</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>Street</string>
+	</dict>
+	<key>New item - 13</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.024458</string>
+		<key>latitude</key>
+		<string>37.416735</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>Street</string>
+	</dict>
+	<key>New item - 12</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.024166</string>
+		<key>latitude</key>
+		<string>37.417592</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>Street</string>
+	</dict>
+	<key>New item - 11</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>longitude</key>
+		<string>-122.026166</string>
+		<key>latitude</key>
+		<string>37.418969</string>
+		<key>title</key>
+		<string>Building B Parking Lot</string>
+	</dict>
+	<key>New item - 9</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.025028</string>
+		<key>latitude</key>
+		<string>37.416544</string>
+		<key>title</key>
+		<string>Building D Parking Lot</string>
+		<key>connector</key>
+		<string>the</string>
+	</dict>
+	<key>New item - 10</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>longitude</key>
+		<string>-122.026288</string>
+		<key>latitude</key>
+		<string>37.417556</string>
+		<key>title</key>
+		<string>Building A Parking Lot</string>
+	</dict>
+	<key>New item - 8</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.025515</string>
+		<key>latitude</key>
+		<string>37.417023</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>Turnaround</string>
+	</dict>
+	<key>New item - 7</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.024912</string>
+		<key>title</key>
+		<string>Tables near D entrance</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417785</string>
+	</dict>
+	<key>New item - 6</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>longitude</key>
+		<string>-122.024746</string>
+		<key>latitude</key>
+		<string>37.418725</string>
+		<key>title</key>
+		<string>Volleyball Courts</string>
+	</dict>
+	<key>New item - 5</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.025830</string>
+		<key>latitude</key>
+		<string>37.418245</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>bridge connecting Buildings A and B</string>
+	</dict>
+	<key>New item - 4</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>longitude</key>
+		<string>-122.025398</string>
+		<key>latitude</key>
+		<string>37.418325</string>
+		<key>title</key>
+		<string>Lawn</string>
+	</dict>
+	<key>New item - 3</key>
+	<dict>
+		<key>longitude</key>
+		<string>-122.025307</string>
+		<key>latitude</key>
+		<string>37.417617</string>
+		<key>connector</key>
+		<string>the</string>
+		<key>title</key>
+		<string>Lawn</string>
+	</dict>
+	<key>New item - 2</key>
+	<dict>
+		<key>title</key>
+		<string>Yahoo! sign on First and Mathilda</string>
+		<key>longitude</key>
+		<string>-122.024829</string>
+		<key>latitude</key>
+		<string>37.416266</string>
+		<key>connector</key>
+		<string>the</string>
+	</dict>
+	<key>New item</key>
+	<dict>
+		<key>connector</key>
+		<string>the</string>
+		<key>latitude</key>
+		<string>37.417945</string>
+		<key>longitude</key>
+		<string>-122.024489</string>
+		<key>title</key>
+		<string>Kitchen Area</string>
+	</dict>
 	<key>Item43</key>
 	<dict>
 		<key>title</key>
@@ -370,11 +524,11 @@
 		<key>connector</key>
 		<string>the</string>
 		<key>latitude</key>
-		<string>37.417815 </string>
+		<string>37.417674</string>
 		<key>longitude</key>
-		<string>-122.024662</string>
+		<string>-122.024682</string>
 		<key>title</key>
-		<string>Tables outside near drink refrigerator</string>
+		<string>Tables outside near drink fridge</string>
 	</dict>
 	<key>Item40</key>
 	<dict>

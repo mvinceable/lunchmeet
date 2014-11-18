@@ -135,14 +135,14 @@ NSInteger const FLICKR_CAM_FRAME_COUNT = 20; // 20 frames is two hours worth
         menuNC.navigationBar.barTintColor = [UIColor orangeColor];
         menuNC.navigationBar.tintColor = [UIColor whiteColor];
         menuNC.title = @"Menu";
-        menuNC.tabBarItem.image = [UIImage imageNamed:@"menu-50"];
+        menuNC.tabBarItem.image = [UIImage imageNamed:@"menu-64"];
 
         GroupsViewController *gvc = [[GroupsViewController alloc] init];
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:gvc];
         nc.navigationBar.barTintColor = [UIColor orangeColor];
         nc.navigationBar.tintColor = [UIColor whiteColor];
         nc.title = @"Lunchmeets";
-        nc.tabBarItem.image = [UIImage imageNamed:@"group-50"];
+        nc.tabBarItem.image = [UIImage imageNamed:@"group-64"];
         
         NSArray *controllers = [NSArray arrayWithObjects:menuNC, nc, nil];
         
